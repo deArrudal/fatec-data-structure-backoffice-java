@@ -7,9 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class TelaHome extends JFrame {
+public class TelaInserirClienteCPF extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -21,7 +22,7 @@ public class TelaHome extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaHome frame = new TelaHome();
+					TelaInserirClienteCPF frame = new TelaInserirClienteCPF();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,8 +34,7 @@ public class TelaHome extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaHome() {
-		setTitle("Backoffice");
+	public TelaInserirClienteCPF() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -43,30 +43,27 @@ public class TelaHome extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnCarregar = new JButton("Carregar");
-		btnCarregar.setBounds(321, 23, 89, 23);
-		contentPane.add(btnCarregar);
+		JLabel lblInserir = new JLabel("Cadastrar Cliente CPF");
+		lblInserir.setBounds(10, 11, 129, 14);
+		contentPane.add(lblInserir);
 		
-		JButton btnConsulta = new JButton("Consulta");
-		btnConsulta.setBounds(321, 83, 89, 23);
-		contentPane.add(btnConsulta);
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setBounds(232, 227, 89, 23);
+		contentPane.add(btnVoltar);
 		
-		JButton btnCadastro = new JButton("Cadastro");
-		btnCadastro.setBounds(321, 143, 89, 23);
-		contentPane.add(btnCadastro);
-		
-		ActionListener cadastro = new ActionListener() {
+		ActionListener voltar = new ActionListener() {
 			
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				TelaSelecaoCadastro.main(null);
 				setVisible(false);
 			}
 		};
 		
-		btnCadastro.addActionListener(cadastro);
+		btnVoltar.addActionListener(voltar);
 		
-		JButton btnCompra = new JButton("Compra");
-		btnCompra.setBounds(321, 203, 89, 23);
-		contentPane.add(btnCompra);
+		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setBounds(331, 227, 89, 23);
+		contentPane.add(btnConfirmar);
 	}
 }
