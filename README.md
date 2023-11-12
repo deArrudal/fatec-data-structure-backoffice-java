@@ -18,14 +18,28 @@ Alternatively, a brief summary of the topics can be found in ["What is Data Stru
 ### Folder Structure
 ````
 Back Office
-├── bin
-├── lib
-├── resources
-│   ├── Instructions.pdf (Portuguese)
-├── src
-│   ├── controller
-│   ├── model
-│   ├── view
+├── bin/
+├── data/
+│   ├── categorias.csv
+│   ├── clientePF.csv
+│   ├── clientePJ.csv
+│   ├── pedidos.csv
+│   ├── produtos.csv
+├── lib/
+│   ├── genericLinkedList.jar
+│   ├── genericQueue.jar
+│   ├── genericStack.jar
+├── resources/
+│   ├── instruções.pdf
+├── src/
+│   ├── controller/
+│   ├── model/
+│   │   ├── Categorias.csv
+│   │   ├── ClientePF.csv
+│   │   ├── ClientePJ.csv
+│   │   ├── Pedidos.csv
+│   │   ├── Produtos.csv
+│   ├── view/
 ├── .gitignore
 ├── LICENSE
 └── README.md
@@ -45,6 +59,9 @@ Back Office
  - Silva, Pedro H. Barros
 
 ## Version History
+
+* 0.1
+    * Added first models and data elements.
 
 ## License
 
