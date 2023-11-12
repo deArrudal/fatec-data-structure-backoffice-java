@@ -8,4 +8,9 @@ public class Categoria {
         this.idCategoria = idCategoria;
         this.nomeCategoria = nomeCategoria;
     }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return idCategoria + ";" + nomeCategoria;
+    }
 }

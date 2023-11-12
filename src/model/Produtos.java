@@ -9,12 +9,18 @@ public class Produtos {
     double valorProduto; // ex.: 19.99
 
     public Produtos(int idProduto, int idProdutoCategoria, String nomeProduto, String descricaoProduto, int qtdProduto,
-            double valorProduto) {
+                    double valorProduto) {
         this.idProduto = idProduto;
         this.idProdutoCategoria = idProdutoCategoria;
         this.nomeProduto = nomeProduto;
         this.descricaoProduto = descricaoProduto;
         this.qtdProduto = qtdProduto;
         this.valorProduto = valorProduto;
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return idProduto + ";" + idProdutoCategoria + ";" + nomeProduto  + ";" + descricaoProduto  + ";" +
+                qtdProduto  + ";" + valorProduto  + ";";
     }
 }

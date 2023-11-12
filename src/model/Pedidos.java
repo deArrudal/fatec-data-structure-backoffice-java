@@ -10,4 +10,9 @@ public class Pedidos {
         this.nomeCliente = nomeCliente;
         this.itensPedido = itensPedido;
     }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return idPedido + ";" + nomeCliente + ";" + itensPedido;
+    }
 }

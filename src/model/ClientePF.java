@@ -8,11 +8,16 @@ public class ClientePF {
     String telefoneClientePF; // ex.: 11012345678
 
     public ClientePF(String cpfClientePF, String nomeClientePF,
-            String enderecoClientePF, String cepClientePF, String telefoneClientePF) {
+                     String enderecoClientePF, String cepClientePF, String telefoneClientePF) {
         this.cpfClientePF = cpfClientePF;
         this.nomeClientePF = nomeClientePF;
         this.enderecoClientePF = enderecoClientePF;
         this.cepClientePF = cepClientePF;
         this.telefoneClientePF = telefoneClientePF;
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return cpfClientePF + ";" + nomeClientePF + ";" + enderecoClientePF + ";" + cepClientePF + ";" + telefoneClientePF;
     }
 }

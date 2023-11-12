@@ -9,12 +9,18 @@ public class ClientePJ {
     String emailClientePJ; // ex.: miriandoces@mail.com
 
     public ClientePJ(String cnpjClientePJ, String nomeClientePJ, String enderecoClientePJ,
-            String cepClientePJ, String telefoneClientePJ, String emailClientePJ) {
+                     String cepClientePJ, String telefoneClientePJ, String emailClientePJ) {
         this.cnpjClientePJ = cnpjClientePJ;
         this.nomeClientePJ = nomeClientePJ;
         this.enderecoClientePJ = enderecoClientePJ;
         this.cepClientePJ = cepClientePJ;
         this.telefoneClientePJ = telefoneClientePJ;
         this.emailClientePJ = emailClientePJ;
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return cnpjClientePJ + ";" + nomeClientePJ + ";" + enderecoClientePJ + ";" + cepClientePJ + ";" +
+                telefoneClientePJ + ";" + emailClientePJ;
     }
 }
