@@ -43,7 +43,7 @@ public class TelaInserirClienteCPF extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblInserir = new JLabel("Cadastrar Cliente CPF");
+		JLabel lblInserir = new JLabel("Inserir Cliente CPF");
 		lblInserir.setBounds(10, 11, 129, 14);
 		contentPane.add(lblInserir);
 		

@@ -22,7 +22,7 @@ public class TelaAtualizarClienteCPF extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAtualizarClienteCPF frame = new TelaInserirClienteCPF();
+					TelaAtualizarClienteCPF frame = new TelaAtualizarClienteCPF();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

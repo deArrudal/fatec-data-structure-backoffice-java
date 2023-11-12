@@ -22,7 +22,7 @@ public class TelaRemoverClienteCPF extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaInserirClienteCPF frame = new TelaInserirClienteCPF();
+					TelaRemoverClienteCPF frame = new TelaRemoverClienteCPF();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
