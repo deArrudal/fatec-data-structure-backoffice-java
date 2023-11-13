@@ -15,11 +15,6 @@ public class TelaCarregarBD extends JFrame implements ActionListener {
     JButton carregarClientesPJ;
     JButton cancelarOperacao;
 
-    // remover main apos depurar
-    public static void main(String[] args) {
-        new TelaCarregarBD();
-    }
-
     public TelaCarregarBD() {
         // definir e configurar elementos de tela
         textoOpcao = new JLabel("Selecione a opção de carregamento", SwingConstants.CENTER);
