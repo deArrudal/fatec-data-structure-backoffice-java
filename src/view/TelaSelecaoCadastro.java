@@ -16,7 +16,6 @@ public class TelaSelecaoCadastro extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JComboBox<String> cbCategoria;
-	private JComboBox<String> cbOperacao;
 
 	/**
 	 * Launch the application.
@@ -48,7 +47,7 @@ public class TelaSelecaoCadastro extends JFrame {
 		contentPane.setLayout(null);
 		
 		cbCategoria = new JComboBox<>();
-		cbCategoria.setBounds(137, 62, 276, 22);
+		cbCategoria.setBounds(101, 97, 276, 22);
 		contentPane.add(cbCategoria);
 		
 		cbCategoria.addItem("ClienteCPF");
@@ -56,25 +55,12 @@ public class TelaSelecaoCadastro extends JFrame {
 		cbCategoria.addItem("Produto");
 		cbCategoria.addItem("Cadastro");
 		
-		cbOperacao = new JComboBox<>();
-		cbOperacao.setBounds(137, 125, 276, 22);
-		contentPane.add(cbOperacao);
-		
-		cbOperacao.addItem("Inserir");
-		cbOperacao.addItem("Remover");
-		cbOperacao.addItem("Atualizar");
-		
 		JLabel lblCategoria = new JLabel("Categoria:");
-		lblCategoria.setBounds(26, 66, 68, 14);
+		lblCategoria.setBounds(26, 101, 68, 14);
 		contentPane.add(lblCategoria);
 		
-		JLabel lblOperacao = new JLabel("Opera\u00E7\u00E3o:");
-		lblOperacao.setLabelFor(cbOperacao);
-		lblOperacao.setBounds(26, 129, 68, 14);
-		contentPane.add(lblOperacao);
-		
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(225, 215, 89, 23);
+		btnVoltar.setBounds(199, 215, 89, 23);
 		contentPane.add(btnVoltar);
 		
 		ActionListener voltar = new ActionListener() {
@@ -89,74 +75,15 @@ public class TelaSelecaoCadastro extends JFrame {
 		btnVoltar.addActionListener(voltar);
 		
 		JButton btnConfirmar = new JButton("Confirmar");
-		btnConfirmar.setBounds(324, 215, 89, 23);
+		btnConfirmar.setBounds(298, 215, 99, 23);
 		contentPane.add(btnConfirmar);
-				
-		ActionListener confirmar = confirmar();
 		
-		btnConfirmar.addActionListener(confirmar);
+		JLabel lblNewLabel = new JLabel("Selecione a categoria do registro que deseja gerenciar");
+		lblNewLabel.setBounds(57, 55, 333, 13);
+		contentPane.add(lblNewLabel);
+				
+	
 	}
 
-	private ActionListener confirmar() {
-		ActionListener confirmar = new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				switch((String)cbCategoria.getSelectedItem()) {
-				case "ClienteCPF":
-					switch((String)cbOperacao.getSelectedItem()) {
-					case "Inserir":
-						TelaInserirClienteCPF.main(null);
-						break;
-					case "Remover":
-						TelaRemoverClienteCPF.main(null);
-						break;
-					case "Atualizar":
-						TelaAtualizarClienteCPF.main(null);
-						break;
-					}
-					break;
-				case "ClienteCNPJ":
-					switch((String)cbOperacao.getSelectedItem()) {
-					case "Inserir":
-						
-						break;
-					case "Remover":
-						
-						break;
-					case "Atualizar":
-						
-						break;
-					}
-					break;
-				case "Produto":
-					switch((String)cbOperacao.getSelectedItem()) {
-					case "Inserir":
-						
-						break;
-					case "Remover":
-						
-						break;
-					case "Atualizar":
-						
-						break;
-					}
-					break;
-				case "Categoria":
-					switch((String)cbOperacao.getSelectedItem()) {
-					case "Inserir":
-						
-						break;
-					case "Remover":
-						
-						break;
-					case "Atualizar":
-						
-						break;
-					}
-					break;
-				}
-				setVisible(false);
-			}
-		};		return confirmar;
-	}
+
 }
