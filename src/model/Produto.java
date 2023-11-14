@@ -1,6 +1,6 @@
 package model;
 
-public class Produtos {
+public class Produto {
     int idProduto; // ex.: 01
     int idProdutoCategoria; // ex.: 01
     String nomeProduto; // ex.: grampeador
@@ -8,8 +8,8 @@ public class Produtos {
     int qtdProduto; // ex.: 12
     double valorProduto; // ex.: 19.99
 
-    public Produtos(int idProduto, int idProdutoCategoria, String nomeProduto, String descricaoProduto, int qtdProduto,
-                    double valorProduto) {
+    public Produto(int idProduto, int idProdutoCategoria, String nomeProduto, String descricaoProduto, int qtdProduto,
+                   double valorProduto) {
         this.idProduto = idProduto;
         this.idProdutoCategoria = idProdutoCategoria;
         this.nomeProduto = nomeProduto;
@@ -18,8 +18,8 @@ public class Produtos {
         this.valorProduto = valorProduto;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return idProduto + ";" + idProdutoCategoria + ";" + nomeProduto  + ";" + descricaoProduto  + ";" +
                 qtdProduto  + ";" + valorProduto  + ";";
     }
