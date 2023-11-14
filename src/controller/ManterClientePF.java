@@ -1,19 +1,18 @@
 package controller;
 
 import linkedlist.model.LinkedList;
-import model.Categoria;
 import model.ClientePF;
 
 import javax.swing.*;
 
-public class ManterClienteCPF {
+public class ManterClientePF {
     LinkedList<ClientePF> listaClientesPF;
 
-    public ManterClienteCPF(LinkedList<ClientePF> listaClientesPF) {
+    public ManterClientePF(LinkedList<ClientePF> listaClientesPF) {
         this.listaClientesPF = listaClientesPF;
     }
 
-    public String consultaClientePF(String cpf) throws Exception {
+    public ClientePF consultaClientePF(String cpf) throws Exception {
         int tam = listaClientesPF.size();
         ClientePF aux = new ClientePF();
         for (int i = 0; i < tam; i++) {
@@ -23,9 +22,9 @@ public class ManterClienteCPF {
             }
         }
         if (aux == null) {
-            return "Cliente não encontrado!";
+            throw new Exception("Cliente não encontrado");
         } else {
-            return aux.toString();
+            return aux;
         }
     }
 
@@ -45,7 +44,8 @@ public class ManterClienteCPF {
         }
     }
 
-    public void inserirClientePF(String cpfClientePF, String nomeClientePF, String enderecoClientePF, String cepClientePF, String telefoneClientePF) throws Exception {
+    public void inserirClientePF(String cpfClientePF, String nomeClientePF, String enderecoClientePF, String cepClientePF,
+                                 String telefoneClientePF) throws Exception {
         ClientePF aux = new ClientePF(cpfClientePF,nomeClientePF,enderecoClientePF,cepClientePF,telefoneClientePF);
         if (listaClientesPF.isEmpty()) {
             listaClientesPF.addFirst(aux);
@@ -54,5 +54,10 @@ public class ManterClienteCPF {
         }
         JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
     }
-    
+
+    public void atualizarClientePF(String cpf) throws Exception {
+        ClientePF novoCliente = consultaClientePF(cpf); //Retorna para o front de alguma forma
+
+    }
+
 }
