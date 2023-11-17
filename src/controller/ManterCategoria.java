@@ -8,49 +8,47 @@ import javax.swing.*;
 public class ManterCategoria {
 
     LinkedList<Categoria> listaCategorias;
+
     public ManterCategoria(LinkedList<Categoria> listaCategorias) {
         this.listaCategorias = listaCategorias;
     }
 
     public String consultaCategoria(String categoria) throws Exception {
-        int tam = listaCategorias.size();
+        boolean isFound = false;
         Categoria aux = new Categoria();
-        for(int i = 0; i < tam; i++) {
-            if(listaCategorias.get(i).nomeCategoria.equals(categoria)) {
+        for (int i = 0; i < listaCategorias.size(); i++) {
+            if (listaCategorias.get(i).nomeCategoria.equals(categoria)) {
                 aux = listaCategorias.get(i);
+                isFound = true;
+                break;
             }
         }
-        if(aux == null) {
+        if (!isFound) {
             return "Categoria não encontrada!";
-        }else {
+        } else {
             return aux.toString();
         }
     }
 
     public void excluirCategoria(String categoria) throws Exception {
-        int tam = listaCategorias.size();
-        int aux = -1;
-        for (int i = 0; i < tam; i++) {
+        boolean isFound = false;
+        int pos = -1;
+        for (int i = 0; i < listaCategorias.size(); i++) {
             if (listaCategorias.get(i).nomeCategoria.equals(categoria)) {
-                aux = i;
+                pos = i;
+                isFound = true;
                 break;
             }
         }
-        if (aux == -1) {
-            JOptionPane.showMessageDialog(null,"Cliente não encontrado para exclusão");
-        } else {
-            listaCategorias.remove(aux);
+        if (!isFound) {
+            throw new Exception("Categoria não encontrado para exclusão");
         }
+        listaCategorias.remove(pos);
     }
 
-    public void inserirCategoria(int idCategoria, String nomeCategoria) throws Exception {
-        Categoria aux = new Categoria(idCategoria, nomeCategoria);
-        if (listaCategorias.isEmpty()) {
-            listaCategorias.addFirst(aux);
-        }else {
-            listaCategorias.addLast(aux);
-        }
+    //int idCategoria, String nomeCategoria)
+    public void inserirCategoria(Categoria categoria) throws Exception {
+        listaCategorias.addLast(categoria);
         JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
-        //git
     }
 }

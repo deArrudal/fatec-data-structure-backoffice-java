@@ -18,6 +18,10 @@ public class Produto {
         this.valorProduto = valorProduto;
     }
 
+    public Produto() {
+        super();
+    }
+
     @Override
     public String toString() {
         return idProduto + ";" + idProdutoCategoria + ";" + nomeProduto + ";" + descricaoProduto + ";" +

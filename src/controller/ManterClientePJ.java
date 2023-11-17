@@ -6,50 +6,49 @@ import model.ClientePJ;
 import javax.swing.*;
 
 public class ManterClientePJ {
+
     LinkedList<ClientePJ> listaClientesPJ;
+
     public ManterClientePJ(LinkedList<ClientePJ> listaClientesPJ) {
         this.listaClientesPJ = listaClientesPJ;
     }
+
     public String consultaClientePJ(String cnpj) throws Exception {
-        int tam = listaClientesPJ.size();
+        boolean isFound = false;
         ClientePJ aux = new ClientePJ();
-        for (int i = 0; i < tam; i++) {
+        for (int i = 0; i < listaClientesPJ.size(); i++) {
             if (listaClientesPJ.get(i).cnpjClientePJ.equals(cnpj)) {
                 aux = listaClientesPJ.get(i);
+                isFound = true;
                 break;
             }
         }
-        if (aux == null) {
-            return "Cliente não encontrado!";
-        } else {
-            return aux.toString();
+        if (!isFound) {
+            throw new Exception("Cliente não encontrado!");
         }
+        return aux.toString();
     }
 
     public void excluirClientePJ(String cnpj) throws Exception {
-        int tam = listaClientesPJ.size();
-        int aux = -1;
-        for (int i = 0; i < tam; i++) {
+        boolean isFound = false;
+        int pos = -1;
+        for (int i = 0; i < listaClientesPJ.size(); i++) {
             if (listaClientesPJ.get(i).cnpjClientePJ.equals(cnpj)) {
-                aux = i;
+                pos = i;
+                isFound = true;
                 break;
             }
         }
-        if (aux == -1) {
-            JOptionPane.showMessageDialog(null,"Cliente não encontrado para exclusão");
-        } else {
-            listaClientesPJ.remove(aux);
+        if (!isFound) {
+            throw new Exception("Cliente não encontrado para exclusão!");
         }
+        listaClientesPJ.remove(pos);
     }
 
-    public void inserirClientePJ(String cnpjClientePJ, String nomeClientePJ, String enderecoClientePJ,
-                                 String cepClientePJ, String telefoneClientePJ, String emailClientePJ) throws Exception {
-        ClientePJ aux = new ClientePJ(cnpjClientePJ, nomeClientePJ, enderecoClientePJ, cepClientePJ, telefoneClientePJ, emailClientePJ);
-        if (listaClientesPJ.isEmpty()) {
-            listaClientesPJ.addFirst(aux);
-        }else {
-            listaClientesPJ.addLast(aux);
-        }
+    //String cnpjClientePJ, String nomeClientePJ, String enderecoClientePJ,
+    //                                 String cepClientePJ, String telefoneClientePJ, String emailClientePJ
+    public void inserirClientePJ(ClientePJ cliente) throws Exception {
+        listaClientesPJ.addLast(cliente);
         JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
     }
 }
