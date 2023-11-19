@@ -55,15 +55,19 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 		titulo.setBounds(144, 10, 141, 13);
 		InserirClienteCNPJ.add(titulo);
 		
-		JButton VoltarInserirPF = new JButton("Voltar");
-		VoltarInserirPF.setPreferredSize(new Dimension(77, 21));
-		VoltarInserirPF.setActionCommand("");
-		VoltarInserirPF.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setPreferredSize(new Dimension(77, 21));
+		btnVoltar.setActionCommand("");
+		btnVoltar.setBounds(207, 232, 85, 21);
+		InserirClienteCNPJ.add(btnVoltar);
+		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaConsulta t = new TelaConsulta(null, null, null, null);
+				t.setVisible(true);
+				setVisible(false);
 			}
-		});
-		VoltarInserirPF.setBounds(207, 232, 85, 21);
-		InserirClienteCNPJ.add(VoltarInserirPF);
+		};
+		btnVoltar.addActionListener(voltar);
 		
 		JButton ConfirmarInserirPF = new JButton("Confirmar");
 		ConfirmarInserirPF.setBounds(295, 232, 96, 21);

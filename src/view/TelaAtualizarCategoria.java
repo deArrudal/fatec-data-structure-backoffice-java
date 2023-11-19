@@ -25,7 +25,7 @@ public class TelaAtualizarCategoria extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAtualizarCategoria frame = new TelaAtualizarCategoria();
+					TelaAtualizarCategoria frame = new TelaAtualizarCategoria(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class TelaAtualizarCategoria extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaAtualizarCategoria() {
+	public TelaAtualizarCategoria(String valorCampo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		JPanel InserirClienteCNPJ = new JPanel();
@@ -50,15 +50,19 @@ public class TelaAtualizarCategoria extends JFrame {
 		titulo.setBounds(147, 10, 141, 13);
 		InserirClienteCNPJ.add(titulo);
 		
-		JButton VoltarInserirPF = new JButton("Voltar");
-		VoltarInserirPF.setPreferredSize(new Dimension(77, 21));
-		VoltarInserirPF.setActionCommand("");
-		VoltarInserirPF.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setPreferredSize(new Dimension(77, 21));
+		btnVoltar.setActionCommand("");
+		btnVoltar.setBounds(111, 154, 85, 21);
+		InserirClienteCNPJ.add(btnVoltar);
+		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaConsulta t = new TelaConsulta(null, null, null, null);
+				t.setVisible(true);
+				setVisible(false);
 			}
-		});
-		VoltarInserirPF.setBounds(111, 154, 85, 21);
-		InserirClienteCNPJ.add(VoltarInserirPF);
+		};
+		btnVoltar.addActionListener(voltar);
 		
 		JButton ConfirmarInserirPF = new JButton("Confirmar");
 		ConfirmarInserirPF.setBounds(212, 154, 96, 21);

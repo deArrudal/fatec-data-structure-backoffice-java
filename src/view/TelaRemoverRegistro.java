@@ -32,6 +32,19 @@ public class TelaRemoverRegistro extends JFrame {
 	//ManterClientePJ manterClientePJ = new ManterClientePJ();
 	//ManterCategoria manterCategoria = new ManterCategoria();
 	//ManterProduto manterProduto = new ManterProduto();
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaRemoverRegistro frame = new TelaRemoverRegistro(null, null, null);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	public TelaRemoverRegistro(String conteudo, String valorCampo, String categoria) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,7 +116,7 @@ public class TelaRemoverRegistro extends JFrame {
 					break;
 				}
 				JOptionPane.showMessageDialog(btnConfirmarExcluir, "Registro Excluido");
-				TelaConsulta t = new TelaConsulta();
+				TelaConsulta t = new TelaConsulta(null, null, null, null);
 				t.setVisible(true);
 				setVisible(false);
 			}	

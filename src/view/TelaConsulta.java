@@ -21,14 +21,13 @@ import controller.ManterCategoria;
 import controller.ManterClientePF;
 import controller.ManterClientePJ;
 import controller.ManterProduto;
-<<<<<<< HEAD
-=======
+
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
 import model.Produto;
->>>>>>> f512470ba4569ed2b1bbffcc790f706eb1072ad4
+
 
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
@@ -47,18 +46,18 @@ public class TelaConsulta extends JFrame {
 	private JTextField campoPesquisa;
 	private JComboBox<String> cbCategoria;
 
-<<<<<<< HEAD
 	// ManterClientePF manterClienteCPF = new ManterClientePF();
 	// ManterClientePJ manterClientePJ = new ManterClientePJ();
 	// ManterCategoria manterCategoria = new ManterCategoria();
 	// ManterProduto manterProduto = new ManterProduto();
-=======
->>>>>>> f512470ba4569ed2b1bbffcc790f706eb1072ad4
+
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					TelaConsulta frame = new TelaConsulta(null, null, null, null);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -66,14 +65,9 @@ public class TelaConsulta extends JFrame {
 		});
 	}
 
-<<<<<<< HEAD
-	public TelaConsulta() {
-=======
-	/**
-	 * Create the frame.
-	 */
+
 	public TelaConsulta(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
->>>>>>> f512470ba4569ed2b1bbffcc790f706eb1072ad4
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -200,7 +194,6 @@ public class TelaConsulta extends JFrame {
 		cbCategoria.addPopupMenuListener(p);
 
 		// Evento clique botão atualiza
-		
 		JButton btnAtualizar = new JButton("Atualizar");
 		btnAtualizar.setBounds(22, 232, 114, 21);
 		btnAtualizar.setBackground(new Color(128, 255, 128));
@@ -209,7 +202,36 @@ public class TelaConsulta extends JFrame {
 		
 		ActionListener atualizar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if (pesquisaRetorno == null) {
+					resultadoPesquisa.setText("Registro não localizado, impossível atualizar!");
+				} else {
+					switch (categoria) {
+					case "CLIENTE CPF":
+						TelaAtualizarClienteCPF CPF = new TelaAtualizarClienteCPF(valorCampo);
+						CPF.setVisible(true);
+						setVisible(false);
+						break;
+					case "CLIENTE CNPJ":
+						TelaAtualizarClienteCNPJ CNPJ = new TelaAtualizarClienteCNPJ(valorCampo);
+						CNPJ.setVisible(true);
+						setVisible(false);
+						break;
+
+					case "PRODUTO":
+						TelaAtualizarProduto Produto = new TelaAtualizarProduto(valorCampo);
+						Produto.setVisible(true);
+						setVisible(false);
+						break;
+
+					case "CATEGORIA":
+						TelaAtualizarCategoria Categoria = new TelaAtualizarCategoria(valorCampo);
+						Categoria.setVisible(true);
+						setVisible(false);
+						break;
+
+					}
+					resultadoPesquisa.setText(pesquisaRetorno);
+				}
 			}
 		};
 		btnAtualizar.addActionListener(atualizar);
@@ -221,9 +243,6 @@ public class TelaConsulta extends JFrame {
 		contentPane.add(btnExcluirProduto);
 		ActionListener excluir = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				categoria = cbCategoria.getSelectedItem().toString();
-				valorCampo = campoPesquisa.getText();
 				if (pesquisaRetorno == null) {
 					resultadoPesquisa.setText("Registro não localizado, impossível excluir!");
 				} else {
