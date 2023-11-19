@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
 
 public class TelaConsulta extends JFrame {
 
@@ -47,12 +48,16 @@ public class TelaConsulta extends JFrame {
 		cbCategoria = new JComboBox<String>();
 		cbCategoria.setBounds(220, 6, 175, 22);
 		contentPane.add(cbCategoria);
+		cbCategoria.addItem("CLIENTE CPF");
+		cbCategoria.addItem("CLIENTE CNPJ");
 		cbCategoria.addItem("PRODUTO");
-
+		cbCategoria.addItem("CATEGORIA");
+		
 		setContentPane(contentPane);
 		
 		JLabel lblNewLabel = new JLabel("Você está pesquisando por ");
-		lblNewLabel.setBounds(82, 11, 140, 13);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setBounds(32, 11, 178, 13);
 		contentPane.add(lblNewLabel);
 		
 		campoPesquisa = new JTextField();
@@ -64,9 +69,23 @@ public class TelaConsulta extends JFrame {
 		btnPesquisarProduto.setBounds(280, 52, 114, 21);
 		contentPane.add(btnPesquisarProduto);
 		
-		JLabel lblInformeOCpf = new JLabel("Informe o NOME para buscá-lo:");
-		lblInformeOCpf.setBounds(22, 34, 317, 13);
-		contentPane.add(lblInformeOCpf);
+		JLabel lblInforme = new JLabel();
+		switch (cbCategoria.getSelectedItem().toString()){
+		case "CLIENTE CPF":
+			lblInforme = new JLabel("Informe o CPF para buscá-lo:");
+			break;
+		case "CLIENTE CNPJ":
+			lblInforme = new JLabel("Informe o CNPJ para buscá-lo:");
+			break;
+		case "PRODUTO":
+			lblInforme = new JLabel("Informe o NOME DO PRODUTO para buscá-lo:");
+			break;
+		case "CATEGORIA":
+			lblInforme = new JLabel("Informe o NOME DA CATEGORIA para buscá-lo:");
+			break;
+		}
+		lblInforme.setBounds(22, 34, 317, 13);
+		contentPane.add(lblInforme);
 		
 		JButton btnAtualizarProduto = new JButton("Atualizar");
 		btnAtualizarProduto.setBounds(22, 232, 114, 21);
