@@ -24,23 +24,16 @@ public class TelaInserirClienteCPF extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaInserirClienteCPF frame = new TelaInserirClienteCPF();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public TelaInserirClienteCPF() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {	
+			}
+		});
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		JPanel InserirClienteCNPJ = new JPanel();
@@ -58,6 +51,9 @@ public class TelaInserirClienteCPF extends JFrame {
 		VoltarInserirPF.setActionCommand("");
 		VoltarInserirPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro();
+				t.setVisible(true);
+				setVisible(false);
 			}
 		});
 		VoltarInserirPF.setBounds(207, 232, 85, 21);

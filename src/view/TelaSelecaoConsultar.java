@@ -81,7 +81,8 @@ public class TelaSelecaoConsultar extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TelaHome.main(null);
+				TelaHome t = new TelaHome();
+				t.setVisible(true);
 				setVisible(false);
 			}
 		};
@@ -105,7 +106,8 @@ public class TelaSelecaoConsultar extends JFrame {
 				case "ClienteCPF":
 					switch((String)cbOperacao.getSelectedItem()) {
 					case "Inserir":
-						TelaInserirClienteCPF.main(null);
+						TelaInserirClienteCPF t = new TelaInserirClienteCPF();
+						t.setVisible(true);
 						break;
 					case "Remover":
 						

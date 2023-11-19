@@ -60,6 +60,9 @@ public class TelaInserirClienteCNPJ extends JFrame {
 		VoltarInserirPJ.setActionCommand("");
 		VoltarInserirPJ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro();
+				t.setVisible(true);
+				setVisible(false);
 			}
 		});
 		VoltarInserirPJ.setBounds(207, 232, 85, 21);

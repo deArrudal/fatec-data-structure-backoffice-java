@@ -59,6 +59,9 @@ public class TelaInserirProduto extends JFrame {
 		VoltarInserirPF.setActionCommand("");
 		VoltarInserirPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro();
+				t.setVisible(true);
+				setVisible(false);
 			}
 		});
 		VoltarInserirPF.setBounds(203, 232, 85, 21);

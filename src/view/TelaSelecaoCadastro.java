@@ -53,7 +53,7 @@ public class TelaSelecaoCadastro extends JFrame {
 		cbCategoria.addItem("ClienteCPF");
 		cbCategoria.addItem("ClienteCNPJ");
 		cbCategoria.addItem("Produto");
-		cbCategoria.addItem("Cadastro");
+		cbCategoria.addItem("Categoria");
 		
 		JLabel lblCategoria = new JLabel("Categoria:");
 		lblCategoria.setBounds(26, 101, 68, 14);
@@ -78,6 +78,10 @@ public class TelaSelecaoCadastro extends JFrame {
 		btnConfirmar.setBounds(298, 215, 99, 23);
 		contentPane.add(btnConfirmar);
 		
+		ActionListener confirmar = confirmar();
+		
+		btnConfirmar.addActionListener(confirmar);
+		
 		JLabel lblNewLabel = new JLabel("Selecione a categoria do registro que deseja gerenciar");
 		lblNewLabel.setBounds(57, 55, 333, 13);
 		contentPane.add(lblNewLabel);
@@ -85,5 +89,33 @@ public class TelaSelecaoCadastro extends JFrame {
 	
 	}
 
-
+	private ActionListener confirmar() {
+		ActionListener confirmar = new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				switch((String)cbCategoria.getSelectedItem()) {
+				case "ClienteCPF":
+					TelaInserirClienteCPF cpf = new TelaInserirClienteCPF();
+					cpf.setVisible(true);
+					break;
+				case "ClienteCNPJ":
+					TelaInserirClienteCNPJ cnpj = new TelaInserirClienteCNPJ();
+					cnpj.setVisible(true);
+					break;
+				case "Produto":
+					TelaInserirProduto prod = new TelaInserirProduto();
+					prod.setVisible(true);
+					break;
+				case "Categoria":
+					TelaInserirCategoria cat = new TelaInserirCategoria();
+					cat.setVisible(true);
+					break;
+				}
+				setVisible(false);
+			}
+		};		return confirmar;
+	}
 }
+
+
+

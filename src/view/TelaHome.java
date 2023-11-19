@@ -51,6 +51,17 @@ public class TelaHome extends JFrame {
 		btnConsulta.setBounds(321, 83, 89, 23);
 		contentPane.add(btnConsulta);
 		
+		ActionListener consulta = new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				TelaSelecaoConsultar t = new TelaSelecaoConsultar();
+				t.setVisible(true);
+				setVisible(false);
+			}
+		};
+		
+		btnConsulta.addActionListener(consulta);
+		
 		JButton btnCadastro = new JButton("Cadastro");
 		btnCadastro.setBounds(321, 143, 89, 23);
 		contentPane.add(btnCadastro);
@@ -58,7 +69,8 @@ public class TelaHome extends JFrame {
 		ActionListener cadastro = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro.main(null);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro();
+				t.setVisible(true);
 				setVisible(false);
 			}
 		};
