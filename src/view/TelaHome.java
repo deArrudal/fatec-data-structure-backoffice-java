@@ -79,7 +79,7 @@ public class TelaHome extends JFrame {
 		ActionListener consulta = new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta();
+				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}

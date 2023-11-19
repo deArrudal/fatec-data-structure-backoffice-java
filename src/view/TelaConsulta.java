@@ -23,7 +23,11 @@ import controller.ManterCategoria;
 import controller.ManterClientePF;
 import controller.ManterClientePJ;
 import controller.ManterProduto;
-
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Produto;
 
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
@@ -42,10 +46,6 @@ public class TelaConsulta extends JFrame {
 	private JTextField campoPesquisa;
 	private JComboBox<String> cbCategoria;
 
-	ManterClientePF manterClienteCPF = new ManterClientePF();
-	ManterClientePJ manterClientePJ = new ManterClientePJ();
-	ManterCategoria manterCategoria = new ManterCategoria();
-	ManterProduto manterProduto = new ManterProduto();
 
 	/**
 	 * Launch the application.
@@ -54,8 +54,6 @@ public class TelaConsulta extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaConsulta frame = new TelaConsulta();
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -66,7 +64,7 @@ public class TelaConsulta extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsulta() {
+	public TelaConsulta(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

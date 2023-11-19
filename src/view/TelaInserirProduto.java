@@ -9,7 +9,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import controller.ManterProduto;
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Produto;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
@@ -29,8 +38,7 @@ public class TelaInserirProduto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaInserirProduto frame = new TelaInserirProduto();
-					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,8 +48,13 @@ public class TelaInserirProduto extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param listaCategoria 
+	 * @param listaProduto 
+	 * @param listaCLientePJ 
+	 * @param listaClientePF 
 	 */
-	public TelaInserirProduto() {
+	public TelaInserirProduto(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
+		//ManterProduto m = new ManterProduto(listaProduto);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		JPanel InserirClienteCNPJ = new JPanel();
@@ -59,7 +72,7 @@ public class TelaInserirProduto extends JFrame {
 		VoltarInserirPF.setActionCommand("");
 		VoltarInserirPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro();
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -123,8 +136,39 @@ public class TelaInserirProduto extends JFrame {
 		lblNIdentificadorDa.setBounds(147, 101, 192, 13);
 		InserirClienteCNPJ.add(lblNIdentificadorDa);
 		
-		JComboBox idProdutoCategoria = new JComboBox();
+		int tamanho = listaCategoria.size();
+		JComboBox<Integer> idProdutoCategoria = new JComboBox<>();
 		idProdutoCategoria.setBounds(146, 116, 131, 21);
 		InserirClienteCNPJ.add(idProdutoCategoria);
+		
+		for(int i = 0;i<tamanho;i++) {
+			Categoria l;
+			try {
+				l = listaCategoria.get(i);
+				idProdutoCategoria.addItem(l.idCategoria);
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(null, e1.getMessage());
+			}
+		}
+		
+		/*ActionListener confirmar = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Produto produto = new Produto();
+
+
+				try {
+					m.inserirCategoria(categoria);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+				t.setVisible(true);
+				setVisible(false);
+			}
+		};
+		
+		ConfirmarInserirPF.addActionListener(confirmar);*/
 	}
 }

@@ -108,15 +108,15 @@ public class TelaSelecaoCadastro extends JFrame {
 					cpf.setVisible(true);
 					break;
 				case "ClienteCNPJ":
-					TelaInserirClienteCNPJ cnpj = new TelaInserirClienteCNPJ();
+					TelaInserirClienteCNPJ cnpj = new TelaInserirClienteCNPJ(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
 					cnpj.setVisible(true);
 					break;
 				case "Produto":
-					TelaInserirProduto prod = new TelaInserirProduto();
+					TelaInserirProduto prod = new TelaInserirProduto(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
 					prod.setVisible(true);
 					break;
 				case "Categoria":
-					TelaInserirCategoria cat = new TelaInserirCategoria();
+					TelaInserirCategoria cat = new TelaInserirCategoria(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
 					cat.setVisible(true);
 					break;
 				}
