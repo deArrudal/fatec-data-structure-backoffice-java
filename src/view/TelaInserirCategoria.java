@@ -9,6 +9,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import controller.ManterCategoria;
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Produto;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
@@ -25,8 +33,7 @@ public class TelaInserirCategoria extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaInserirCategoria frame = new TelaInserirCategoria();
-					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -36,8 +43,13 @@ public class TelaInserirCategoria extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param listaCategoria 
+	 * @param listaProduto 
+	 * @param listaCLientePJ 
+	 * @param listaClientePF 
 	 */
-	public TelaInserirCategoria() {
+	public TelaInserirCategoria(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
+		ManterCategoria m = new ManterCategoria(listaCategoria);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		JPanel InserirClienteCNPJ = new JPanel();
@@ -55,7 +67,7 @@ public class TelaInserirCategoria extends JFrame {
 		VoltarInserirPF.setActionCommand("");
 		VoltarInserirPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro();
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -84,5 +96,26 @@ public class TelaInserirCategoria extends JFrame {
 		nomeCategoria.setColumns(10);
 		nomeCategoria.setBounds(10, 92, 192, 21);
 		InserirClienteCNPJ.add(nomeCategoria);
+		
+		ActionListener confirmar = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Categoria categoria = new Categoria();
+				categoria.idCategoria = Integer.parseInt(idCategoria.getText());
+				categoria.nomeCategoria = nomeCategoria.getText();
+
+				try {
+					m.inserirCategoria(categoria);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+				t.setVisible(true);
+				setVisible(false);
+			}
+		};
+		
+		ConfirmarInserirPF.addActionListener(confirmar);
 	}
 }

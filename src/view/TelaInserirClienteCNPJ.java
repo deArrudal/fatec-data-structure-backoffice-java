@@ -5,6 +5,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.ManterClientePJ;
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Produto;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -30,8 +38,7 @@ public class TelaInserirClienteCNPJ extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaInserirClienteCNPJ frame = new TelaInserirClienteCNPJ();
-					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,8 +48,14 @@ public class TelaInserirClienteCNPJ extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param listaCategoria 
+	 * @param listaProduto 
+	 * @param listaCLientePJ 
+	 * @param listaClientePF 
 	 */
-	public TelaInserirClienteCNPJ() {
+	public TelaInserirClienteCNPJ(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
+		ManterClientePJ m = new ManterClientePJ(listaCLientePJ);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		JPanel InserirClienteCNPJ = new JPanel();
@@ -60,7 +73,7 @@ public class TelaInserirClienteCNPJ extends JFrame {
 		VoltarInserirPJ.setActionCommand("");
 		VoltarInserirPJ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro();
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -125,5 +138,29 @@ public class TelaInserirClienteCNPJ extends JFrame {
 		enderecoClientePJ.setColumns(10);
 		enderecoClientePJ.setBounds(159, 163, 255, 20);
 		InserirClienteCNPJ.add(enderecoClientePJ);
+		
+		ActionListener confirmar = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ClientePJ cliente = new ClientePJ();
+				cliente.cnpjClientePJ = cnpjClientePJ.getText();
+				cliente.nomeClientePJ = nomeClientePJ.getText();
+				cliente.enderecoClientePJ = enderecoClientePJ.getText();
+				cliente.cepClientePJ = cepClientePJ.getText();
+				cliente.telefoneClientePJ = telefoneClientePJ.getText();
+				cliente.emailClientePJ = emailClientePJ.getText();
+				try {
+					m.inserirClientePJ(cliente);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+				t.setVisible(true);
+				setVisible(false);
+			}
+		};
+		
+		ConfirmarInserirPJ.addActionListener(confirmar);
 	}
 }
