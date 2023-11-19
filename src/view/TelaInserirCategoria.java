@@ -48,7 +48,7 @@ public class TelaInserirCategoria extends JFrame {
 	 * @param listaCLientePJ 
 	 * @param listaClientePF 
 	 */
-	public TelaInserirCategoria(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaInserirCategoria(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
 		ManterCategoria m = new ManterCategoria(listaCategoria);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -67,7 +67,7 @@ public class TelaInserirCategoria extends JFrame {
 		VoltarInserirPF.setActionCommand("");
 		VoltarInserirPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -110,7 +110,7 @@ public class TelaInserirCategoria extends JFrame {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}

@@ -45,7 +45,7 @@ public class TelaSelecaoCadastro extends JFrame {
 	 * @param listaCLientePJ 
 	 * @param listaClientePF 
 	 */
-	public TelaSelecaoCadastro(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaSelecaoCadastro(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
 		setTitle("Backoffice");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -87,7 +87,7 @@ public class TelaSelecaoCadastro extends JFrame {
 		btnConfirmar.setBounds(298, 215, 99, 23);
 		contentPane.add(btnConfirmar);
 		
-		ActionListener confirmar = confirmar(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+		ActionListener confirmar = confirmar(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 		
 		btnConfirmar.addActionListener(confirmar);
 		
@@ -98,25 +98,25 @@ public class TelaSelecaoCadastro extends JFrame {
 	
 	}
 
-	private ActionListener confirmar(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
+	private ActionListener confirmar(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
 		ActionListener confirmar = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				switch((String)cbCategoria.getSelectedItem()) {
 				case "ClienteCPF":
-					TelaInserirClienteCPF cpf = new TelaInserirClienteCPF(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+					TelaInserirClienteCPF cpf = new TelaInserirClienteCPF(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 					cpf.setVisible(true);
 					break;
 				case "ClienteCNPJ":
-					TelaInserirClienteCNPJ cnpj = new TelaInserirClienteCNPJ(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+					TelaInserirClienteCNPJ cnpj = new TelaInserirClienteCNPJ(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 					cnpj.setVisible(true);
 					break;
 				case "Produto":
-					TelaInserirProduto prod = new TelaInserirProduto(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+					TelaInserirProduto prod = new TelaInserirProduto(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 					prod.setVisible(true);
 					break;
 				case "Categoria":
-					TelaInserirCategoria cat = new TelaInserirCategoria(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+					TelaInserirCategoria cat = new TelaInserirCategoria(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 					cat.setVisible(true);
 					break;
 				}

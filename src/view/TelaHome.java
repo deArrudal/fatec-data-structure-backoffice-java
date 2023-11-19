@@ -20,8 +20,8 @@ public class TelaHome extends JFrame {
 
 	public LinkedList<ClientePF> listaClientePF = new LinkedList<>();
 	public LinkedList<ClientePJ> listaCLientePJ = new LinkedList<>();
-	public LinkedList<Produto> listaProduto = new LinkedList<>();
 	public LinkedList<Categoria> listaCategoria = new LinkedList<>();
+	public LinkedList<Produto>[] tabelaProduto;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
@@ -45,6 +45,11 @@ public class TelaHome extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaHome() {
+		
+		/*int tamanhoP = 15; //valor provisório, tabela hash não inicializando
+		for (int i = 0; i<tamanhoP;i++) {
+			tabelaProduto[i] = new LinkedList<Produto>();
+		}*/
 		
 		setTitle("Backoffice");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +84,7 @@ public class TelaHome extends JFrame {
 		ActionListener consulta = new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -93,7 +98,7 @@ public class TelaHome extends JFrame {
 		contentPane.add(btnCadastro);
 		ActionListener cadastro = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
