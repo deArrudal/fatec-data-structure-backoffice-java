@@ -9,8 +9,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import controller.ManterClientePF;
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Produto;
+
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
 
 public class TelaInserirClienteCPF extends JFrame {
 
@@ -28,7 +38,8 @@ public class TelaInserirClienteCPF extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaInserirClienteCPF() {
+	public TelaInserirClienteCPF(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
+		ManterClientePF m = new ManterClientePF(listaClientePF);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {	
 			}
@@ -51,7 +62,7 @@ public class TelaInserirClienteCPF extends JFrame {
 		VoltarInserirPF.setActionCommand("");
 		VoltarInserirPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro();
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -107,5 +118,29 @@ public class TelaInserirClienteCPF extends JFrame {
 		enderecoClientePF.setColumns(10);
 		enderecoClientePF.setBounds(159, 163, 255, 20);
 		InserirClienteCNPJ.add(enderecoClientePF);
+		
+		ActionListener confirmar = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ClientePF cliente = new ClientePF();
+				cliente.cpfClientePF = cpfClientePF.getText();
+				cliente.nomeClientePF = nomeClientePF.getText();
+				cliente.enderecoClientePF = enderecoClientePF.getText();
+				cliente.cepClientePF = cepClientePF.getText();
+				cliente.telefoneClientePF = telefoneClientePF.getText();
+				try {
+					m.inserirClientePF(cliente);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+				t.setVisible(true);
+				setVisible(false);
+			}
+		};
+		
+		ConfirmarInserirPF.addActionListener(confirmar);
+		
 	}
 }

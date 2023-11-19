@@ -7,6 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Produto;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -24,19 +31,21 @@ public class TelaSelecaoCadastro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaSelecaoCadastro frame = new TelaSelecaoCadastro();
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the frame.
+	 * @param listaCategoria 
+	 * @param listaProduto 
+	 * @param listaCLientePJ 
+	 * @param listaClientePF 
 	 */
-	public TelaSelecaoCadastro() {
+	public TelaSelecaoCadastro(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
 		setTitle("Backoffice");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -78,7 +87,7 @@ public class TelaSelecaoCadastro extends JFrame {
 		btnConfirmar.setBounds(298, 215, 99, 23);
 		contentPane.add(btnConfirmar);
 		
-		ActionListener confirmar = confirmar();
+		ActionListener confirmar = confirmar(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
 		
 		btnConfirmar.addActionListener(confirmar);
 		
@@ -89,13 +98,13 @@ public class TelaSelecaoCadastro extends JFrame {
 	
 	}
 
-	private ActionListener confirmar() {
+	private ActionListener confirmar(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
 		ActionListener confirmar = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				switch((String)cbCategoria.getSelectedItem()) {
 				case "ClienteCPF":
-					TelaInserirClienteCPF cpf = new TelaInserirClienteCPF();
+					TelaInserirClienteCPF cpf = new TelaInserirClienteCPF(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
 					cpf.setVisible(true);
 					break;
 				case "ClienteCNPJ":

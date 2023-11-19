@@ -7,10 +7,21 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Produto;
+
 import javax.swing.JButton;
 
 public class TelaHome extends JFrame {
 
+	public LinkedList<ClientePF> listaClientePF = new LinkedList<>();
+	public LinkedList<ClientePJ> listaCLientePJ = new LinkedList<>();
+	public LinkedList<Produto> listaProduto = new LinkedList<>();
+	public LinkedList<Categoria> listaCategoria = new LinkedList<>();
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
@@ -34,6 +45,7 @@ public class TelaHome extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaHome() {
+		
 		setTitle("Backoffice");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -69,7 +81,7 @@ public class TelaHome extends JFrame {
 		ActionListener cadastro = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro();
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
