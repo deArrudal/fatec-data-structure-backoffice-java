@@ -42,43 +42,63 @@ public class TelaHome extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
+		// Evento clique botão carregar
 		JButton btnCarregar = new JButton("Carregar");
 		btnCarregar.setBounds(321, 23, 89, 23);
 		contentPane.add(btnCarregar);
 		
+		ActionListener carregar = new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				//TelaSelecaoConsultar t = new TelaSelecaoConsultar();
+				//t.setVisible(true);
+				//setVisible(false);
+			}
+		};
+		btnCarregar.addActionListener(carregar);
+		
+		
+		// Evento clique botão consulta
 		JButton btnConsulta = new JButton("Consulta");
 		btnConsulta.setBounds(321, 83, 89, 23);
 		contentPane.add(btnConsulta);
-		
+
 		ActionListener consulta = new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				TelaConsulta t = new TelaConsulta();
 				t.setVisible(true);
 				setVisible(false);
 			}
 		};
-		
 		btnConsulta.addActionListener(consulta);
+
 		
+		// Evento clique botão cadastro
 		JButton btnCadastro = new JButton("Cadastro");
 		btnCadastro.setBounds(321, 143, 89, 23);
 		contentPane.add(btnCadastro);
-		
 		ActionListener cadastro = new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
 				TelaSelecaoCadastro t = new TelaSelecaoCadastro();
 				t.setVisible(true);
 				setVisible(false);
 			}
 		};
-		
 		btnCadastro.addActionListener(cadastro);
-		
+
+		// Evento clique botão compra
 		JButton btnCompra = new JButton("Compra");
 		btnCompra.setBounds(321, 203, 89, 23);
 		contentPane.add(btnCompra);
+		ActionListener compra = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TelaSelecaoCadastro t = new TelaSelecaoCadastro();
+				//t.setVisible(true);
+				//setVisible(false);
+			}
+		};
+		btnCadastro.addActionListener(compra);
 	}
 }
