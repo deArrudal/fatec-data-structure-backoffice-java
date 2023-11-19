@@ -26,7 +26,7 @@ import javax.swing.JComboBox;
 public class TelaInserirProduto extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField idCategoria;
+	private JTextField qtdProduto;
 	private JTextField nomeProduto;
 	private JTextField valorProduto;
 	private JTextField idProduto;
@@ -38,7 +38,7 @@ public class TelaInserirProduto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-
+	
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,8 +53,8 @@ public class TelaInserirProduto extends JFrame {
 	 * @param listaCLientePJ 
 	 * @param listaClientePF 
 	 */
-	public TelaInserirProduto(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
-		//ManterProduto m = new ManterProduto(listaProduto);
+	public TelaInserirProduto(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+		ManterProduto m = new ManterProduto(tabelaProduto);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		JPanel InserirClienteCNPJ = new JPanel();
@@ -72,7 +72,7 @@ public class TelaInserirProduto extends JFrame {
 		VoltarInserirPF.setActionCommand("");
 		VoltarInserirPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -88,10 +88,10 @@ public class TelaInserirProduto extends JFrame {
 		label1.setBounds(10, 52, 141, 13);
 		InserirClienteCNPJ.add(label1);
 		
-		idCategoria = new JTextField();
-		idCategoria.setBounds(147, 70, 85, 21);
-		InserirClienteCNPJ.add(idCategoria);
-		idCategoria.setColumns(10);
+		qtdProduto = new JTextField();
+		qtdProduto.setBounds(147, 70, 85, 21);
+		InserirClienteCNPJ.add(qtdProduto);
+		qtdProduto.setColumns(10);
 		
 		JLabel idC = new JLabel("Quantidade:");
 		idC.setBounds(147, 52, 122, 13);
@@ -151,24 +151,29 @@ public class TelaInserirProduto extends JFrame {
 			}
 		}
 		
-		/*ActionListener confirmar = new ActionListener() {
+		ActionListener confirmar = new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Produto produto = new Produto();
-
+				produto.idProduto = Integer.parseInt(idProduto.getText());
+				produto.idProdutoCategoria = Integer.parseInt(idProdutoCategoria.getSelectedItem().toString());
+				produto.nomeProduto = nomeProduto.getText();
+				produto.descricaoProduto = descricaoProduto.getText();
+				produto.qtdProduto = Integer.parseInt(qtdProduto.getText());
+				produto.valorProduto = Double.parseDouble(valorProduto.getText());
 
 				try {
-					m.inserirCategoria(categoria);
+					m.inserirProduto(produto);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, listaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
 		};
 		
-		ConfirmarInserirPF.addActionListener(confirmar);*/
+		ConfirmarInserirPF.addActionListener(confirmar);
 	}
 }

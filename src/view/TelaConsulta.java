@@ -66,7 +66,10 @@ public class TelaConsulta extends JFrame {
 	}
 
 
-	public TelaConsulta(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto> listaProduto, LinkedList<Categoria> listaCategoria) {
+
+
+	public TelaConsulta(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -246,7 +249,7 @@ public class TelaConsulta extends JFrame {
 				if (pesquisaRetorno == null) {
 					resultadoPesquisa.setText("Registro não localizado, impossível excluir!");
 				} else {
-					TelaRemoverRegistro t = new TelaRemoverRegistro(pesquisaRetorno, valorCampo, categoria);
+					TelaRemoverRegistro t = new TelaRemoverRegistro(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 					t.setVisible(true);
 					setVisible(false);
 				}
