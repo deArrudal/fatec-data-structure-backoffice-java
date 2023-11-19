@@ -54,7 +54,7 @@ public class TelaHome extends JFrame {
 		ActionListener consulta = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoConsultar t = new TelaSelecaoConsultar();
+				TelaConsulta t = new TelaConsulta();
 				t.setVisible(true);
 				setVisible(false);
 			}

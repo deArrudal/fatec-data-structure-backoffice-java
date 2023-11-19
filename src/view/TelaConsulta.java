@@ -2,15 +2,19 @@ package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class TelaConsulta extends JFrame {
 
@@ -69,23 +73,59 @@ public class TelaConsulta extends JFrame {
 		btnPesquisarProduto.setBounds(280, 52, 114, 21);
 		contentPane.add(btnPesquisarProduto);
 		
+		
+		
 		JLabel lblInforme = new JLabel();
 		switch (cbCategoria.getSelectedItem().toString()){
 		case "CLIENTE CPF":
-			lblInforme = new JLabel("Informe o CPF para buscá-lo:");
+			lblInforme.setText("Informe o CPF para buscá-lo:");
 			break;
 		case "CLIENTE CNPJ":
-			lblInforme = new JLabel("Informe o CNPJ para buscá-lo:");
+			lblInforme.setText("Informe o CNPJ para buscá-lo:");
 			break;
 		case "PRODUTO":
-			lblInforme = new JLabel("Informe o NOME DO PRODUTO para buscá-lo:");
+			lblInforme.setText("Informe o NOME DO PRODUTO para buscá-lo:");
 			break;
 		case "CATEGORIA":
-			lblInforme = new JLabel("Informe o NOME DA CATEGORIA para buscá-lo:");
+			lblInforme.setText("Informe o NOME DA CATEGORIA para buscá-lo:");
 			break;
 		}
 		lblInforme.setBounds(22, 34, 317, 13);
 		contentPane.add(lblInforme);
+		PopupMenuListener p = new PopupMenuListener() {
+			
+			@Override
+			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+				switch (cbCategoria.getSelectedItem().toString()){
+				case "CLIENTE CPF":
+					lblInforme.setText("Informe o CPF para buscá-lo:");
+					break;
+				case "CLIENTE CNPJ":
+					lblInforme.setText("Informe o CNPJ para buscá-lo:");
+					break;
+				case "PRODUTO":
+					lblInforme.setText("Informe o NOME DO PRODUTO para buscá-lo:");
+					break;
+				case "CATEGORIA":
+					lblInforme.setText("Informe o NOME DA CATEGORIA para buscá-lo:");
+					break;
+				}
+				
+			}
+			
+			@Override
+			public void popupMenuCanceled(PopupMenuEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		cbCategoria.addPopupMenuListener(p);
 		
 		JButton btnAtualizarProduto = new JButton("Atualizar");
 		btnAtualizarProduto.setBounds(22, 232, 114, 21);
@@ -101,6 +141,14 @@ public class TelaConsulta extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setBounds(312, 232, 114, 21);
 		contentPane.add(btnVoltar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBounds(32, 83, 363, 127);
+		contentPane.add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
 		
 		
 	}
