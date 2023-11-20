@@ -15,6 +15,7 @@ import model.ClientePJ;
 import model.Produto;
 
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
 
 public class TelaHome extends JFrame {
 
@@ -24,18 +25,19 @@ public class TelaHome extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					TelaHome frame = new TelaHome(null, null, null, null);
 					frame.setVisible(true);
+				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
