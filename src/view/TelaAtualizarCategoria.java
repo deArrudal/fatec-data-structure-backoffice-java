@@ -46,7 +46,7 @@ public class TelaAtualizarCategoria extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaAtualizarCategoria(String retorno, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
-		
+		ManterCategoria m = new ManterCategoria(listaCategoria);
 		String campos[] = retorno.split(";");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,11 +80,17 @@ public class TelaAtualizarCategoria extends JFrame {
 		InserirClienteCNPJ.add(btnConfirmar);
 		ActionListener confirmar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ManterCategoria.excluirCategoria(valorCampo);
-				Categoria c = new Categoria();
-				c.idCategoria = Integer.parseInt(idCategoria.getText());
-				c.nomeCategoria = nomeCategoria.getText();
-				//ManterCategoria.inserirCategoria(c);
+				try {
+					m.excluirCategoria(valorCampo);
+					Categoria c = new Categoria();
+					c.idCategoria = Integer.parseInt(idCategoria.getText());
+					c.nomeCategoria = nomeCategoria.getText();
+					m.inserirCategoria(c);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 				
 			}
 		};

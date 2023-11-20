@@ -18,10 +18,6 @@ import javax.swing.JButton;
 
 public class TelaHome extends JFrame {
 
-	public LinkedList<ClientePF> listaClientePF = new LinkedList<>();
-	public LinkedList<ClientePJ> listaCLientePJ = new LinkedList<>();
-	public LinkedList<Categoria> listaCategoria = new LinkedList<>();
-	public LinkedList<Produto>[] tabelaProduto;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
@@ -32,7 +28,7 @@ public class TelaHome extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaHome frame = new TelaHome();
+					TelaHome frame = new TelaHome(null, null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +40,7 @@ public class TelaHome extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaHome() {
+	public TelaHome(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
 		
 		/*int tamanhoP = 15; //valor provisório, tabela hash não inicializando
 		for (int i = 0; i<tamanhoP;i++) {

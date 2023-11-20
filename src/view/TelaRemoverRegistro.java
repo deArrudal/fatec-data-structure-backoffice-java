@@ -33,10 +33,6 @@ public class TelaRemoverRegistro extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	//ManterClientePF manterClienteCPF = new ManterClientePF();
-	//ManterClientePJ manterClientePJ = new ManterClientePJ();
-	//ManterCategoria manterCategoria = new ManterCategoria();
-	//ManterProduto manterProduto = new ManterProduto();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -52,6 +48,12 @@ public class TelaRemoverRegistro extends JFrame {
 	}
 
 	public TelaRemoverRegistro(String conteudo, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+
+		ManterClientePF manterClientePF = new ManterClientePF(listaClientePF);
+		ManterClientePJ manterClientePJ = new ManterClientePJ(listaCLientePJ);
+		ManterCategoria manterCategoria = new ManterCategoria(listaCategoria);
+		ManterProduto manterProduto = new ManterProduto(tabelaProduto);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -106,18 +108,38 @@ public class TelaRemoverRegistro extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switch (categoria) {
 				case "CLIENTE CPF":
-					//ManterClientePF.excluirClientePF(valorCampo);
+					try {
+						manterClientePF.excluirClientePF(valorCampo);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					break;
 				case "CLIENTE CNPJ":
-					//ManterClientePJ.excluirClientePJ(valorCampo);
+					try {
+						manterClientePJ.excluirClientePJ(valorCampo);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					break;
 
 				case "PRODUTO":
-					//ManterProduto.excluirProduto(valorCampo);
+					try {
+						manterProduto.excluirProduto(valorCampo);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					break;
 
 				case "CATEGORIA":
-					//ManterCategoria.excluirCategoria(valorCampo);
+					try {
+						manterCategoria.excluirCategoria(valorCampo);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					break;
 				}
 				JOptionPane.showMessageDialog(btnConfirmarExcluir, "Registro Excluido");
