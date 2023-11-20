@@ -25,6 +25,6 @@ public class Produto {
     @Override
     public String toString() {
         return idProduto + ";" + idProdutoCategoria + ";" + nomeProduto + ";" + descricaoProduto + ";" +
-                qtdProduto + ";" + valorProduto + ";";
+                qtdProduto + ";" + String.format("%.2f", valorProduto) + ";";
     }
 }
