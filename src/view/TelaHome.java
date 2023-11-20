@@ -15,6 +15,7 @@ import model.ClientePJ;
 import model.Produto;
 
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
 
 public class TelaHome extends JFrame {
 
@@ -28,23 +29,22 @@ public class TelaHome extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaHome frame = new TelaHome();
-					frame.setVisible(true);
+				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaHome() {
+	public TelaHome(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
 		
 		/*int tamanhoP = 15; //valor provisório, tabela hash não inicializando
 		for (int i = 0; i<tamanhoP;i++) {

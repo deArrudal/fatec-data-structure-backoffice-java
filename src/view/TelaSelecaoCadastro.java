@@ -76,7 +76,8 @@ public class TelaSelecaoCadastro extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TelaHome.main(null);
+				TelaHome t = new TelaHome(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				t.setVisible(true);
 				setVisible(false);
 			}
 		};

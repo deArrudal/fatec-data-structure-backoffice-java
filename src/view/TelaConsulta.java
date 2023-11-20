@@ -52,7 +52,7 @@ public class TelaConsulta extends JFrame {
 	// ManterProduto manterProduto = new ManterProduto();
 
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -63,13 +63,13 @@ public class TelaConsulta extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 
 
 
 	public TelaConsulta(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
-
+		ManterCategoria mc = new ManterCategoria(listaCategoria);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -120,10 +120,10 @@ public class TelaConsulta extends JFrame {
 					// METODO DE PESQUISA
 					switch (categoria) {
 					case "CLIENTE CPF":
-						// pesquisaRetorno = ManterClientePF.consultaClientePF(valorCampo);
+						//pesquisaRetorno = ManterClientePF.consultaClientePF(valorCampo);
 						break;
 					case "CLIENTE CNPJ":
-						// pesquisaRetorno = ManterClientePJ.consultaClientePJ(valorCampo);
+						//pesquisaRetorno = ManterClientePJ.consultaClientePJ(valorCampo);
 						break;
 
 					case "PRODUTO":
@@ -131,7 +131,14 @@ public class TelaConsulta extends JFrame {
 						break;
 
 					case "CATEGORIA":
-						// pesquisaRetorno = ManterCategoria.consultaCategoria(valorCampo);
+						Categoria cat = new Categoria();
+						try {
+							cat = mc.consultaCategoria(valorCampo);
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						pesquisaRetorno = cat.nomeCategoria;
 						break;
 
 					}
@@ -263,7 +270,7 @@ public class TelaConsulta extends JFrame {
 		contentPane.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaHome t = new TelaHome();
+				TelaHome t = new TelaHome(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
