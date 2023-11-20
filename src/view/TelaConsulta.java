@@ -210,24 +210,24 @@ public class TelaConsulta extends JFrame {
 				} else {
 					switch (categoria) {
 					case "CLIENTE CPF":
-						TelaAtualizarClienteCPF CPF = new TelaAtualizarClienteCPF(valorCampo);
+						TelaAtualizarClienteCPF CPF = new TelaAtualizarClienteCPF(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 						CPF.setVisible(true);
 						setVisible(false);
 						break;
 					case "CLIENTE CNPJ":
-						TelaAtualizarClienteCNPJ CNPJ = new TelaAtualizarClienteCNPJ(valorCampo);
+						TelaAtualizarClienteCNPJ CNPJ = new TelaAtualizarClienteCNPJ(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 						CNPJ.setVisible(true);
 						setVisible(false);
 						break;
 
 					case "PRODUTO":
-						TelaAtualizarProduto Produto = new TelaAtualizarProduto(valorCampo);
+						TelaAtualizarProduto Produto = new TelaAtualizarProduto(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 						Produto.setVisible(true);
 						setVisible(false);
 						break;
 
 					case "CATEGORIA":
-						TelaAtualizarCategoria Categoria = new TelaAtualizarCategoria(valorCampo);
+						TelaAtualizarCategoria Categoria = new TelaAtualizarCategoria(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 						Categoria.setVisible(true);
 						setVisible(false);
 						break;

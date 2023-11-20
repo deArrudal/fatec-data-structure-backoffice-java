@@ -11,6 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Produto;
+
 import java.awt.Color;
 
 public class TelaAtualizarClienteCNPJ extends JFrame {
@@ -21,7 +28,7 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 	private JTextField nomeClientePJ;
 	private JTextField cepClientePJ;
 	private JTextField enderecoClientePJ;
-	private JTextField telClientePJ;
+	private JTextField emailPJ;
 
 	/**
 	 * Launch the application.
@@ -30,7 +37,7 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAtualizarClienteCNPJ frame = new TelaAtualizarClienteCNPJ();
+					TelaAtualizarClienteCNPJ frame = new TelaAtualizarClienteCNPJ(null, null, null, null, null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +49,10 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaAtualizarClienteCNPJ() {
+	public TelaAtualizarClienteCNPJ(String retorno, String valorCampo, String categoria,
+			LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ,
+			LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+		String campos[] = retorno.split(";");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		JPanel InserirClienteCNPJ = new JPanel();
@@ -62,16 +72,32 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 		InserirClienteCNPJ.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta(null, null, null, null);
+				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
 		};
 		btnVoltar.addActionListener(voltar);
 		
-		JButton ConfirmarInserirPF = new JButton("Confirmar");
-		ConfirmarInserirPF.setBounds(295, 232, 96, 21);
-		InserirClienteCNPJ.add(ConfirmarInserirPF);
+		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setBounds(295, 232, 96, 21);
+		InserirClienteCNPJ.add(btnConfirmar);
+		ActionListener confirmar = new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				// ManterProduto.excluirProduto(valorCampo);
+				ClientePJ pj = new ClientePJ();
+				pj.cnpjClientePJ = cnpjClientePJ.getText();
+				pj.telefoneClientePJ = telefoneClientePJ.getText();
+				pj.nomeClientePJ = nomeClientePJ.getText();
+				pj.enderecoClientePJ = enderecoClientePJ.getText();
+				pj.cepClientePJ = cepClientePJ.getText();
+				pj.emailClientePJ = emailPJ.getText();
+				// ManterProduto.inserirProduto(p);
+
+			}
+		};
+		btnConfirmar.addActionListener(confirmar);
 		
 		JLabel label1 = new JLabel("Nome Fantasia: ");
 		label1.setBounds(10, 33, 141, 13);
@@ -81,6 +107,7 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 		cnpjClientePJ.setBounds(222, 51, 192, 21);
 		InserirClienteCNPJ.add(cnpjClientePJ);
 		cnpjClientePJ.setColumns(10);
+		cnpjClientePJ.setText(campos[0]);
 		
 		JLabel cnpj = new JLabel("CNPJ");
 		cnpj.setBounds(220, 33, 85, 13);
@@ -93,38 +120,43 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 		telefoneClientePJ = new JTextField();
 		telefoneClientePJ.setColumns(10);
 		telefoneClientePJ.setBounds(10, 104, 186, 21);
+		telefoneClientePJ.setText(campos[4]);
 		InserirClienteCNPJ.add(telefoneClientePJ);
 		
 		nomeClientePJ = new JTextField();
 		nomeClientePJ.setColumns(10);
 		nomeClientePJ.setBounds(10, 52, 192, 21);
+		nomeClientePJ.setText(campos[1]);
 		InserirClienteCNPJ.add(nomeClientePJ);
 		
 		JLabel lblCep = new JLabel("CEP:");
-		lblCep.setBounds(10, 148, 141, 13);
+		lblCep.setBounds(10, 135, 141, 13);
 		InserirClienteCNPJ.add(lblCep);
 		
 		JLabel lblEndereo = new JLabel("Endereço:");
-		lblEndereo.setBounds(161, 148, 141, 13);
+		lblEndereo.setBounds(164, 135, 141, 13);
 		InserirClienteCNPJ.add(lblEndereo);
 		
 		cepClientePJ = new JTextField();
 		cepClientePJ.setColumns(10);
-		cepClientePJ.setBounds(10, 162, 115, 21);
+		cepClientePJ.setBounds(10, 157, 115, 21);
+		cepClientePJ.setText(campos[3]);
 		InserirClienteCNPJ.add(cepClientePJ);
 		
 		enderecoClientePJ = new JTextField();
 		enderecoClientePJ.setColumns(10);
-		enderecoClientePJ.setBounds(159, 163, 255, 20);
+		enderecoClientePJ.setBounds(159, 158, 255, 20);
+		enderecoClientePJ.setText(campos[2]);
 		InserirClienteCNPJ.add(enderecoClientePJ);
 		
-		JLabel telefoneInserirPJ = new JLabel("Telefone:");
+		JLabel telefoneInserirPJ = new JLabel("E-mail");
 		telefoneInserirPJ.setBounds(222, 87, 141, 13);
 		InserirClienteCNPJ.add(telefoneInserirPJ);
 		
-		telClientePJ = new JTextField();
-		telClientePJ.setColumns(10);
-		telClientePJ.setBounds(222, 105, 186, 21);
-		InserirClienteCNPJ.add(telClientePJ);
+		emailPJ = new JTextField();
+		emailPJ.setColumns(10);
+		emailPJ.setBounds(207, 104, 186, 21);
+		emailPJ.setText(campos[5]);
+		InserirClienteCNPJ.add(emailPJ);
 	}
 }
