@@ -94,7 +94,7 @@ public class Main extends JFrame {
 				} while (PF == null & PJ == null);
 				
 				if (PF != null || PJ != null) {
-					TelaCliente t = new TelaCliente(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+					TelaCliente t = new TelaCliente(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, PF, PJ);
 					t.setVisible(true);
 					setVisible(false);
 				}

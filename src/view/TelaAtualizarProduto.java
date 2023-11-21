@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controller.ManterProduto;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
@@ -50,9 +51,9 @@ public class TelaAtualizarProduto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaAtualizarProduto(String retorno, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaAtualizarProduto(Produto retorno, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
 		
-		String campos[] = retorno.split(";");
+		ManterProduto manterProduto = new ManterProduto(tabelaProduto);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -87,15 +88,21 @@ public class TelaAtualizarProduto extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				//ManterProduto.excluirProduto(valorCampo);
-				Produto p = new Produto();
-				p.idProduto = Integer.parseInt(idProduto.getText());
-				p.idProdutoCategoria = Integer.parseInt(cbCategoriaPro.getSelectedItem().toString());
-				p.nomeProduto = nomeProduto.getText();
-				p.descricaoProduto = txtDescricaoPro.getText();
-				p.qtdProduto = Integer.parseInt(Quantidade.getText());
-				p.valorProduto = Double.parseDouble(valorProduto.getText());
-				//ManterProduto.inserirProduto(p);
+				try {
+					manterProduto.excluirProduto(retorno.nomeProduto);
+					Produto p = new Produto();
+					p.idProduto = Integer.parseInt(idProduto.getText());
+					p.idProdutoCategoria = Integer.parseInt(cbCategoriaPro.getSelectedItem().toString());
+					p.nomeProduto = nomeProduto.getText();
+					p.descricaoProduto = txtDescricaoPro.getText();
+					p.qtdProduto = Integer.parseInt(Quantidade.getText());
+					p.valorProduto = Double.parseDouble(valorProduto.getText());
+					manterProduto.inserirProduto(p);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 				
 			}
 		};
@@ -109,7 +116,7 @@ public class TelaAtualizarProduto extends JFrame {
 		Quantidade.setBounds(147, 70, 85, 21);
 		InserirClienteCNPJ.add(Quantidade);
 		Quantidade.setColumns(10);
-		Quantidade.setText(campos[4]);
+		Quantidade.setText(String.valueOf(retorno.qtdProduto));
 		
 		JLabel idC = new JLabel("Quantidade:");
 		idC.setBounds(147, 52, 122, 13);
@@ -119,7 +126,7 @@ public class TelaAtualizarProduto extends JFrame {
 		nomeProduto.setColumns(10);
 		nomeProduto.setBounds(10, 70, 122, 21);
 		InserirClienteCNPJ.add(nomeProduto);
-		nomeProduto.setText(campos[2]);
+		nomeProduto.setText(retorno.nomeProduto);
 		
 		JLabel lblValor = new JLabel("Valor:");
 		lblValor.setBounds(284, 52, 122, 13);
@@ -133,7 +140,7 @@ public class TelaAtualizarProduto extends JFrame {
 		valorProduto.setColumns(10);
 		valorProduto.setBounds(277, 70, 85, 21);
 		InserirClienteCNPJ.add(valorProduto);
-		valorProduto.setText(campos[5]);
+		valorProduto.setText(String.valueOf(retorno.valorProduto));
 		
 		JLabel lblNIdentificador = new JLabel("N° Identificador:");
 		lblNIdentificador.setBounds(10, 101, 141, 13);
@@ -143,7 +150,7 @@ public class TelaAtualizarProduto extends JFrame {
 		idProduto.setColumns(10);
 		idProduto.setBounds(10, 116, 85, 21);
 		InserirClienteCNPJ.add(idProduto);
-		idProduto.setText(campos[0]);
+		idProduto.setText(String.valueOf(retorno.idProduto));
 		
 		JLabel lblBreveDescrioDo = new JLabel("Breve descrição do produto:");
 		lblBreveDescrioDo.setBounds(10, 147, 290, 13);
@@ -152,7 +159,7 @@ public class TelaAtualizarProduto extends JFrame {
 		txtDescricaoPro = new JTextArea();
 		txtDescricaoPro.setBounds(20, 169, 386, 53);
 		InserirClienteCNPJ.add(txtDescricaoPro);
-		txtDescricaoPro.setText(campos[3]);
+		txtDescricaoPro.setText(retorno.descricaoProduto);
 		
 		JLabel lblNIdentificadorDa = new JLabel("ID da Categoria do Produto");
 		lblNIdentificadorDa.setBounds(147, 101, 192, 13);
@@ -161,7 +168,7 @@ public class TelaAtualizarProduto extends JFrame {
 		
 		cbCategoriaPro = new JComboBox<String>();
 		cbCategoriaPro.setBounds(146, 116, 131, 21);
-		cbCategoriaPro.addItem(campos[1]);
+		cbCategoriaPro.addItem(String.valueOf(retorno.idProdutoCategoria));
 		InserirClienteCNPJ.add(cbCategoriaPro);
 		
 	

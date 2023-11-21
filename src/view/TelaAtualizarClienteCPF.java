@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controller.ManterClientePF;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
@@ -49,10 +50,12 @@ public class TelaAtualizarClienteCPF extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaAtualizarClienteCPF(String retorno, String valorCampo, String categoria,
+	public TelaAtualizarClienteCPF(ClientePF retorno, String valorCampo, String categoria,
 			LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ,
 			LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
-		String campos[] = retorno.split(";");
+		
+		ManterClientePF manterClientePF = new ManterClientePF(listaClientePF);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		JPanel InserirClienteCNPJ = new JPanel();
@@ -85,14 +88,20 @@ public class TelaAtualizarClienteCPF extends JFrame {
 		ActionListener confirmar = new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				// ManterProduto.excluirProduto(valorCampo);
-				ClientePF pf = new ClientePF();
-				pf.cpfClientePF = cpfClientePF.getText();
-				pf.telefoneClientePF = telefoneClientePF.getText();
-				pf.nomeClientePF = nomeClientePF.getText();
-				pf.enderecoClientePF = enderecoClientePF.getText();
-				pf.cepClientePF = cepClientePF.getText();
-				// ManterProduto.inserirProduto(p);
+				 try {
+					manterClientePF.excluirClientePF(retorno.nomeClientePF);
+					ClientePF pf = new ClientePF();
+					pf.cpfClientePF = cpfClientePF.getText();
+					pf.telefoneClientePF = telefoneClientePF.getText();
+					pf.nomeClientePF = nomeClientePF.getText();
+					pf.enderecoClientePF = enderecoClientePF.getText();
+					pf.cepClientePF = cepClientePF.getText();
+					manterClientePF.inserirClientePF(pf);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 
 			}
 		};
@@ -106,7 +115,7 @@ public class TelaAtualizarClienteCPF extends JFrame {
 		cpfClientePF.setBounds(222, 51, 192, 21);
 		InserirClienteCNPJ.add(cpfClientePF);
 		cpfClientePF.setColumns(10);
-		cpfClientePF.setText(campos[0]);
+		cpfClientePF.setText(retorno.cpfClientePF);
 
 		JLabel cnpj = new JLabel("CPF");
 		cnpj.setBounds(220, 33, 85, 13);
@@ -120,13 +129,13 @@ public class TelaAtualizarClienteCPF extends JFrame {
 		telefoneClientePF.setColumns(10);
 		telefoneClientePF.setBounds(10, 104, 192, 21);
 		InserirClienteCNPJ.add(telefoneClientePF);
-		telefoneClientePF.setText(campos[4]);
+		telefoneClientePF.setText(retorno.telefoneClientePF);
 
 		nomeClientePF = new JTextField();
 		nomeClientePF.setColumns(10);
 		nomeClientePF.setBounds(10, 52, 192, 21);
 		InserirClienteCNPJ.add(nomeClientePF);
-		nomeClientePF.setText(campos[1]);
+		nomeClientePF.setText(retorno.nomeClientePF);
 
 		JLabel lblCep = new JLabel("CEP:");
 		lblCep.setBounds(10, 148, 141, 13);
@@ -140,12 +149,12 @@ public class TelaAtualizarClienteCPF extends JFrame {
 		cepClientePF.setColumns(10);
 		cepClientePF.setBounds(10, 162, 115, 21);
 		InserirClienteCNPJ.add(cepClientePF);
-		cepClientePF.setText(campos[3]);
+		cepClientePF.setText(retorno.cepClientePF);
 
 		enderecoClientePF = new JTextField();
 		enderecoClientePF.setColumns(10);
 		enderecoClientePF.setBounds(159, 163, 255, 20);
 		InserirClienteCNPJ.add(enderecoClientePF);
-		enderecoClientePF.setText(campos[2]);
+		enderecoClientePF.setText(retorno.enderecoClientePF);
 	}
 }

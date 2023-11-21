@@ -45,9 +45,9 @@ public class TelaAtualizarCategoria extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaAtualizarCategoria(String retorno, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
-		ManterCategoria m = new ManterCategoria(listaCategoria);
-		String campos[] = retorno.split(";");
+	public TelaAtualizarCategoria(Categoria retorno, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+		ManterCategoria manterCategoria = new ManterCategoria(listaCategoria);
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -81,11 +81,11 @@ public class TelaAtualizarCategoria extends JFrame {
 		ActionListener confirmar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					m.excluirCategoria(valorCampo);
+					manterCategoria.excluirCategoria(retorno.nomeCategoria);
 					Categoria c = new Categoria();
 					c.idCategoria = Integer.parseInt(idCategoria.getText());
 					c.nomeCategoria = nomeCategoria.getText();
-					m.inserirCategoria(c);
+					manterCategoria.inserirCategoria(c);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -103,7 +103,7 @@ public class TelaAtualizarCategoria extends JFrame {
 		idCategoria.setBounds(212, 92, 192, 21);
 		InserirClienteCNPJ.add(idCategoria);
 		idCategoria.setColumns(10);
-		idCategoria.setText(campos[0]);
+		idCategoria.setText(String.valueOf(retorno.idCategoria));
 		
 		JLabel idC = new JLabel("N° identificador:");
 		idC.setBounds(212, 69, 122, 13);
@@ -112,6 +112,6 @@ public class TelaAtualizarCategoria extends JFrame {
 		nomeCategoria.setColumns(10);
 		nomeCategoria.setBounds(10, 92, 192, 21);
 		InserirClienteCNPJ.add(nomeCategoria);
-		nomeCategoria.setText(campos[1]);
+		nomeCategoria.setText(retorno.nomeCategoria);
 	}
 }

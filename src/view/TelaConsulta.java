@@ -40,6 +40,10 @@ public class TelaConsulta extends JFrame {
 	public String valorCampo;
 	public String categoria;
 	public String pesquisaRetorno;
+	public Categoria rCategoria;
+	public Produto rProduto;
+	public ClientePF rClientePF;
+	public ClientePJ rClientePJ;
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -69,8 +73,10 @@ public class TelaConsulta extends JFrame {
 
 
 	public TelaConsulta(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
-		ManterCategoria mc = new ManterCategoria(listaCategoria);
-
+		ManterCategoria manterCategoria = new ManterCategoria(listaCategoria);
+		ManterProduto manterProduto = new ManterProduto(tabelaProduto);
+		ManterClientePF manterClientePF = new ManterClientePF(listaClientePF);
+		ManterClientePJ manterClientePJ = new ManterClientePJ(listaCLientePJ);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -93,7 +99,7 @@ public class TelaConsulta extends JFrame {
 		contentPane.add(lblNewLabel);
 
 		campoPesquisa = new JTextField();
-		campoPesquisa.setBounds(32, 53, 251, 19);
+		campoPesquisa.setBounds(19, 53, 251, 19);
 		contentPane.add(campoPesquisa);
 		campoPesquisa.setColumns(10);
 
@@ -120,25 +126,47 @@ public class TelaConsulta extends JFrame {
 					// METODO DE PESQUISA
 					switch (categoria) {
 					case "CLIENTE CPF":
-						//pesquisaRetorno = ManterClientePF.consultaClientePF(valorCampo);
-						break;
-					case "CLIENTE CNPJ":
-						//pesquisaRetorno = ManterClientePJ.consultaClientePJ(valorCampo);
-						break;
-
-					case "PRODUTO":
-						// pesquisaRetorno = ManterProduto.consultaProduto(valorCampo);
-						break;
-
-					case "CATEGORIA":
-						Categoria cat = new Categoria();
 						try {
-							cat = mc.consultaCategoria(valorCampo);
+							rClientePF = manterClientePF.consultaClientePF(valorCampo);
+							valorCampo = rClientePF.nomeClientePF;
+							pesquisaRetorno = rClientePF.nomeClientePF;
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						pesquisaRetorno = cat.nomeCategoria;
+						break;
+					case "CLIENTE CNPJ":
+						try {
+							rClientePJ = manterClientePJ.consultaClientePJ(valorCampo);
+							valorCampo = rClientePJ.nomeClientePJ;
+							pesquisaRetorno = rClientePJ.nomeClientePJ;
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						break;
+
+					case "PRODUTO":
+						try {
+							rProduto = manterProduto.consultaProduto(valorCampo);
+							valorCampo = rProduto.nomeProduto;
+							pesquisaRetorno = rProduto.nomeProduto;
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						break;
+
+					case "CATEGORIA":
+						try {
+							rCategoria = manterCategoria.consultaCategoria(valorCampo);
+							valorCampo = rCategoria.nomeCategoria;
+							pesquisaRetorno = rCategoria.nomeCategoria;
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
 						break;
 
 					}
@@ -217,24 +245,24 @@ public class TelaConsulta extends JFrame {
 				} else {
 					switch (categoria) {
 					case "CLIENTE CPF":
-						TelaAtualizarClienteCPF CPF = new TelaAtualizarClienteCPF(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+						TelaAtualizarClienteCPF CPF = new TelaAtualizarClienteCPF(rClientePF, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 						CPF.setVisible(true);
 						setVisible(false);
 						break;
 					case "CLIENTE CNPJ":
-						TelaAtualizarClienteCNPJ CNPJ = new TelaAtualizarClienteCNPJ(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+						TelaAtualizarClienteCNPJ CNPJ = new TelaAtualizarClienteCNPJ(rClientePJ, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 						CNPJ.setVisible(true);
 						setVisible(false);
 						break;
 
 					case "PRODUTO":
-						TelaAtualizarProduto Produto = new TelaAtualizarProduto(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+						TelaAtualizarProduto Produto = new TelaAtualizarProduto(rProduto, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 						Produto.setVisible(true);
 						setVisible(false);
 						break;
 
 					case "CATEGORIA":
-						TelaAtualizarCategoria Categoria = new TelaAtualizarCategoria(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+						TelaAtualizarCategoria Categoria = new TelaAtualizarCategoria(rCategoria, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 						Categoria.setVisible(true);
 						setVisible(false);
 						break;
