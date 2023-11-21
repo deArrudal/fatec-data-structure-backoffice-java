@@ -13,6 +13,11 @@ import model.Pedido;
 import model.Produto;
 
 public class MetodosCarregarBD {
+
+    public MetodosCarregarBD() {
+        super();
+    }
+    
     public String encontrarArquivo(String tipoOperacao, String modoOperacao) {
 
         // definir filtro de arquivos

@@ -1,4 +1,4 @@
-package view;
+package view.telascarregar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +15,7 @@ import model.Pedido;
 import model.Produto;
 
 public class TelaCarregarBD extends JFrame {
+    
     JLabel textoOpcao;
     JButton carregarCategorias;
     JButton carregarProdutos;

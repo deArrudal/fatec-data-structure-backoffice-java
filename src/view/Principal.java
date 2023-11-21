@@ -6,10 +6,11 @@ import model.ClientePF;
 import model.ClientePJ;
 import model.Pedido;
 import model.Produto;
+import view.telassalvar.TelaSalvarBD;
 
 public class Principal {
     public static void main(String[] args) {
-        
+
         // declaração de variaveis.
         LinkedList<Categoria> listaCategorias = new LinkedList<>();
         LinkedList<Produto>[] listaProdutos = new LinkedList[50];
@@ -23,7 +24,12 @@ public class Principal {
             listaProdutos[i] = new LinkedList<>();
         }
 
-        new TelaIniciar(listaCategorias, listaProdutos, listaClientesPF,
+        /*
+         * new TelaIniciar(listaCategorias, listaProdutos, listaClientesPF,
+         * listaClientesPJ, listaPedidos);
+         */
+
+        new TelaSalvarBD(listaCategorias, listaProdutos, listaClientesPF,
                 listaClientesPJ, listaPedidos);
     }
 }

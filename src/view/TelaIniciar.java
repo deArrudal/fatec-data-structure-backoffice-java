@@ -1,12 +1,5 @@
 package view;
 
-import linkedlist.model.LinkedList;
-import model.Categoria;
-import model.ClientePF;
-import model.ClientePJ;
-import model.Pedido;
-import model.Produto;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +9,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Pedido;
+import model.Produto;
+import view.telascarregar.TelaCarregarBD;
+
 public class TelaIniciar extends JFrame {
+    
     JLabel titulo;
     JButton carregarDB;
     JButton iniciarHome;

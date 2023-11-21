@@ -1,4 +1,4 @@
-package view;
+package view.telassalvar;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import controller.MetodosCarregarBD;
+import controller.MetodosSalvarBD;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
@@ -16,38 +16,33 @@ import model.ClientePJ;
 import model.Pedido;
 import model.Produto;
 
-public class TelaDefinirArquivo extends JFrame {
+public class TelaDefinirDiretorio extends JFrame {
 
     JLabel textoCaminho;
-    JLabel textoAviso;
-    JTextField campoArquivo;
-    JButton procurarArquivo;
+    JTextField campoPasta;
+    JButton procurarPasta;
     JButton cancelarOperacao;
     JButton confirmarOperacao;
 
-    public TelaDefinirArquivo(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
+    public TelaDefinirDiretorio(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
             LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
             LinkedList<Pedido> listaPedidos, String tipoOperacao, String modoOperacao) {
 
-        MetodosCarregarBD metodo = new MetodosCarregarBD();
+        MetodosSalvarBD metodos = new MetodosSalvarBD();
 
         // definir e configurar elementos de tela.
-        textoCaminho = new JLabel("Inserir o caminho do pasta:");
+        textoCaminho = new JLabel("Inserir o caminho do diretorio:");
         textoCaminho.setBounds(30, 12, 200, 23);
 
-        textoAviso = new JLabel("*Somente arquivos .csv");
-        textoAviso.setBounds(215, 12, 150, 23);
-        textoAviso.setForeground(Color.RED);
+        campoPasta = new JTextField();
+        campoPasta.setBounds(30, 40, 320, 23);
 
-        campoArquivo = new JTextField();
-        campoArquivo.setBounds(30, 40, 320, 23);
-
-        procurarArquivo = new JButton();
-        procurarArquivo.setBounds(30, 72, 100, 23);
-        procurarArquivo.setText("Procurar");
-        procurarArquivo.addActionListener(new ActionListener() {
+        procurarPasta = new JButton();
+        procurarPasta.setBounds(30, 72, 100, 23);
+        procurarPasta.setText("Procurar");
+        procurarPasta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                campoArquivo.setText(metodo.encontrarArquivo(tipoOperacao, modoOperacao));
+                campoPasta.setText(metodos.encontrarDiretorio(tipoOperacao, modoOperacao));
             }
         });
 
@@ -65,9 +60,9 @@ public class TelaDefinirArquivo extends JFrame {
         confirmarOperacao.setText("Confirmar");
         confirmarOperacao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                metodo.carregarArquivo(listaCategorias, listaProdutos, listaClientesPF,
+                metodos.carregarDiretorio(listaCategorias, listaProdutos, listaClientesPF,
                         listaClientesPJ, listaPedidos, tipoOperacao, modoOperacao,
-                        campoArquivo.getText());
+                        campoPasta.getText());
 
                 dispose();
             }
@@ -84,9 +79,8 @@ public class TelaDefinirArquivo extends JFrame {
 
         // adicionar elementos ao frame.
         this.add(textoCaminho);
-        this.add(textoAviso);
-        this.add(campoArquivo);
-        this.add(procurarArquivo);
+        this.add(campoPasta);
+        this.add(procurarPasta);
         this.add(cancelarOperacao);
         this.add(confirmarOperacao);
     }
