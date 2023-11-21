@@ -1,6 +1,7 @@
 package model;
 
 public class Produto {
+
     int idProduto; // ex.: 01
     int idProdutoCategoria; // ex.: 01
     String nomeProduto; // ex.: grampeador
@@ -10,6 +11,7 @@ public class Produto {
 
     public Produto(int idProduto, int idProdutoCategoria, String nomeProduto, String descricaoProduto, int qtdProduto,
             double valorProduto) {
+                
         this.idProduto = idProduto;
         this.idProdutoCategoria = idProdutoCategoria;
         this.nomeProduto = nomeProduto;

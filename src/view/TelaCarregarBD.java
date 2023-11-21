@@ -7,7 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class TelaCarregarBD extends JFrame implements ActionListener {
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Pedido;
+import model.Produto;
+
+public class TelaCarregarBD extends JFrame {
     JLabel textoOpcao;
     JButton carregarCategorias;
     JButton carregarProdutos;
@@ -15,7 +22,10 @@ public class TelaCarregarBD extends JFrame implements ActionListener {
     JButton carregarClientesPJ;
     JButton cancelarOperacao;
 
-    public TelaCarregarBD() {
+    public TelaCarregarBD(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
+            LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
+            LinkedList<Pedido> listaPedidos) {
+
         // definir e configurar elementos de tela
         textoOpcao = new JLabel("Selecione a opção de carregamento", SwingConstants.CENTER);
         textoOpcao.setBounds(100, 20, 250, 23);
@@ -24,28 +34,52 @@ public class TelaCarregarBD extends JFrame implements ActionListener {
         carregarCategorias.setBounds(130, 58, 190, 23);
         carregarCategorias.setText("Categorias de Produtos");
         carregarCategorias.setHorizontalAlignment(SwingConstants.CENTER);
-        carregarCategorias.addActionListener(this);
+        carregarCategorias.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TelaDefinirArquivo(listaCategorias, listaProdutos, listaClientesPF,
+                        listaClientesPJ, listaPedidos, "Carregar", "categorias");
+            }
+        });
 
         carregarProdutos = new JButton();
         carregarProdutos.setBounds(130, 96, 190, 23);
         carregarProdutos.setText("Produtos");
         carregarProdutos.setHorizontalAlignment(SwingConstants.CENTER);
-        carregarProdutos.addActionListener(this);
+        carregarProdutos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TelaDefinirArquivo(listaCategorias, listaProdutos, listaClientesPF,
+                        listaClientesPJ, listaPedidos, "Carregar", "produtos");
+            }
+        });
 
         carregarClientesPF = new JButton();
         carregarClientesPF.setBounds(130, 134, 190, 23);
         carregarClientesPF.setText("Clientes - Pessoa Fisica");
-        carregarClientesPF.addActionListener(this);
+        carregarClientesPF.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TelaDefinirArquivo(listaCategorias, listaProdutos, listaClientesPF,
+                        listaClientesPJ, listaPedidos, "Carregar", "clientesPF");
+            }
+        });
 
         carregarClientesPJ = new JButton();
         carregarClientesPJ.setBounds(130, 172, 190, 23);
         carregarClientesPJ.setText("Clientes - Pessoa Juridica");
-        carregarClientesPJ.addActionListener(this);
+        carregarClientesPJ.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TelaDefinirArquivo(listaCategorias, listaProdutos, listaClientesPF,
+                        listaClientesPJ, listaPedidos, "Carregar", "clientesPJ");
+            }
+        });
 
         cancelarOperacao = new JButton();
         cancelarOperacao.setBounds(175, 220, 100, 23);
         cancelarOperacao.setText("Cancelar");
-        cancelarOperacao.addActionListener(this);
+        cancelarOperacao.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
 
         // definir propriedades do frame
         this.setTitle("Backoffice - Carregar Banco de Dados");
@@ -63,29 +97,5 @@ public class TelaCarregarBD extends JFrame implements ActionListener {
         this.add(carregarClientesPF);
         this.add(carregarClientesPJ);
         this.add(cancelarOperacao);
-    }
-
-    // realizar operacoes/chamadas com base na interacao com os elementos
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == carregarCategorias) {
-            new TelaDefinirPath("Carregar Categorias");
-        }
-
-        if (e.getSource() == carregarProdutos) {
-            new TelaDefinirPath("Carregar Produtos");
-        }
-
-        if (e.getSource() == carregarClientesPF) {
-            new TelaDefinirPath("Carregar Clientes PF");
-        }
-
-        if (e.getSource() == carregarClientesPJ) {
-            new TelaDefinirPath("Carregar Clientes PJ");
-        }
-
-        if (e.getSource() == cancelarOperacao) {
-            this.dispose();
-        }
     }
 }

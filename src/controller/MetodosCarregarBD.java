@@ -5,8 +5,16 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Pedido;
+import model.Produto;
+
 public class MetodosCarregarBD {
-    public String encontrarArquivo(String tipoOperacao) {
+    public String encontrarArquivo(String tipoOperacao, String modoOperacao) {
+
         // definir filtro de arquivos
         FileNameExtensionFilter filtroArquivo = new FileNameExtensionFilter(
                 "Arquivos de valores separados por virgula (.csv)", "csv");
@@ -17,7 +25,7 @@ public class MetodosCarregarBD {
 
         // definir propriedades do explorador de arquivos
         JFileChooser exploradorArquivo = new JFileChooser();
-        exploradorArquivo.setDialogTitle("Explorador de Arquivos - " + tipoOperacao);
+        exploradorArquivo.setDialogTitle("Explorador de Arquivos - " + tipoOperacao + " " + modoOperacao);
         exploradorArquivo.setCurrentDirectory(diretorioArquivo);
         exploradorArquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
         exploradorArquivo.setAcceptAllFileFilterUsed(false);
@@ -31,25 +39,46 @@ public class MetodosCarregarBD {
 
         } else {
             JOptionPane.showMessageDialog(null, "Arquivo invalido",
-                    "Explorador de Arquivos - " + tipoOperacao, JOptionPane.ERROR_MESSAGE);
+                    "Explorador de Arquivos - " + tipoOperacao + " " + modoOperacao, JOptionPane.ERROR_MESSAGE);
         }
 
         return caminhoArquivo;
     }
 
-    public void carregarArquivo(String caminhoArquivo, String  tipoOperacao) {
+    public void carregarArquivo(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
+            LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
+            LinkedList<Pedido> listaPedidos, String tipoOperacao, String modoOperacao,
+            String caminhoArquivo) {
+
+        MetodosLerArquivo metodos = new MetodosLerArquivo();
+
         if (caminhoArquivo.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Arquivo invalido",
-                    "Explorador de Arquivos - " + tipoOperacao, JOptionPane.ERROR_MESSAGE);
+                    "Explorador de Arquivos - " + tipoOperacao + " " + modoOperacao, JOptionPane.ERROR_MESSAGE);
         }
 
         try {
-            String cmdExe = "cmd /c start cmd.exe /C\"" + caminhoArquivo + "\"";
-            Runtime.getRuntime().exec(cmdExe);
+            switch (modoOperacao) {
+                case "categorias":
+                    metodos.lerCategoria(listaCategorias, caminhoArquivo);
+                    break;
+                case "produtos":
+                    metodos.lerProduto(listaCategorias, listaProdutos, caminhoArquivo);
+                    break;
+                case "clientesPF":
+                    metodos.lerClientePF(listaClientesPF, caminhoArquivo);
+                    break;
+                case "clientesPJ":
+                    metodos.lerClientePJ(listaClientesPJ, caminhoArquivo);
+                    break;
+            }
+
+            JOptionPane.showMessageDialog(null, "Carregamento bem-sucedido",
+                    tipoOperacao + " " + modoOperacao, JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Arquivo invalido",
-                    "Explorador de Arquivos - " + tipoOperacao, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Operacao invalida",
+                    "Explorador de Arquivos - " + tipoOperacao + " " + modoOperacao, JOptionPane.ERROR_MESSAGE);
         }
     }
 }

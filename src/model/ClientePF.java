@@ -1,6 +1,7 @@
 package model;
 
 public class ClientePF {
+
     String cpfClientePF; // ex.: 12345678900
     String nomeClientePF; // ex.: jose da silva
     String enderecoClientePF; // ex.: rua da liberdade, 68, liberdade, sp
@@ -9,6 +10,7 @@ public class ClientePF {
 
     public ClientePF(String cpfClientePF, String nomeClientePF,
             String enderecoClientePF, String cepClientePF, String telefoneClientePF) {
+                
         this.cpfClientePF = cpfClientePF;
         this.nomeClientePF = nomeClientePF;
         this.enderecoClientePF = enderecoClientePF;
