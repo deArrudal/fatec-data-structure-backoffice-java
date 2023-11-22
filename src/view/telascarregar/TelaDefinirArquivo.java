@@ -31,7 +31,7 @@ public class TelaDefinirArquivo extends JFrame {
 
         MetodosCarregarBD metodos = new MetodosCarregarBD();
 
-        // definir e configurar elementos de tela.
+        // definir e configurar elementos de tela
         textoCaminho = new JLabel("Inserir o caminho do arquivo:");
         textoCaminho.setBounds(30, 12, 200, 23);
 
@@ -73,7 +73,7 @@ public class TelaDefinirArquivo extends JFrame {
             }
         });
 
-        // definir propriedades do frame.
+        // definir propriedades do frame
         this.setTitle("Backoffice - " + tipoOperacao + " " + modoOperacao);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
@@ -82,7 +82,7 @@ public class TelaDefinirArquivo extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-        // adicionar elementos ao frame.
+        // adicionar elementos ao frame
         this.add(textoCaminho);
         this.add(textoAviso);
         this.add(campoArquivo);

@@ -30,7 +30,7 @@ public class TelaSalvarBD extends JFrame {
 
         // definir e configurar elementos de tela
         textoOpcao = new JLabel("Selecione o tipo de dados a ser salvo", SwingConstants.CENTER);
-        textoOpcao.setBounds(100, 20, 250, 23);
+        textoOpcao.setBounds(100, 25, 250, 23);
 
         salvarCategorias = new JButton();
         salvarCategorias.setBounds(20, 83, 190, 23);

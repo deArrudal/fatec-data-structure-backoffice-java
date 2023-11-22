@@ -19,6 +19,7 @@ public class MetodosLerArquivo {
 
     public void lerCategoria(LinkedList<Categoria> listaCategorias, String caminhoArquivo) throws Exception {
 
+        // verificar se o diretorio e valido
         File arquivo = new File(caminhoArquivo);
         if (!arquivo.isFile()) {
             throw new IOException("Arquivo invalido");
@@ -30,11 +31,11 @@ public class MetodosLerArquivo {
         String[] sublinha = new String[2];
 
         Scanner scan = new Scanner(arquivo);
-        scan.nextLine(); // pula cabecalho
 
+        scan.nextLine(); // pular cabecalho
         while (scan.hasNextLine()) {
             linha = scan.nextLine();
-            sublinha = linha.split(";");
+            sublinha = linha.split(";"); // quebrar conteudo baseado no ";"
 
             categoria = new Categoria(Integer.parseInt(sublinha[0]), sublinha[1]);
 
@@ -47,6 +48,7 @@ public class MetodosLerArquivo {
     public void lerProduto(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
             String caminhoArquivo) throws Exception {
 
+        // verificar se lista categorias ja foi alocada
         if (listaCategorias.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Categorias nao inicializada",
                     "Carregamento produtos", JOptionPane.ERROR_MESSAGE);
@@ -54,6 +56,7 @@ public class MetodosLerArquivo {
             throw new IOException("Operacao invalida");
         }
 
+        // verificar se o diretorio e valido
         File arquivo = new File(caminhoArquivo);
         if (!arquivo.isFile()) {
             throw new IOException("Arquivo invalido");
@@ -66,13 +69,13 @@ public class MetodosLerArquivo {
         String[] sublinha = new String[6];
 
         Scanner scan = new Scanner(arquivo);
-        scan.nextLine(); // pula cabecalho
 
+        scan.nextLine(); // pular cabecalho
         while (scan.hasNextLine()) {
             linha = scan.nextLine();
-            sublinha = linha.split(";");
+            sublinha = linha.split(";"); // quebrar conteudo baseado no ";"
 
-            index = Integer.parseInt(sublinha[1]);
+            index = Integer.parseInt(sublinha[1]); // definir indice
 
             produto = new Produto(Integer.parseInt(sublinha[0]), index,
                     sublinha[2], sublinha[3], Integer.parseInt(sublinha[4]),
@@ -86,6 +89,7 @@ public class MetodosLerArquivo {
 
     public void lerClientePF(LinkedList<ClientePF> listaClientesPF, String caminhoArquivo) throws Exception {
 
+        // verificar se lista categorias ja foi alocada
         File arquivo = new File(caminhoArquivo);
         if (!arquivo.isFile()) {
             throw new IOException("Arquivo invalido");
@@ -97,11 +101,11 @@ public class MetodosLerArquivo {
         String[] sublinha = new String[5];
 
         Scanner scan = new Scanner(arquivo);
-        scan.nextLine(); // pula cabecalho
 
+        scan.nextLine(); // pular cabecalho
         while (scan.hasNextLine()) {
             linha = scan.nextLine();
-            sublinha = linha.split(";");
+            sublinha = linha.split(";"); // quebrar conteudo baseado no ";"
 
             clientePF = new ClientePF(sublinha[0], sublinha[1], sublinha[2], sublinha[3], sublinha[4]);
 
@@ -113,6 +117,7 @@ public class MetodosLerArquivo {
 
     public void lerClientePJ(LinkedList<ClientePJ> listaClientesPJ, String caminhoArquivo) throws Exception {
 
+        // verificar se lista categorias ja foi alocada
         File arquivo = new File(caminhoArquivo);
         if (!arquivo.isFile()) {
             throw new IOException("Arquivo invalido");
@@ -124,11 +129,11 @@ public class MetodosLerArquivo {
         String[] sublinha = new String[6];
 
         Scanner scan = new Scanner(arquivo);
-        scan.nextLine(); // pula cabecalho
 
+        scan.nextLine(); // pular cabecalho
         while (scan.hasNextLine()) {
             linha = scan.nextLine();
-            sublinha = linha.split(";");
+            sublinha = linha.split(";"); // quebrar conteudo baseado no ";"
 
             clientePJ = new ClientePJ(sublinha[0], sublinha[1], sublinha[2], sublinha[3], sublinha[4], sublinha[5]);
 

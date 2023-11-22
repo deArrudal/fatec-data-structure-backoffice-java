@@ -17,7 +17,7 @@ public class MetodosCarregarBD {
     public MetodosCarregarBD() {
         super();
     }
-    
+
     public String encontrarArquivo(String tipoOperacao, String modoOperacao) {
 
         // definir filtro de arquivos
@@ -39,6 +39,7 @@ public class MetodosCarregarBD {
         String caminhoArquivo = "";
         int flagCaminho = exploradorArquivo.showOpenDialog(null);
 
+        // verificar se retorno e valido
         if (flagCaminho == JFileChooser.APPROVE_OPTION) {
             caminhoArquivo = exploradorArquivo.getSelectedFile().getAbsolutePath();
 
@@ -57,12 +58,14 @@ public class MetodosCarregarBD {
 
         MetodosLerArquivo metodos = new MetodosLerArquivo();
 
+        // caso caminho arquivo retorne vazio, imprimir mensagem de erro
         if (caminhoArquivo.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Arquivo invalido",
                     "Explorador de Arquivos - " + tipoOperacao + " " + modoOperacao, JOptionPane.ERROR_MESSAGE);
         }
 
         try {
+            // realizar chamada do metodo de leitura do arquivo
             switch (modoOperacao) {
                 case "categorias":
                     metodos.lerCategoria(listaCategorias, caminhoArquivo);

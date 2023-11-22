@@ -1,6 +1,5 @@
 package view.telassalvar;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -19,8 +18,8 @@ import model.Produto;
 public class TelaDefinirDiretorio extends JFrame {
 
     JLabel textoCaminho;
-    JTextField campoPasta;
-    JButton procurarPasta;
+    JTextField campoDiretorio;
+    JButton procurarDiretorio;
     JButton cancelarOperacao;
     JButton confirmarOperacao;
 
@@ -30,19 +29,19 @@ public class TelaDefinirDiretorio extends JFrame {
 
         MetodosSalvarBD metodos = new MetodosSalvarBD();
 
-        // definir e configurar elementos de tela.
+        // definir e configurar elementos de tela
         textoCaminho = new JLabel("Inserir o caminho do diretorio:");
         textoCaminho.setBounds(30, 12, 200, 23);
 
-        campoPasta = new JTextField();
-        campoPasta.setBounds(30, 40, 320, 23);
+        campoDiretorio = new JTextField();
+        campoDiretorio.setBounds(30, 40, 320, 23);
 
-        procurarPasta = new JButton();
-        procurarPasta.setBounds(30, 72, 100, 23);
-        procurarPasta.setText("Procurar");
-        procurarPasta.addActionListener(new ActionListener() {
+        procurarDiretorio = new JButton();
+        procurarDiretorio.setBounds(30, 72, 100, 23);
+        procurarDiretorio.setText("Procurar");
+        procurarDiretorio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                campoPasta.setText(metodos.encontrarDiretorio(tipoOperacao, modoOperacao));
+                campoDiretorio.setText(metodos.encontrarDiretorio(tipoOperacao, modoOperacao));
             }
         });
 
@@ -62,13 +61,13 @@ public class TelaDefinirDiretorio extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 metodos.carregarDiretorio(listaCategorias, listaProdutos, listaClientesPF,
                         listaClientesPJ, listaPedidos, tipoOperacao, modoOperacao,
-                        campoPasta.getText());
+                        campoDiretorio.getText());
 
                 dispose();
             }
         });
 
-        // definir propriedades do frame.
+        // definir propriedades do frame
         this.setTitle("Backoffice - " + tipoOperacao + " " + modoOperacao);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
@@ -77,10 +76,10 @@ public class TelaDefinirDiretorio extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-        // adicionar elementos ao frame.
+        // adicionar elementos ao frame
         this.add(textoCaminho);
-        this.add(campoPasta);
-        this.add(procurarPasta);
+        this.add(campoDiretorio);
+        this.add(procurarDiretorio);
         this.add(cancelarOperacao);
         this.add(confirmarOperacao);
     }

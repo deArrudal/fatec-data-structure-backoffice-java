@@ -3,7 +3,6 @@ package controller;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import linkedlist.model.LinkedList;
 import model.Categoria;
@@ -34,6 +33,7 @@ public class MetodosSalvarBD {
         String caminhoArquivo = "";
         int flagCaminho = exploradorArquivo.showOpenDialog(null);
 
+        // verificar se retorno e valido
         if (flagCaminho == JFileChooser.APPROVE_OPTION) {
             caminhoArquivo = exploradorArquivo.getSelectedFile().getAbsolutePath();
 
@@ -47,6 +47,42 @@ public class MetodosSalvarBD {
 
     public void carregarDiretorio(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
             LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
-            LinkedList<Pedido> listaPedidos, String tipoOperacao, String modoOperacao, String text) {
-    }  
+            LinkedList<Pedido> listaPedidos, String tipoOperacao, String modoOperacao, String caminhoDiretorio) {
+
+        MetodosEscreverArquivo metodos = new MetodosEscreverArquivo();
+
+        // caso caminho arquivo retorne vazio, imprimir mensagem de erro
+        if (caminhoDiretorio.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Arquivo invalido",
+                    "Explorador de Arquivos - " + tipoOperacao + " " + modoOperacao, JOptionPane.ERROR_MESSAGE);
+        }
+
+        try {
+            // realizar chamada do metodo de leitura do arquivo
+            switch (modoOperacao) {
+                case "categorias":
+                    metodos.EscreverCategorias(listaCategorias, caminhoDiretorio);
+                    break;
+                case "produtos":
+                    metodos.EscreverProdutos(listaProdutos, caminhoDiretorio);
+                    break;
+                case "clientesPF":
+                    metodos.EscreverClientesPF(listaClientesPF, caminhoDiretorio);
+                    break;
+                case "clientesPJ":
+                    metodos.EscreverClientesPJ(listaClientesPJ, caminhoDiretorio);
+                    break;
+                case "pedidos":
+                    metodos.EscreverPedidos(listaPedidos, caminhoDiretorio);
+                    break;
+            }
+
+            JOptionPane.showMessageDialog(null, "Armazenamento bem-sucedido",
+                    tipoOperacao + " " + modoOperacao, JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Operacao invalida",
+                    "Explorador de Arquivos - " + tipoOperacao + " " + modoOperacao, JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
