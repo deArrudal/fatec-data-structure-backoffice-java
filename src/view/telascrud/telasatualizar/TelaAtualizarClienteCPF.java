@@ -1,10 +1,9 @@
-package view;
+package view.telascrud.telasatualizar;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,8 +17,7 @@ import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
 import model.Produto;
-
-import java.awt.Color;
+import view.telascrud.telasconsulta.TelaConsulta;
 
 public class TelaAtualizarClienteCPF extends JFrame {
 
@@ -53,9 +51,9 @@ public class TelaAtualizarClienteCPF extends JFrame {
 	public TelaAtualizarClienteCPF(ClientePF retorno, String valorCampo, String categoria,
 			LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ,
 			LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
-		
+
 		ManterClientePF manterClientePF = new ManterClientePF(listaClientePF);
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		JPanel InserirClienteCNPJ = new JPanel();
@@ -88,7 +86,7 @@ public class TelaAtualizarClienteCPF extends JFrame {
 		ActionListener confirmar = new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				 try {
+				try {
 					manterClientePF.excluirClientePF(retorno.nomeClientePF);
 					ClientePF pf = new ClientePF();
 					pf.cpfClientePF = cpfClientePF.getText();
@@ -101,7 +99,6 @@ public class TelaAtualizarClienteCPF extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
 
 			}
 		};

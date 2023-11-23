@@ -3,10 +3,12 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
 
 import controller.ManterClientePF;
 import controller.ManterClientePJ;
@@ -15,15 +17,14 @@ import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
 import model.Produto;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
+import view.telasmenu.TelaCliente;
+import view.telasmenu.TelaHome;
 
 public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+
 	public LinkedList<ClientePF> listaClientePF = new LinkedList<>();
 	public LinkedList<ClientePJ> listaCLientePJ = new LinkedList<>();
 	public LinkedList<Categoria> listaCategoria = new LinkedList<>();
@@ -76,7 +77,7 @@ public class Main extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ClientePF PF = null;
 				ClientePJ PJ = null;
-				
+
 				String res;
 				do {
 					res = JOptionPane.showInputDialog("Informe seu CPF ou CNPJ (Pessoa jurídica)");
@@ -86,15 +87,17 @@ public class Main extends JFrame {
 					} catch (Exception e2) {
 						e2.getStackTrace();
 					}
-					
+
 					if (PF == null & PJ == null) {
-						JOptionPane.showMessageDialog(btnCliente, "Cliente não localizado, solicite seu cadastro a um de nossos funcionários");
+						JOptionPane.showMessageDialog(btnCliente,
+								"Cliente não localizado, solicite seu cadastro a um de nossos funcionários");
 						break;
 					}
 				} while (PF == null & PJ == null);
-				
+
 				if (PF != null || PJ != null) {
-					TelaCliente t = new TelaCliente(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, PF, PJ);
+					TelaCliente t = new TelaCliente(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, PF,
+							PJ);
 					t.setVisible(true);
 					setVisible(false);
 				}
@@ -107,18 +110,18 @@ public class Main extends JFrame {
 		btnFuncionario.setBounds(162, 160, 123, 21);
 		contentPane.add(btnFuncionario);
 		ActionListener funcionario = new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				String r = "0";
 				do {
 					r = JOptionPane.showInputDialog("Digite sua senha para seguir: ");
-				
+
 					if (!r.equals("0000")) {
 						JOptionPane.showMessageDialog(btnFuncionario, "Senha incorreta");
 						break;
 					}
 				} while (!r.equals("0000"));
-				
+
 				if (r.equals("0000")) {
 					TelaHome t = new TelaHome(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 					t.setVisible(true);

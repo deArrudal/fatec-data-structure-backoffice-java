@@ -1,39 +1,37 @@
-package view;
+package view.telascrud.telasconsulta;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-
-import controller.ManterCategoria;
-import controller.ManterClientePF;
-import controller.ManterClientePJ;
-import controller.ManterProduto;
-
-import linkedlist.model.LinkedList;
-import model.Categoria;
-import model.ClientePF;
-import model.ClientePJ;
-import model.Produto;
-
-
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
+import controller.ManterCategoria;
+import controller.ManterClientePF;
+import controller.ManterClientePJ;
+import controller.ManterProduto;
+import linkedlist.model.LinkedList;
+import model.Categoria;
+import model.ClientePF;
+import model.ClientePJ;
+import model.Produto;
+import view.telascrud.telasatualizar.TelaAtualizarCategoria;
+import view.telascrud.telasatualizar.TelaAtualizarClienteCNPJ;
+import view.telascrud.telasatualizar.TelaAtualizarClienteCPF;
+import view.telascrud.telasatualizar.TelaAtualizarProduto;
+import view.telascrud.telasremover.TelaRemoverRegistro;
+import view.telasmenu.TelaHome;
 
 public class TelaConsulta extends JFrame {
 
@@ -55,24 +53,23 @@ public class TelaConsulta extends JFrame {
 	// ManterCategoria manterCategoria = new ManterCategoria();
 	// ManterProduto manterProduto = new ManterProduto();
 
+	/*
+	 * public static void main(String[] args) {
+	 * EventQueue.invokeLater(new Runnable() {
+	 * public void run() {
+	 * try {
+	 * TelaConsulta frame = new TelaConsulta(null, null, null, null);
+	 * frame.setVisible(true);
+	 * } catch (Exception e) {
+	 * e.printStackTrace();
+	 * }
+	 * }
+	 * });
+	 * }
+	 */
 
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsulta frame = new TelaConsulta(null, null, null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
-
-
-
-	public TelaConsulta(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaConsulta(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ,
+			LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
 		ManterCategoria manterCategoria = new ManterCategoria(listaCategoria);
 		ManterProduto manterProduto = new ManterProduto(tabelaProduto);
 		ManterClientePF manterClientePF = new ManterClientePF(listaClientePF);
@@ -125,49 +122,49 @@ public class TelaConsulta extends JFrame {
 					categoria = cbCategoria.getSelectedItem().toString();
 					// METODO DE PESQUISA
 					switch (categoria) {
-					case "CLIENTE CPF":
-						try {
-							rClientePF = manterClientePF.consultaClientePF(valorCampo);
-							valorCampo = rClientePF.nomeClientePF;
-							pesquisaRetorno = rClientePF.nomeClientePF;
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						break;
-					case "CLIENTE CNPJ":
-						try {
-							rClientePJ = manterClientePJ.consultaClientePJ(valorCampo);
-							valorCampo = rClientePJ.nomeClientePJ;
-							pesquisaRetorno = rClientePJ.nomeClientePJ;
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						break;
+						case "CLIENTE CPF":
+							try {
+								rClientePF = manterClientePF.consultaClientePF(valorCampo);
+								valorCampo = rClientePF.nomeClientePF;
+								pesquisaRetorno = rClientePF.nomeClientePF;
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							break;
+						case "CLIENTE CNPJ":
+							try {
+								rClientePJ = manterClientePJ.consultaClientePJ(valorCampo);
+								valorCampo = rClientePJ.nomeClientePJ;
+								pesquisaRetorno = rClientePJ.nomeClientePJ;
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							break;
 
-					case "PRODUTO":
-						try {
-							rProduto = manterProduto.consultaProduto(valorCampo);
-							valorCampo = rProduto.nomeProduto;
-							pesquisaRetorno = rProduto.nomeProduto;
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						break;
+						case "PRODUTO":
+							try {
+								rProduto = manterProduto.consultaProduto(valorCampo);
+								valorCampo = rProduto.nomeProduto;
+								pesquisaRetorno = rProduto.nomeProduto;
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							break;
 
-					case "CATEGORIA":
-						try {
-							rCategoria = manterCategoria.consultaCategoria(valorCampo);
-							valorCampo = rCategoria.nomeCategoria;
-							pesquisaRetorno = rCategoria.nomeCategoria;
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						
-						break;
+						case "CATEGORIA":
+							try {
+								rCategoria = manterCategoria.consultaCategoria(valorCampo);
+								valorCampo = rCategoria.nomeCategoria;
+								pesquisaRetorno = rCategoria.nomeCategoria;
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+
+							break;
 
 					}
 					resultadoPesquisa.setText(pesquisaRetorno);
@@ -180,18 +177,18 @@ public class TelaConsulta extends JFrame {
 		JLabel lblInforme = new JLabel();
 		categoria = cbCategoria.getSelectedItem().toString();
 		switch (categoria) {
-		case "CLIENTE CPF":
-			lblInforme.setText("Informe o CPF para buscá-lo:");
-			break;
-		case "CLIENTE CNPJ":
-			lblInforme.setText("Informe o CNPJ para buscá-lo:");
-			break;
-		case "PRODUTO":
-			lblInforme.setText("Informe o NOME DO PRODUTO para buscá-lo:");
-			break;
-		case "CATEGORIA":
-			lblInforme.setText("Informe o NOME DA CATEGORIA para buscá-lo:");
-			break;
+			case "CLIENTE CPF":
+				lblInforme.setText("Informe o CPF para buscá-lo:");
+				break;
+			case "CLIENTE CNPJ":
+				lblInforme.setText("Informe o CNPJ para buscá-lo:");
+				break;
+			case "PRODUTO":
+				lblInforme.setText("Informe o NOME DO PRODUTO para buscá-lo:");
+				break;
+			case "CATEGORIA":
+				lblInforme.setText("Informe o NOME DA CATEGORIA para buscá-lo:");
+				break;
 		}
 		lblInforme.setBounds(22, 34, 317, 13);
 		contentPane.add(lblInforme);
@@ -207,18 +204,18 @@ public class TelaConsulta extends JFrame {
 			@Override
 			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 				switch (cbCategoria.getSelectedItem().toString()) {
-				case "CLIENTE CPF":
-					lblInforme.setText("Informe o CPF para buscá-lo:");
-					break;
-				case "CLIENTE CNPJ":
-					lblInforme.setText("Informe o CNPJ para buscá-lo:");
-					break;
-				case "PRODUTO":
-					lblInforme.setText("Informe o NOME DO PRODUTO para buscá-lo:");
-					break;
-				case "CATEGORIA":
-					lblInforme.setText("Informe o NOME DA CATEGORIA para buscá-lo:");
-					break;
+					case "CLIENTE CPF":
+						lblInforme.setText("Informe o CPF para buscá-lo:");
+						break;
+					case "CLIENTE CNPJ":
+						lblInforme.setText("Informe o CNPJ para buscá-lo:");
+						break;
+					case "PRODUTO":
+						lblInforme.setText("Informe o NOME DO PRODUTO para buscá-lo:");
+						break;
+					case "CATEGORIA":
+						lblInforme.setText("Informe o NOME DA CATEGORIA para buscá-lo:");
+						break;
 				}
 
 			}
@@ -237,35 +234,39 @@ public class TelaConsulta extends JFrame {
 		btnAtualizar.setBackground(new Color(128, 255, 128));
 		btnAtualizar.setForeground(new Color(0, 0, 0));
 		contentPane.add(btnAtualizar);
-		
+
 		ActionListener atualizar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (pesquisaRetorno == null) {
 					resultadoPesquisa.setText("Registro não localizado, impossível atualizar!");
 				} else {
 					switch (categoria) {
-					case "CLIENTE CPF":
-						TelaAtualizarClienteCPF CPF = new TelaAtualizarClienteCPF(rClientePF, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
-						CPF.setVisible(true);
-						setVisible(false);
-						break;
-					case "CLIENTE CNPJ":
-						TelaAtualizarClienteCNPJ CNPJ = new TelaAtualizarClienteCNPJ(rClientePJ, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
-						CNPJ.setVisible(true);
-						setVisible(false);
-						break;
+						case "CLIENTE CPF":
+							TelaAtualizarClienteCPF CPF = new TelaAtualizarClienteCPF(rClientePF, valorCampo, categoria,
+									listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+							CPF.setVisible(true);
+							setVisible(false);
+							break;
+						case "CLIENTE CNPJ":
+							TelaAtualizarClienteCNPJ CNPJ = new TelaAtualizarClienteCNPJ(rClientePJ, valorCampo,
+									categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+							CNPJ.setVisible(true);
+							setVisible(false);
+							break;
 
-					case "PRODUTO":
-						TelaAtualizarProduto Produto = new TelaAtualizarProduto(rProduto, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
-						Produto.setVisible(true);
-						setVisible(false);
-						break;
+						case "PRODUTO":
+							TelaAtualizarProduto Produto = new TelaAtualizarProduto(rProduto, valorCampo, categoria,
+									listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+							Produto.setVisible(true);
+							setVisible(false);
+							break;
 
-					case "CATEGORIA":
-						TelaAtualizarCategoria Categoria = new TelaAtualizarCategoria(rCategoria, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
-						Categoria.setVisible(true);
-						setVisible(false);
-						break;
+						case "CATEGORIA":
+							TelaAtualizarCategoria Categoria = new TelaAtualizarCategoria(rCategoria, valorCampo,
+									categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+							Categoria.setVisible(true);
+							setVisible(false);
+							break;
 
 					}
 					resultadoPesquisa.setText(pesquisaRetorno);
@@ -284,7 +285,8 @@ public class TelaConsulta extends JFrame {
 				if (pesquisaRetorno == null) {
 					resultadoPesquisa.setText("Registro não localizado, impossível excluir!");
 				} else {
-					TelaRemoverRegistro t = new TelaRemoverRegistro(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+					TelaRemoverRegistro t = new TelaRemoverRegistro(pesquisaRetorno, valorCampo, categoria,
+							listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 					t.setVisible(true);
 					setVisible(false);
 				}

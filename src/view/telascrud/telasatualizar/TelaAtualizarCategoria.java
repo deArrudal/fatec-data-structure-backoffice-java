@@ -1,14 +1,15 @@
-package view;
+package view.telascrud.telasatualizar;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JButton;
 
 import controller.ManterCategoria;
 import linkedlist.model.LinkedList;
@@ -16,9 +17,7 @@ import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
 import model.Produto;
-
-import javax.swing.JLabel;
-import javax.swing.JButton;
+import view.telascrud.telasconsulta.TelaConsulta;
 
 public class TelaAtualizarCategoria extends JFrame {
 
