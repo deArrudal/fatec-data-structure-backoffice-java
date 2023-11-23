@@ -17,6 +17,6 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return idCategoria + "; " + nomeCategoria;
+        return idCategoria + ";" + nomeCategoria;
     }
 }

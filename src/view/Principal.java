@@ -27,5 +27,8 @@ public class Principal {
         // chamar tela inicial
         new TelaIniciar(listaCategorias, listaProdutos, listaClientesPF,
         listaClientesPJ, listaPedidos);
+
+        new TelaSalvarBD(listaCategorias, listaProdutos, listaClientesPF,
+        listaClientesPJ, listaPedidos);
     }
 }

@@ -38,11 +38,11 @@ public class MetodosEscreverArquivo {
         PrintWriter printWriter = new PrintWriter(new FileWriter(arquivo, true));
 
         // Imprimir cabecalho
-        printWriter.print("idCategoria;nomeCategoria");
+        printWriter.println("idCategoria;nomeCategoria");
 
         int size = listaCategorias.size();
         for (int i = 0; i < size; i++) {
-            printWriter.print(listaCategorias.get(i).toString());
+            printWriter.println(listaCategorias.get(i).toString());
         }
 
         printWriter.close();
@@ -68,7 +68,7 @@ public class MetodosEscreverArquivo {
         PrintWriter printWriter = new PrintWriter(new FileWriter(arquivo, true));
 
         // Imprimir cabecalho
-        printWriter.print("idProduto;idProdutoCategoria;nomeProduto;descricaoProduto;qtdProduto;valorProduto");
+        printWriter.println("idProduto;idProdutoCategoria;nomeProduto;descricaoProduto;qtdProduto;valorProduto");
 
         int iSize = listaProdutos.length; // definir tamanho vetor
         int jSize;
@@ -77,7 +77,7 @@ public class MetodosEscreverArquivo {
             jSize = listaProdutos[i].size(); // definir tamanho lista
 
             for (int j = 0; j < jSize; j++) {
-                printWriter.print(listaProdutos[i].get(j).toString());
+                printWriter.println(listaProdutos[i].get(j).toString());
             }
         }
 
@@ -106,11 +106,11 @@ public class MetodosEscreverArquivo {
         PrintWriter printWriter = new PrintWriter(new FileWriter(arquivo, true));
 
         // Imprimir cabecalho
-        printWriter.print("cpfClientePF;nomeClientePF;endereçoClientePF;cepClientePF;telefoneClientePF");
+        printWriter.println("cpfClientePF;nomeClientePF;endereçoClientePF;cepClientePF;telefoneClientePF");
 
         int size = listaClientesPF.size();
         for (int i = 0; i < size; i++) {
-            printWriter.print(listaClientesPF.get(i).toString());
+            printWriter.println(listaClientesPF.get(i).toString());
         }
 
         printWriter.close();
@@ -139,11 +139,11 @@ public class MetodosEscreverArquivo {
 
         // Imprimir cabecalho
         printWriter
-                .print("cnpjClientePJ;nomeClientePJ;enderecoClientePJ;cepClientePJ;telefoneClientePJ;emailClientePJ");
+                .println("cnpjClientePJ;nomeClientePJ;enderecoClientePJ;cepClientePJ;telefoneClientePJ;emailClientePJ");
 
         int size = listaClientesPJ.size();
         for (int i = 0; i < size; i++) {
-            printWriter.print(listaClientesPJ.get(i).toString());
+            printWriter.println(listaClientesPJ.get(i).toString());
         }
 
         printWriter.close();
@@ -171,12 +171,11 @@ public class MetodosEscreverArquivo {
         PrintWriter printWriter = new PrintWriter(new FileWriter(arquivo, true));
 
         // Imprimir cabecalho
-        printWriter
-                .print("idPedido;nomeCliente;itensPedido");
+        printWriter.println("idPedido;nomeCliente;itensPedido");
 
         int size = listaPedidos.size();
         for (int i = 0; i < size; i++) {
-            printWriter.print(listaPedidos.get(i).toString());
+            printWriter.println(listaPedidos.get(i).toString());
         }
 
         printWriter.close();
