@@ -1,8 +1,5 @@
 package controller;
 
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import model.Pedido;
 import model.Produto;
 import queue.model.Queue;
@@ -25,19 +22,10 @@ public class ManterCarrinho {
         carrinho.push(produto);
     }
 
-    public void exibirCarrinho(JTable table) throws Exception {
+    public void exibirCarrinho() throws Exception {
         Stack<Produto> aux = new Stack<>();
-        DefaultTableModel model = (DefaultTableModel)table.getModel();
-        if (model.getRowCount()>0) {
-			int tamanho = model.getRowCount()-1;
-			for (int i = tamanho;i>=0;i++) {
-				model.removeRow(i);
-			}
-		}
         while(!carrinho.isEmpty()) {
-            //System.out.println(carrinho.top());
-        	Produto p = carrinho.top();
-        	model.addRow(new Object [] {p.idProduto, p.nomeProduto, p.qtdProduto, p.valorProduto});
+            System.out.println(carrinho.top());
             aux.push(carrinho.pop());
         }
 

@@ -1,4 +1,4 @@
-package view;
+package view.telascarregar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +13,13 @@ import model.ClientePF;
 import model.ClientePJ;
 import model.Pedido;
 import model.Produto;
+import view.telasmenu.TelaHome;
 
 public class TelaCarregarBD extends JFrame {
-    
-	private static final long serialVersionUID = 1L;
-	JLabel textoOpcao;
+
+    private static final long serialVersionUID = 1L;
+
+    JLabel textoOpcao;
     JButton carregarCategorias;
     JButton carregarProdutos;
     JButton carregarClientesPF;
@@ -38,8 +40,10 @@ public class TelaCarregarBD extends JFrame {
         carregarCategorias.setHorizontalAlignment(SwingConstants.CENTER);
         carregarCategorias.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TelaDefinirArquivo(listaCategorias, listaProdutos, listaClientesPF,
-                        listaClientesPJ, listaPedidos, "Carregar", "categorias");
+                TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "categorias");
+                telaDefinirArquivo.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -49,8 +53,10 @@ public class TelaCarregarBD extends JFrame {
         carregarProdutos.setHorizontalAlignment(SwingConstants.CENTER);
         carregarProdutos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TelaDefinirArquivo(listaCategorias, listaProdutos, listaClientesPF,
-                        listaClientesPJ, listaPedidos, "Carregar", "produtos");
+                TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "produtos");
+                telaDefinirArquivo.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -59,8 +65,10 @@ public class TelaCarregarBD extends JFrame {
         carregarClientesPF.setText("Clientes - Pessoa Fisica");
         carregarClientesPF.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TelaDefinirArquivo(listaCategorias, listaProdutos, listaClientesPF,
-                        listaClientesPJ, listaPedidos, "Carregar", "clientesPF");
+                TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "clientesPF");
+                telaDefinirArquivo.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -69,8 +77,10 @@ public class TelaCarregarBD extends JFrame {
         carregarClientesPJ.setText("Clientes - Pessoa Juridica");
         carregarClientesPJ.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TelaDefinirArquivo(listaCategorias, listaProdutos, listaClientesPF,
-                        listaClientesPJ, listaPedidos, "Carregar", "clientesPJ");
+                TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "clientesPJ");
+                telaDefinirArquivo.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -79,9 +89,10 @@ public class TelaCarregarBD extends JFrame {
         cancelarOperacao.setText("Cancelar");
         cancelarOperacao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	TelaAmbiente t = new TelaAmbiente(listaClientesPF, listaClientesPJ, listaProdutos, listaCategorias, listaPedidos);
-            	t.setVisible(true);
-                dispose();
+                TelaHome telaHome = new TelaHome(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos);
+                telaHome.setVisible(true);
+                setVisible(false);
             }
         });
 

@@ -1,10 +1,9 @@
-package view;
+package view.telascrud.telasatualizar;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,17 +11,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import controller.ManterClientePF;
 import controller.ManterClientePJ;
-import controller.ManterProduto;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
-import model.Pedido;
 import model.Produto;
-
-import java.awt.Color;
+import view.telascrud.telasconsulta.TelaConsulta;
 
 public class TelaAtualizarClienteCNPJ extends JFrame {
 
@@ -42,7 +37,7 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 			public void run() {
 				try {
 					TelaAtualizarClienteCNPJ frame = new TelaAtualizarClienteCNPJ(null, null, null, null, null, null,
-							null, null);
+							null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,16 +48,14 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @param listaPedidos 
 	 */
 	public TelaAtualizarClienteCNPJ(ClientePJ retorno, String valorCampo, String categoria,
 			LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ,
-			LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
+			LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
 
 		ManterClientePJ manterClientePJ = new ManterClientePJ(listaCLientePJ);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		setLocationRelativeTo(null);
 		JPanel InserirClienteCNPJ = new JPanel();
 		InserirClienteCNPJ.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -80,7 +73,7 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 		InserirClienteCNPJ.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
+				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -107,7 +100,6 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
 
 			}
 		};

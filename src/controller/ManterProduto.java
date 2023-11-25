@@ -55,7 +55,7 @@ public class ManterProduto {
     }
 
     public void inserirProduto(Produto produto) throws Exception{
-        int pos = produto.idProdutoCategoria;
+        int pos = produto.idProduto;
         listaProdutos[pos].addLast(produto);
     }
 
