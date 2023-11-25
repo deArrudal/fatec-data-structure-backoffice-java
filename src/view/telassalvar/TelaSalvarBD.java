@@ -33,10 +33,10 @@ public class TelaSalvarBD extends JFrame {
 
         // definir e configurar elementos de tela
         textoOpcao = new JLabel("Selecione o tipo de dados a ser salvo", SwingConstants.CENTER);
-        textoOpcao.setBounds(100, 25, 250, 23);
+        textoOpcao.setBounds(100, 20, 250, 23);
 
         salvarCategorias = new JButton();
-        salvarCategorias.setBounds(20, 83, 190, 23);
+        salvarCategorias.setBounds(20, 65, 190, 23);
         salvarCategorias.setText("Categorias de Produtos");
         salvarCategorias.setHorizontalAlignment(SwingConstants.CENTER);
         salvarCategorias.addActionListener(new ActionListener() {
@@ -49,7 +49,7 @@ public class TelaSalvarBD extends JFrame {
         });
 
         salvarProdutos = new JButton();
-        salvarProdutos.setBounds(225, 83, 190, 23);
+        salvarProdutos.setBounds(225, 65, 190, 23);
         salvarProdutos.setText("Produtos");
         salvarProdutos.setHorizontalAlignment(SwingConstants.CENTER);
         salvarProdutos.addActionListener(new ActionListener() {
@@ -62,7 +62,7 @@ public class TelaSalvarBD extends JFrame {
         });
 
         salvarClientesPF = new JButton();
-        salvarClientesPF.setBounds(20, 121, 190, 23);
+        salvarClientesPF.setBounds(20, 115, 190, 23);
         salvarClientesPF.setText("Clientes - Pessoa Fisica");
         salvarClientesPF.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -74,7 +74,7 @@ public class TelaSalvarBD extends JFrame {
         });
 
         salvarClientesPJ = new JButton();
-        salvarClientesPJ.setBounds(225, 121, 190, 23);
+        salvarClientesPJ.setBounds(225, 115, 190, 23);
         salvarClientesPJ.setText("Clientes - Pessoa Juridica");
         salvarClientesPJ.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -86,7 +86,7 @@ public class TelaSalvarBD extends JFrame {
         });
 
         salvarPedidos = new JButton();
-        salvarPedidos.setBounds(175, 159, 100, 23);
+        salvarPedidos.setBounds(175, 165, 100, 23);
         salvarPedidos.setText("Pedidos");
         salvarPedidos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

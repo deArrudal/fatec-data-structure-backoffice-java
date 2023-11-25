@@ -14,6 +14,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 import view.telascrud.telasinserir.TelaInserirCategoria;
 import view.telascrud.telasinserir.TelaInserirClienteCNPJ;
@@ -24,46 +25,28 @@ import view.telasmenu.TelaHome;
 public class TelaSelecaoCadastro extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+
 	private JPanel contentPane;
+
 	private JComboBox<String> cbCategoria;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public TelaSelecaoCadastro(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
+			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
+			LinkedList<Pedido> listaPedidos) {
 
-	/**
-	 * Create the frame.
-	 * 
-	 * @param listaCategoria
-	 * @param listaProduto
-	 * @param listaCLientePJ
-	 * @param listaClientePF
-	 */
-	public TelaSelecaoCadastro(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ,
-			LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
-		setTitle("Backoffice");
+		setTitle("Backoffice - Cadastro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		cbCategoria = new JComboBox<>();
 		cbCategoria.setBounds(101, 97, 276, 22);
 		contentPane.add(cbCategoria);
-
 		cbCategoria.addItem("ClienteCPF");
 		cbCategoria.addItem("ClienteCNPJ");
 		cbCategoria.addItem("Produto");
@@ -76,12 +59,12 @@ public class TelaSelecaoCadastro extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setBounds(199, 215, 89, 23);
 		contentPane.add(btnVoltar);
-
 		ActionListener voltar = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TelaHome t = new TelaHome(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaHome t = new TelaHome(listaCategorias, listaProdutos,
+						listaClientesPF, listaClientesPJ, listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}

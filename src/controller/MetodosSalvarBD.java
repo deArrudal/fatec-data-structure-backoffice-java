@@ -80,7 +80,7 @@ public class MetodosSalvarBD {
             JOptionPane.showMessageDialog(null, "Armazenamento bem-sucedido",
                     tipoOperacao + " " + modoOperacao, JOptionPane.INFORMATION_MESSAGE);
 
-        } catch (Exception e) {
+        } catch (Exception exception) {
             JOptionPane.showMessageDialog(null, "Operacao invalida",
                     "Explorador de Arquivos - " + tipoOperacao + " " + modoOperacao, JOptionPane.ERROR_MESSAGE);
         }

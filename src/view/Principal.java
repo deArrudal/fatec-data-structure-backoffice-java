@@ -11,11 +11,14 @@ import model.Produto;
 import view.telasmenu.TelaIniciar;
 
 public class Principal {
+
+    public static boolean modoAdministrador = false;
+
     public static void main(String[] args) {
 
         // declarar variaveis
         LinkedList<Categoria> listaCategorias = new LinkedList<>();
-        LinkedList<Produto>[] listaProdutos = new LinkedList[100];
+        LinkedList<Produto>[] listaProdutos = new LinkedList[50];
         LinkedList<ClientePF> listaClientesPF = new LinkedList<>();
         LinkedList<ClientePJ> listaClientesPJ = new LinkedList<>();
         LinkedList<Pedido> listaPedidos = new LinkedList<>();
@@ -34,8 +37,8 @@ public class Principal {
                             listaClientesPJ, listaPedidos);
                     telaIniciar.setVisible(true);
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
                 }
             }
         });
