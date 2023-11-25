@@ -15,6 +15,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 
 
@@ -38,15 +39,12 @@ public class TelaInserirClienteCPF extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaInserirClienteCPF(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaInserirClienteCPF(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
 		ManterClientePF m = new ManterClientePF(listaClientePF);
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {	
-			}
-		});
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		JPanel InserirClienteCNPJ = new JPanel();
 		InserirClienteCNPJ.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -62,7 +60,7 @@ public class TelaInserirClienteCPF extends JFrame {
 		VoltarInserirPF.setActionCommand("");
 		VoltarInserirPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -134,7 +132,7 @@ public class TelaInserirClienteCPF extends JFrame {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}

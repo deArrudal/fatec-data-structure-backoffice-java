@@ -19,6 +19,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 
 import java.awt.Dimension;
@@ -38,7 +39,7 @@ public class TelaRemoverRegistro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaRemoverRegistro frame = new TelaRemoverRegistro(null, null, null, null, null, null, null);
+					TelaRemoverRegistro frame = new TelaRemoverRegistro(null, null, null, null, null, null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +48,7 @@ public class TelaRemoverRegistro extends JFrame {
 		});
 	}
 
-	public TelaRemoverRegistro(String conteudo, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaRemoverRegistro(String conteudo, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
 
 		ManterClientePF manterClientePF = new ManterClientePF(listaClientePF);
 		ManterClientePJ manterClientePJ = new ManterClientePJ(listaCLientePJ);
@@ -56,6 +57,7 @@ public class TelaRemoverRegistro extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("Pessoa Física (CPF)\r\n\r\n");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -93,7 +95,7 @@ public class TelaRemoverRegistro extends JFrame {
 		contentPane.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -144,7 +146,7 @@ public class TelaRemoverRegistro extends JFrame {
 				}
 				JOptionPane.showMessageDialog(btnConfirmarExcluir, "Registro Excluido");
 
-				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 
 				t.setVisible(true);
 				setVisible(false);

@@ -15,6 +15,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 
 import javax.swing.JLabel;
@@ -25,33 +26,12 @@ public class TelaInserirCategoria extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField idCategoria;
 	private JTextField nomeCategoria;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * @param listaCategoria 
-	 * @param listaProduto 
-	 * @param listaCLientePJ 
-	 * @param listaClientePF 
-	 */
-	public TelaInserirCategoria(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	
+	public TelaInserirCategoria(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
 		ManterCategoria m = new ManterCategoria(listaCategoria);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		JPanel InserirClienteCNPJ = new JPanel();
 		InserirClienteCNPJ.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -67,7 +47,7 @@ public class TelaInserirCategoria extends JFrame {
 		VoltarInserirPF.setActionCommand("");
 		VoltarInserirPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -110,7 +90,7 @@ public class TelaInserirCategoria extends JFrame {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}

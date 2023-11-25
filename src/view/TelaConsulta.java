@@ -26,6 +26,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 
 
@@ -72,13 +73,14 @@ public class TelaConsulta extends JFrame {
 
 
 
-	public TelaConsulta(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaConsulta(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
 		ManterCategoria manterCategoria = new ManterCategoria(listaCategoria);
 		ManterProduto manterProduto = new ManterProduto(tabelaProduto);
 		ManterClientePF manterClientePF = new ManterClientePF(listaClientePF);
 		ManterClientePJ manterClientePJ = new ManterClientePJ(listaCLientePJ);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
@@ -197,14 +199,9 @@ public class TelaConsulta extends JFrame {
 		contentPane.add(lblInforme);
 
 		PopupMenuListener p = new PopupMenuListener() {
-
-			@Override
 			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-				// TODO Auto-generated method stub
-
 			}
 
-			@Override
 			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 				switch (cbCategoria.getSelectedItem().toString()) {
 				case "CLIENTE CPF":
@@ -223,9 +220,7 @@ public class TelaConsulta extends JFrame {
 
 			}
 
-			@Override
 			public void popupMenuCanceled(PopupMenuEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 		};
@@ -245,24 +240,24 @@ public class TelaConsulta extends JFrame {
 				} else {
 					switch (categoria) {
 					case "CLIENTE CPF":
-						TelaAtualizarClienteCPF CPF = new TelaAtualizarClienteCPF(rClientePF, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+						TelaAtualizarClienteCPF CPF = new TelaAtualizarClienteCPF(rClientePF, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 						CPF.setVisible(true);
 						setVisible(false);
 						break;
 					case "CLIENTE CNPJ":
-						TelaAtualizarClienteCNPJ CNPJ = new TelaAtualizarClienteCNPJ(rClientePJ, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+						TelaAtualizarClienteCNPJ CNPJ = new TelaAtualizarClienteCNPJ(rClientePJ, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 						CNPJ.setVisible(true);
 						setVisible(false);
 						break;
 
 					case "PRODUTO":
-						TelaAtualizarProduto Produto = new TelaAtualizarProduto(rProduto, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+						TelaAtualizarProduto Produto = new TelaAtualizarProduto(rProduto, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 						Produto.setVisible(true);
 						setVisible(false);
 						break;
 
 					case "CATEGORIA":
-						TelaAtualizarCategoria Categoria = new TelaAtualizarCategoria(rCategoria, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+						TelaAtualizarCategoria Categoria = new TelaAtualizarCategoria(rCategoria, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 						Categoria.setVisible(true);
 						setVisible(false);
 						break;
@@ -284,7 +279,7 @@ public class TelaConsulta extends JFrame {
 				if (pesquisaRetorno == null) {
 					resultadoPesquisa.setText("Registro não localizado, impossível excluir!");
 				} else {
-					TelaRemoverRegistro t = new TelaRemoverRegistro(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+					TelaRemoverRegistro t = new TelaRemoverRegistro(pesquisaRetorno, valorCampo, categoria, listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 					t.setVisible(true);
 					setVisible(false);
 				}
@@ -298,7 +293,7 @@ public class TelaConsulta extends JFrame {
 		contentPane.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaHome t = new TelaHome(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaHome t = new TelaHome(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}

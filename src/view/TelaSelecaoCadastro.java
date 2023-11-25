@@ -12,6 +12,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 
 import javax.swing.JComboBox;
@@ -44,11 +45,13 @@ public class TelaSelecaoCadastro extends JFrame {
 	 * @param listaProduto 
 	 * @param listaCLientePJ 
 	 * @param listaClientePF 
+	 * @param listaPedidos 
 	 */
-	public TelaSelecaoCadastro(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaSelecaoCadastro(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
 		setTitle("Backoffice");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -76,9 +79,9 @@ public class TelaSelecaoCadastro extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TelaHome t = new TelaHome(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaHome t = new TelaHome(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		
@@ -88,7 +91,7 @@ public class TelaSelecaoCadastro extends JFrame {
 		btnConfirmar.setBounds(298, 215, 99, 23);
 		contentPane.add(btnConfirmar);
 		
-		ActionListener confirmar = confirmar(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+		ActionListener confirmar = confirmar(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 		
 		btnConfirmar.addActionListener(confirmar);
 		
@@ -99,25 +102,25 @@ public class TelaSelecaoCadastro extends JFrame {
 	
 	}
 
-	private ActionListener confirmar(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	private ActionListener confirmar(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
 		ActionListener confirmar = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				switch((String)cbCategoria.getSelectedItem()) {
 				case "ClienteCPF":
-					TelaInserirClienteCPF cpf = new TelaInserirClienteCPF(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+					TelaInserirClienteCPF cpf = new TelaInserirClienteCPF(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 					cpf.setVisible(true);
 					break;
 				case "ClienteCNPJ":
-					TelaInserirClienteCNPJ cnpj = new TelaInserirClienteCNPJ(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+					TelaInserirClienteCNPJ cnpj = new TelaInserirClienteCNPJ(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 					cnpj.setVisible(true);
 					break;
 				case "Produto":
-					TelaInserirProduto prod = new TelaInserirProduto(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+					TelaInserirProduto prod = new TelaInserirProduto(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 					prod.setVisible(true);
 					break;
 				case "Categoria":
-					TelaInserirCategoria cat = new TelaInserirCategoria(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+					TelaInserirCategoria cat = new TelaInserirCategoria(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 					cat.setVisible(true);
 					break;
 				}

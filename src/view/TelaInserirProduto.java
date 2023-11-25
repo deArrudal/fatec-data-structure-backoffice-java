@@ -15,6 +15,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 
 import javax.swing.JLabel;
@@ -52,11 +53,13 @@ public class TelaInserirProduto extends JFrame {
 	 * @param listaProduto 
 	 * @param listaCLientePJ 
 	 * @param listaClientePF 
+	 * @param listaPedidos 
 	 */
-	public TelaInserirProduto(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaInserirProduto(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
 		ManterProduto m = new ManterProduto(tabelaProduto);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		JPanel InserirClienteCNPJ = new JPanel();
 		InserirClienteCNPJ.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -72,7 +75,7 @@ public class TelaInserirProduto extends JFrame {
 		VoltarInserirPF.setActionCommand("");
 		VoltarInserirPF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -145,7 +148,9 @@ public class TelaInserirProduto extends JFrame {
 			Categoria l;
 			try {
 				l = listaCategoria.get(i);
-				idProdutoCategoria.addItem(l.idCategoria);
+				if (l.nomeCategoria != null) {
+					idProdutoCategoria.addItem(l.idCategoria);
+				}
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(null, e1.getMessage());
 			}
@@ -168,9 +173,9 @@ public class TelaInserirProduto extends JFrame {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		

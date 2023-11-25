@@ -16,6 +16,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 
 import javax.swing.JLabel;
@@ -39,7 +40,7 @@ public class TelaAtualizarProduto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAtualizarProduto frame = new TelaAtualizarProduto(null, null, null, null, null, null, null);
+					TelaAtualizarProduto frame = new TelaAtualizarProduto(null, null, null, null, null, null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,13 +51,17 @@ public class TelaAtualizarProduto extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param listaPedidos 
 	 */
-	public TelaAtualizarProduto(Produto retorno, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaAtualizarProduto(Produto retorno, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF,
+			LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto,
+			LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
 		
 		ManterProduto manterProduto = new ManterProduto(tabelaProduto);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		JPanel InserirClienteCNPJ = new JPanel();
 		InserirClienteCNPJ.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -74,7 +79,7 @@ public class TelaAtualizarProduto extends JFrame {
 		InserirClienteCNPJ.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}

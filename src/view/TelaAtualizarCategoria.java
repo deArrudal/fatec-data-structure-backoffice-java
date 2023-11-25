@@ -15,6 +15,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 
 import javax.swing.JLabel;
@@ -33,7 +34,7 @@ public class TelaAtualizarCategoria extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAtualizarCategoria frame = new TelaAtualizarCategoria(null, null, null, null, null, null, null);
+					TelaAtualizarCategoria frame = new TelaAtualizarCategoria(null, null, null, null, null, null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,13 +45,15 @@ public class TelaAtualizarCategoria extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param listaPedidos 
 	 */
-	public TelaAtualizarCategoria(Categoria retorno, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaAtualizarCategoria(Categoria retorno, String valorCampo, String categoria, LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
 		ManterCategoria manterCategoria = new ManterCategoria(listaCategoria);
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		JPanel InserirClienteCNPJ = new JPanel();
 		InserirClienteCNPJ.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -68,9 +71,9 @@ public class TelaAtualizarCategoria extends JFrame {
 		InserirClienteCNPJ.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		btnVoltar.addActionListener(voltar);

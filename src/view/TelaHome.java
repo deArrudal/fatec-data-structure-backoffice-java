@@ -12,6 +12,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 
 import javax.swing.JButton;
@@ -41,8 +42,10 @@ public class TelaHome extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param listaPedidos 
 	 */
-	public TelaHome(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaHome(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ, LinkedList<Produto>[] tabelaProduto, 
+			LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
 		
 		/*int tamanhoP = 15; //valor provisório, tabela hash não inicializando
 		for (int i = 0; i<tamanhoP;i++) {
@@ -52,26 +55,12 @@ public class TelaHome extends JFrame {
 		setTitle("Backoffice");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		// Evento clique botão carregar
-		JButton btnCarregar = new JButton("Carregar");
-		btnCarregar.setBounds(321, 23, 89, 23);
-		contentPane.add(btnCarregar);
-		
-		ActionListener carregar = new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				//TelaSelecaoConsultar t = new TelaSelecaoConsultar();
-				//t.setVisible(true);
-				//setVisible(false);
-			}
-		};
-		btnCarregar.addActionListener(carregar);
 		
 		
 		// Evento clique botão consulta
@@ -82,7 +71,7 @@ public class TelaHome extends JFrame {
 		ActionListener consulta = new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -96,9 +85,9 @@ public class TelaHome extends JFrame {
 		contentPane.add(btnCadastro);
 		ActionListener cadastro = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		btnCadastro.addActionListener(cadastro);
@@ -115,5 +104,19 @@ public class TelaHome extends JFrame {
 			}
 		};
 		btnCadastro.addActionListener(compra);
+		
+		JButton btnVoltar = new JButton("<-");
+		btnVoltar.setBounds(20, 5, 45, 23);
+		contentPane.add(btnVoltar);
+		
+		ActionListener voltar = new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				TelaAmbiente t = new TelaAmbiente(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
+				t.setVisible(true);
+				dispose();
+			}
+		};
+		btnVoltar.addActionListener(voltar);
 	}
 }

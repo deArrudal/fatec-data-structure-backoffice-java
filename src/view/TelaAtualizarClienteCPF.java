@@ -17,6 +17,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 
 import java.awt.Color;
@@ -38,7 +39,7 @@ public class TelaAtualizarClienteCPF extends JFrame {
 			public void run() {
 				try {
 					TelaAtualizarClienteCPF frame = new TelaAtualizarClienteCPF(null, null, null, null, null, null,
-							null);
+							null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,15 +50,17 @@ public class TelaAtualizarClienteCPF extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param listaPedidos 
 	 */
 	public TelaAtualizarClienteCPF(ClientePF retorno, String valorCampo, String categoria,
 			LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ,
-			LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+			LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria, LinkedList<Pedido> listaPedidos) {
 		
 		ManterClientePF manterClientePF = new ManterClientePF(listaClientePF);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		JPanel InserirClienteCNPJ = new JPanel();
 		InserirClienteCNPJ.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -75,7 +78,7 @@ public class TelaAtualizarClienteCPF extends JFrame {
 		InserirClienteCNPJ.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria);
+				TelaConsulta t = new TelaConsulta(listaClientePF, listaCLientePJ, tabelaProduto, listaCategoria, listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}
