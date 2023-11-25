@@ -34,10 +34,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controller.ManterCarrinho;
-import controller.ManterClientePF;
-import controller.ManterClientePJ;
-import controller.ManterProduto;
+import controller.crud.ManterCarrinho;
+import controller.crud.ManterClientePF;
+import controller.crud.ManterClientePJ;
+import controller.crud.ManterProduto;
 
 import javax.swing.ScrollPaneConstants;
 

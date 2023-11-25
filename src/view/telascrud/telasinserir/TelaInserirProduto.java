@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 
-import controller.ManterProduto;
+import controller.crud.ManterProduto;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;

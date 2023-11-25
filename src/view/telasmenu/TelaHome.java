@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 
-import controller.MetodosLogin;
+import controller.login.MetodosLogin;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

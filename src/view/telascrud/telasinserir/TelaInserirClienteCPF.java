@@ -11,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import controller.ManterClientePF;
+import controller.crud.ManterClientePF;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;

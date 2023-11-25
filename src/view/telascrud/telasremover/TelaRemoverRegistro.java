@@ -12,10 +12,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import java.awt.Color;
 
-import controller.ManterCategoria;
-import controller.ManterClientePF;
-import controller.ManterClientePJ;
-import controller.ManterProduto;
+import controller.crud.ManterCategoria;
+import controller.crud.ManterClientePF;
+import controller.crud.ManterClientePJ;
+import controller.crud.ManterProduto;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
