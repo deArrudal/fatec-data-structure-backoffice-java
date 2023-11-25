@@ -18,6 +18,8 @@ import model.Produto;
 
 public class TelaDefinirArquivo extends JFrame {
 
+    private static final long serialVersionUID = 1L;
+
     JLabel textoCaminho;
     JLabel textoAviso;
     JTextField campoArquivo;
@@ -56,7 +58,10 @@ public class TelaDefinirArquivo extends JFrame {
         cancelarOperacao.setText("Cancelar");
         cancelarOperacao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                TelaCarregarBD telaCarregarBD = new TelaCarregarBD(listaCategorias, listaProdutos, listaClientesPF,
+                        listaClientesPJ, listaPedidos);
+                telaCarregarBD.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -69,7 +74,10 @@ public class TelaDefinirArquivo extends JFrame {
                         listaClientesPJ, listaPedidos, tipoOperacao, modoOperacao,
                         campoArquivo.getText());
 
-                dispose();
+                TelaCarregarBD telaCarregarBD = new TelaCarregarBD(listaCategorias, listaProdutos, listaClientesPF,
+                        listaClientesPJ, listaPedidos);
+                telaCarregarBD.setVisible(true);
+                setVisible(false);
             }
         });
 

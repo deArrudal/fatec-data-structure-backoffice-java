@@ -1,4 +1,4 @@
-package view;
+package view.telasmenu;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import linkedlist.model.LinkedList;
@@ -18,7 +17,9 @@ import model.Produto;
 import view.telascarregar.TelaCarregarBD;
 
 public class TelaIniciar extends JFrame {
-    
+
+    private static final long serialVersionUID = 1L;
+
     JLabel titulo;
     JButton carregarDB;
     JButton iniciarHome;
@@ -39,8 +40,10 @@ public class TelaIniciar extends JFrame {
         carregarDB.setHorizontalAlignment(SwingConstants.CENTER);
         carregarDB.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TelaCarregarBD(listaCategorias, listaProdutos, listaClientesPF,
+                TelaCarregarBD telaCarregarBD = new TelaCarregarBD(listaCategorias, listaProdutos, listaClientesPF,
                         listaClientesPJ, listaPedidos);
+                telaCarregarBD.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -50,7 +53,10 @@ public class TelaIniciar extends JFrame {
         iniciarHome.setHorizontalAlignment(SwingConstants.CENTER);
         iniciarHome.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "test");
+                TelaHome telaHome = new TelaHome(listaCategorias, listaProdutos, listaClientesPF,
+                        listaClientesPJ, listaPedidos);
+                telaHome.setVisible(true);
+                setVisible(false);
             }
         });
 

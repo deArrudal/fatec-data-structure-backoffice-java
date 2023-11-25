@@ -13,8 +13,11 @@ import model.ClientePF;
 import model.ClientePJ;
 import model.Pedido;
 import model.Produto;
+import view.telasmenu.TelaHome;
 
 public class TelaSalvarBD extends JFrame {
+
+    private static final long serialVersionUID = 1L;
 
     JLabel textoOpcao;
     JButton salvarCategorias;
@@ -38,8 +41,10 @@ public class TelaSalvarBD extends JFrame {
         salvarCategorias.setHorizontalAlignment(SwingConstants.CENTER);
         salvarCategorias.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TelaDefinirDiretorio(listaCategorias, listaProdutos, listaClientesPF,
-                        listaClientesPJ, listaPedidos, "Salvar", "categorias");
+                TelaDefinirDiretorio telaDefinirDiretorio = new TelaDefinirDiretorio(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos, "Salvar", "categorias");
+                telaDefinirDiretorio.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -49,8 +54,10 @@ public class TelaSalvarBD extends JFrame {
         salvarProdutos.setHorizontalAlignment(SwingConstants.CENTER);
         salvarProdutos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TelaDefinirDiretorio(listaCategorias, listaProdutos, listaClientesPF,
-                        listaClientesPJ, listaPedidos, "Salvar", "produtos");
+                TelaDefinirDiretorio telaDefinirDiretorio = new TelaDefinirDiretorio(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos, "Salvar", "produtos");
+                telaDefinirDiretorio.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -59,8 +66,10 @@ public class TelaSalvarBD extends JFrame {
         salvarClientesPF.setText("Clientes - Pessoa Fisica");
         salvarClientesPF.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TelaDefinirDiretorio(listaCategorias, listaProdutos, listaClientesPF,
-                        listaClientesPJ, listaPedidos, "Salvar", "clientesPF");
+                TelaDefinirDiretorio telaDefinirDiretorio = new TelaDefinirDiretorio(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos, "Salvar", "clientesPF");
+                telaDefinirDiretorio.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -69,8 +78,10 @@ public class TelaSalvarBD extends JFrame {
         salvarClientesPJ.setText("Clientes - Pessoa Juridica");
         salvarClientesPJ.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TelaDefinirDiretorio(listaCategorias, listaProdutos, listaClientesPF,
-                        listaClientesPJ, listaPedidos, "Salvar", "clientesPJ");
+                TelaDefinirDiretorio telaDefinirDiretorio = new TelaDefinirDiretorio(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos, "Salvar", "clientesPJ");
+                telaDefinirDiretorio.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -79,8 +90,10 @@ public class TelaSalvarBD extends JFrame {
         salvarPedidos.setText("Pedidos");
         salvarPedidos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TelaDefinirDiretorio(listaCategorias, listaProdutos, listaClientesPF,
-                        listaClientesPJ, listaPedidos, "Salvar", "pedidos");
+                TelaDefinirDiretorio telaDefinirDiretorio = new TelaDefinirDiretorio(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos, "Salvar", "pedidos");
+                telaDefinirDiretorio.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -89,7 +102,10 @@ public class TelaSalvarBD extends JFrame {
         cancelarOperacao.setText("Cancelar");
         cancelarOperacao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                TelaHome telaHome = new TelaHome(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos);
+                telaHome.setVisible(true);
+                setVisible(false);
             }
         });
 

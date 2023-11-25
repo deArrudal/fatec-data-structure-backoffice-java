@@ -17,6 +17,8 @@ import model.Produto;
 
 public class TelaDefinirDiretorio extends JFrame {
 
+    private static final long serialVersionUID = 1L;
+
     JLabel textoCaminho;
     JTextField campoDiretorio;
     JButton procurarDiretorio;
@@ -50,7 +52,10 @@ public class TelaDefinirDiretorio extends JFrame {
         cancelarOperacao.setText("Cancelar");
         cancelarOperacao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                TelaSalvarBD telaSalvarBD = new TelaSalvarBD(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos);
+                telaSalvarBD.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -63,7 +68,10 @@ public class TelaDefinirDiretorio extends JFrame {
                         listaClientesPJ, listaPedidos, tipoOperacao, modoOperacao,
                         campoDiretorio.getText());
 
-                dispose();
+                TelaSalvarBD telaSalvarBD = new TelaSalvarBD(listaCategorias, listaProdutos,
+                        listaClientesPF, listaClientesPJ, listaPedidos);
+                telaSalvarBD.setVisible(true);
+                setVisible(false);
             }
         });
 

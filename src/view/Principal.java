@@ -1,12 +1,14 @@
 package view;
 
+import java.awt.EventQueue;
+
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
 import model.Pedido;
 import model.Produto;
-import view.telassalvar.TelaSalvarBD;
+import view.telasmenu.TelaIniciar;
 
 public class Principal {
     public static void main(String[] args) {
@@ -19,16 +21,23 @@ public class Principal {
         LinkedList<Pedido> listaPedidos = new LinkedList<>();
         int size = listaProdutos.length;
 
-        // inicializar listaProdutos.
+        // inicializar listaProdutos
         for (int i = 0; i < size; i++) {
             listaProdutos[i] = new LinkedList<>();
         }
 
-        // chamar tela inicial
-        new TelaIniciar(listaCategorias, listaProdutos, listaClientesPF,
-        listaClientesPJ, listaPedidos);
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    // chamar tela inicial
+                    TelaIniciar telaIniciar = new TelaIniciar(listaCategorias, listaProdutos, listaClientesPF,
+                            listaClientesPJ, listaPedidos);
+                    telaIniciar.setVisible(true);
 
-        new TelaSalvarBD(listaCategorias, listaProdutos, listaClientesPF,
-        listaClientesPJ, listaPedidos);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
