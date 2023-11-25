@@ -3,6 +3,9 @@ package view.telascompra;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.EmptyBorder;
+
+import controller.ManterCarrinho;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +17,7 @@ import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
 import model.ClientePJ;
+import model.Pedido;
 import model.Produto;
 
 public class TelaClienteCarrinho extends JFrame {
@@ -24,8 +28,9 @@ public class TelaClienteCarrinho extends JFrame {
 
 	private JTextField qtdProduto1;
 
-	public TelaClienteCarrinho(LinkedList<ClientePF> listaClientePF, LinkedList<ClientePJ> listaCLientePJ,
-			LinkedList<Produto>[] tabelaProduto, LinkedList<Categoria> listaCategoria) {
+	public TelaClienteCarrinho(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
+			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
+			LinkedList<Pedido> listaPedidos, ManterCarrinho mc) {
 
 		setTitle("Backoffice - Tela Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
