@@ -29,6 +29,22 @@ public class ManterClientePJ {
         }
         return cliente;
     }
+    
+    public ClientePJ consultaClientePJNome(String nomeCliente) throws Exception {
+        boolean isFound = false;
+        ClientePJ cliente = new ClientePJ();
+        for (int i = 0; i < listaClientesPJ.size(); i++) {
+            if (listaClientesPJ.get(i).nomeClientePJ.equals(nomeCliente)) {
+                cliente = listaClientesPJ.get(i);
+                isFound = true;
+                break;
+            }
+        }
+        if (!isFound) {
+            throw new Exception("Cliente não encontrado!");
+        }
+        return cliente;
+    }
 
     public void excluirClientePJ(String cnpj) throws Exception {
         validarCNPJ(cnpj);

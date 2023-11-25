@@ -28,6 +28,22 @@ public class ManterClientePF {
         }
         return cliente;
     }
+    
+    public ClientePF consultaClientePFNome(String nomeCliente) throws Exception {
+        boolean isFound = false;
+        ClientePF cliente = new ClientePF();
+        for (int i = 0; i < listaClientesPF.size(); i++) {
+            if (listaClientesPF.get(i).nomeClientePF.equals(nomeCliente)) {
+                cliente = listaClientesPF.get(i);
+                isFound = true;
+                break;
+            }
+        }
+        if (!isFound) {
+            throw new Exception("Cliente não encontrado");
+        }
+        return cliente;
+    }
 
     public void excluirClientePF(String cpf) throws Exception {
         validarCPF(cpf);

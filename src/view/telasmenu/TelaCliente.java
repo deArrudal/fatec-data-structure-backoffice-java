@@ -70,7 +70,7 @@ public class TelaCliente extends JFrame {
 	public TelaCliente(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
 			LinkedList<Pedido> listaPedidos, String PF, String PJ) {
-		String nomeCliente = null;
+		String nomeCliente = "";
 		ManterClientePJ mpj = new ManterClientePJ(listaClientesPJ);
 		ManterClientePF mpf = new ManterClientePF(listaClientesPF);
 		if (listaPedidos == null) {
@@ -86,7 +86,7 @@ public class TelaCliente extends JFrame {
 		} else {
 			 ClientePF CPF;
 			try {
-				CPF = mpf.consultaClientePF(PF);
+				CPF = mpf.consultaClientePFNome(PF);
 				nomeCliente = CPF.nomeClientePF;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

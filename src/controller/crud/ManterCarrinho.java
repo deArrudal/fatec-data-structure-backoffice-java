@@ -4,7 +4,7 @@ import model.Pedido;
 import model.Produto;
 import queue.model.Queue;
 import stack.model.Stack;
-@SuppressWarnings("all")
+
 public class ManterCarrinho {
     static int cont = 0; //Ver com o Lucas
     Stack<Produto> carrinho;
@@ -13,6 +13,7 @@ public class ManterCarrinho {
     static double valorTotal;
 
     public ManterCarrinho(String nomeCliente) {
+    	carrinho = new Stack<Produto>();
         this.nomeCliente = nomeCliente;
         status = false;
     }
@@ -61,10 +62,12 @@ public class ManterCarrinho {
     }
 
     public void excluirCarrinho() throws Exception {
-        while(!carrinho.isEmpty()) {
-            carrinho.pop();
-        }
-        status = false;
+    	if(carrinho.isEmpty()) {
+    		while(!carrinho.isEmpty()) {
+                carrinho.pop();
+            }
+            status = false;
+    	}
     }
 
     public void Checkout() throws Exception {
