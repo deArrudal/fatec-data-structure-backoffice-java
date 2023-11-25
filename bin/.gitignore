@@ -1,4 +1,9 @@
-/.gitkeep
-/controller/
-/model/
-/view/
+### Java ###
+*.class
+
+### Eclipse - Java ###
+*.classpath
+*.project
+
+
+
