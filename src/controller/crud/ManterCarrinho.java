@@ -1,4 +1,4 @@
-package controller;
+package controller.crud;
 
 import model.Pedido;
 import model.Produto;

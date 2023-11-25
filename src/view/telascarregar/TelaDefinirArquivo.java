@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import controller.MetodosCarregarBD;
+import controller.salvarecarregar.MetodosCarregarBD;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
@@ -61,7 +61,7 @@ public class TelaDefinirArquivo extends JFrame {
                 TelaCarregarBD telaCarregarBD = new TelaCarregarBD(listaCategorias, listaProdutos, listaClientesPF,
                         listaClientesPJ, listaPedidos);
                 telaCarregarBD.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -77,7 +77,7 @@ public class TelaDefinirArquivo extends JFrame {
                 TelaCarregarBD telaCarregarBD = new TelaCarregarBD(listaCategorias, listaProdutos, listaClientesPF,
                         listaClientesPJ, listaPedidos);
                 telaCarregarBD.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 

@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 
-import controller.MetodosLogin;
+import controller.login.MetodosLogin;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,8 +24,6 @@ import model.Pedido;
 import model.Produto;
 import view.Principal;
 import view.telascarregar.TelaCarregarBD;
-import view.telascrud.TelaSelecaoCadastro;
-import view.telascrud.telasconsulta.TelaConsulta;
 import view.telassalvar.TelaSalvarBD;
 
 public class TelaHome extends JFrame {
@@ -70,10 +68,7 @@ public class TelaHome extends JFrame {
 		contentPane.add(btnConsulta);
 		ActionListener consulta = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta telaConsulta = new TelaConsulta(listaCategorias, listaProdutos,
-						listaClientesPF, listaClientesPJ, listaPedidos);
-				telaConsulta.setVisible(true);
-				setVisible(false);
+
 			}
 		};
 		btnConsulta.addActionListener(consulta);
@@ -87,7 +82,7 @@ public class TelaHome extends JFrame {
 				TelaCarregarBD telaCarregarBD = new TelaCarregarBD(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
 				telaCarregarBD.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		btnCarregar.addActionListener(carregar);
@@ -98,10 +93,7 @@ public class TelaHome extends JFrame {
 		contentPane.add(btnCadastro);
 		ActionListener cadastro = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro telaSelecaoCadastro = new TelaSelecaoCadastro(listaCategorias,
-						listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos);
-				telaSelecaoCadastro.setVisible(true);
-				setVisible(false);
+
 			}
 		};
 		btnCadastro.addActionListener(cadastro);
@@ -115,7 +107,7 @@ public class TelaHome extends JFrame {
 				TelaSalvarBD telaSalvarBD = new TelaSalvarBD(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
 				telaSalvarBD.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		btnSalvar.addActionListener(salvar);
@@ -156,7 +148,7 @@ public class TelaHome extends JFrame {
 				TelaIniciar telaIniciar = new TelaIniciar(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
 				telaIniciar.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		btnRetornar.addActionListener(retornar);

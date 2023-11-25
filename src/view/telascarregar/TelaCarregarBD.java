@@ -43,7 +43,7 @@ public class TelaCarregarBD extends JFrame {
                 TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "categorias");
                 telaDefinirArquivo.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -56,7 +56,7 @@ public class TelaCarregarBD extends JFrame {
                 TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "produtos");
                 telaDefinirArquivo.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -68,7 +68,7 @@ public class TelaCarregarBD extends JFrame {
                 TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "clientesPF");
                 telaDefinirArquivo.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -80,7 +80,7 @@ public class TelaCarregarBD extends JFrame {
                 TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "clientesPJ");
                 telaDefinirArquivo.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -92,7 +92,7 @@ public class TelaCarregarBD extends JFrame {
                 TelaHome telaHome = new TelaHome(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos);
                 telaHome.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 

@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import controller.MetodosLogin;
+import controller.login.MetodosLogin;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
@@ -58,7 +58,7 @@ public class TelaIniciar extends JFrame {
                 TelaHome telaHome = new TelaHome(listaCategorias, listaProdutos, listaClientesPF,
                         listaClientesPJ, listaPedidos);
                 telaHome.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -75,7 +75,7 @@ public class TelaIniciar extends JFrame {
                     TelaHome telaHome = new TelaHome(listaCategorias, listaProdutos, listaClientesPF,
                             listaClientesPJ, listaPedidos);
                     telaHome.setVisible(true);
-                    setVisible(false);
+                    dispose();
 
                 } catch (Exception exception) {
                     JOptionPane.showMessageDialog(null, "Operacao invalida",

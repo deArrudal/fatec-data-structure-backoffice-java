@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import controller.MetodosSalvarBD;
+import controller.salvarecarregar.MetodosSalvarBD;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
@@ -55,7 +55,7 @@ public class TelaDefinirDiretorio extends JFrame {
                 TelaSalvarBD telaSalvarBD = new TelaSalvarBD(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos);
                 telaSalvarBD.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -71,7 +71,7 @@ public class TelaDefinirDiretorio extends JFrame {
                 TelaSalvarBD telaSalvarBD = new TelaSalvarBD(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos);
                 telaSalvarBD.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
