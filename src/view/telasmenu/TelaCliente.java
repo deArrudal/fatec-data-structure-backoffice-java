@@ -76,7 +76,7 @@ public class TelaCliente extends JFrame {
 		ManterClientePF mpf = new ManterClientePF(listaClientesPF);
 		String[] split = cliente.split(";");
 		String nomeCliente = "";
-		if (split[1].equals("PF")) {
+		if (split[1].equals("PJ")) {
 			 ClientePJ CNPJ;
 				try {
 					CNPJ = mpj.consultaClientePJNome(split[0]);
@@ -170,7 +170,7 @@ public class TelaCliente extends JFrame {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				TelaIniciar t = new TelaIniciar(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos);
+				TelaHome t = new TelaHome(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos);
 				t.setVisible(true);
 				dispose();
 			}
@@ -178,6 +178,7 @@ public class TelaCliente extends JFrame {
 		btnVoltar.addActionListener(voltar);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(35, 90, 600, 400);
 		contentPane.add(scrollPane);
@@ -198,6 +199,7 @@ public class TelaCliente extends JFrame {
 			}
 		});
 		table.getColumnModel().getColumn(1).setPreferredWidth(150);
+		table.getColumnModel().getColumn(2).setPreferredWidth(150);
 		scrollPane.setColumnHeaderView(table);
 		
 		formatarTabela(cbCategoria, listaProdutos);
@@ -223,8 +225,16 @@ public class TelaCliente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					//Pega o nome produto na linha selecionada
+					//Preciso checar se o valr inserido é maior que o estoque
 					Produto produto = mp.consultaProduto((table.getModel().getValueAt(table.getSelectedRow(),1).toString()));
+					int qtd = produto.qtdProduto;
 					produto.qtdProduto = Integer.parseInt(JOptionPane.showInputDialog("Quantos itens vão ser adicionados ao carrinho?"));
+					if (produto.qtdProduto>qtd) {
+						while(produto.qtdProduto>qtd) {
+							JOptionPane.showMessageDialog(null, "Valor maior que o estoque!");
+							produto.qtdProduto = Integer.parseInt(JOptionPane.showInputDialog("Quantos itens vão ser adicionados ao carrinho?"));
+						}
+					}
 					mc.inserirCarrinho(produto);
 					JOptionPane.showMessageDialog(null, "Produto adicionado ao Carrinho!");
 					//Preciso excluir o valor inserido no carrinho no final do checkout

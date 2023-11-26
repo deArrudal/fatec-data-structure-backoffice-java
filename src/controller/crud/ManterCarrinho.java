@@ -1,5 +1,6 @@
 package controller.crud;
 
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,7 +38,7 @@ public class ManterCarrinho {
         DefaultTableModel model = (DefaultTableModel)table.getModel();
         if (model.getRowCount()>0) {
 			int tamanho = model.getRowCount()-1;
-			for (int i = tamanho;i>=0;i++) {
+			for (int i = tamanho;i>=0;i--) {
 				model.removeRow(i);
 			}
 		}
@@ -89,20 +90,43 @@ public class ManterCarrinho {
     	}
     }
 
-    public void Checkout() throws Exception {
+    public void CheckoutInicio(JTable table, JLabel lblValorTotal) throws Exception {
+    	valorTotal = 0;
         Queue<Produto> checkOut = new Queue<>();
-        StringBuffer itensPedido = new StringBuffer();
+        Stack<Produto> aux = new Stack<>();
+        DefaultTableModel model = (DefaultTableModel)table.getModel();
         while(!carrinho.isEmpty()) {
             checkOut.insert(carrinho.pop());
         }
         while(!checkOut.isEmpty()) {
-            Produto produto = checkOut.remove();
-            itensPedido.append(produto.nomeProduto+",").append(produto.valorProduto+",").append(produto.qtdProduto+";");
-            System.out.println(produto);
-            valorTotal += produto.valorProduto;
+            Produto p = checkOut.remove();
+            model.addRow(new Object [] {p.idProduto, p.nomeProduto, p.descricaoProduto, p.qtdProduto, p.valorProduto});
+            valorTotal += p.valorProduto*p.qtdProduto;
+            aux.push(p);
         }
-        System.out.println("Valor total = " + String.format("%.2f", valorTotal));
-        cadastrarCompra(itensPedido);
+
+        while(!aux.isEmpty()) {
+            carrinho.push(aux.pop());
+        }
+        lblValorTotal.setText("Valor total = " + String.format("%.2f", valorTotal));
+    }
+    
+    public void CheckoutFim(LinkedList<Produto>[] listaProdutos, LinkedList<Pedido> listaPedidos) throws Exception {
+    	Stack<Produto> aux = new Stack<>();
+    	StringBuffer itensPedido = new StringBuffer();
+    	ManterProduto mp = new ManterProduto(listaProdutos);
+    	while(!carrinho.isEmpty()) {
+    		aux.push(carrinho.pop());
+    	}
+    	while(!aux.isEmpty()) {
+    		Produto p = aux.pop();
+    		itensPedido.append(p.nomeProduto+",").append(p.valorProduto+",").append(p.qtdProduto+";");
+    		Produto q = mp.consultaProduto(p.nomeProduto);
+    		Produto r = q;
+    		r.qtdProduto = q.qtdProduto - p.qtdProduto;
+    		mp.atualizarProduto(q, r);
+    	}
+    	cadastrarCompra(itensPedido);
         carrinhoDisponível = false;
     }
 

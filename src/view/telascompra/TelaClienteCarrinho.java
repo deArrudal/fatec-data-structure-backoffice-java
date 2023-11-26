@@ -80,11 +80,6 @@ public class TelaClienteCarrinho extends JFrame {
 		ActionListener voltar = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				try {
-					mc.excluirCarrinho();
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
 				TelaCliente t = new TelaCliente(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos, cliente, mc);
 				t.setVisible(true);
 				dispose();
@@ -108,6 +103,15 @@ public class TelaClienteCarrinho extends JFrame {
 		
 		JButton btnCheckout = new JButton("Checkout");
 		btnCheckout.setBounds(558, 529, 116, 21);
+		btnCheckout.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TelaCheckout t = new TelaCheckout(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos, cliente, mc);
+				t.setVisible(true);
+				dispose();
+			}
+		});
 		contentPane.add(btnCheckout);
 		
 		JButton btnSalvarQtdes = new JButton("Salvar ");
@@ -119,20 +123,28 @@ public class TelaClienteCarrinho extends JFrame {
 		contentPane.add(btnSalvarQtdes);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(20, 38, 640, 480);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Id", "Nome", "Descri\u00E7\u00E3o", "Quantidade", "Pre\u00E7o"
+				"Id", "Produto", "Descri\u00E7\u00E3o", "Estoque", "Pre\u00E7o"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
 		table.getColumnModel().getColumn(1).setPreferredWidth(150);
+		table.getColumnModel().getColumn(2).setPreferredWidth(150);
 		scrollPane.setColumnHeaderView(table);
 		
 		try {
