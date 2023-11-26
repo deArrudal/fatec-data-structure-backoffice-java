@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 
+import controller.crud.ManterCarrinho;
 import controller.login.MetodosLogin;
 
 import javax.swing.JButton;
@@ -121,6 +122,7 @@ public class TelaHome extends JFrame {
 		btnSalvar.addActionListener(salvar);
 
 		// evento clique botão compra
+		ManterCarrinho mc = new ManterCarrinho();
 		JButton btnCompra = new JButton("Realizar compra");
 		btnCompra.setBounds(240, 165, 150, 23);
 		contentPane.add(btnCompra);
@@ -128,15 +130,8 @@ public class TelaHome extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String nomeUsuario = login.loginUsuario(listaClientesPF, listaClientesPJ);
-					String[] split = nomeUsuario.split(";");
-					if (split[1].equals("PF")) {
-						TelaCliente t = new TelaCliente(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos, split[0], null);
-						t.setVisible(true);
-					}
-					else {
-						TelaCliente t = new TelaCliente(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos, null, split[0]);
-						t.setVisible(true);
-					}
+					TelaCliente t = new TelaCliente(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos, nomeUsuario, mc);
+					t.setVisible(true);
 					dispose();
 
 				} catch (Exception exception) {

@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import controller.crud.ManterCarrinho;
 import controller.login.MetodosLogin;
 import linkedlist.model.LinkedList;
 import model.Categoria;

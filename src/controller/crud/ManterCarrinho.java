@@ -12,17 +12,20 @@ public class ManterCarrinho {
     static int cont = 0; //Ver com o Lucas
     Stack<Produto> carrinho;
     String nomeCliente;
-    public boolean status;
+    public boolean carrinhoDisponível;
     static double valorTotal;
 
-    public ManterCarrinho(String nomeCliente) {
+    public ManterCarrinho() {
+        carrinhoDisponível = false;
+    }
+    
+    public void iniciarCarrinho(String nomeCliente) {
+    	carrinhoDisponível = true;
     	carrinho = new Stack<Produto>();
         this.nomeCliente = nomeCliente;
-        status = false;
     }
 
     public void inserirCarrinho(Produto produto){
-        status = true;
         carrinho.push(produto);
     }
 
@@ -38,7 +41,7 @@ public class ManterCarrinho {
         while(!carrinho.isEmpty()) {
             //System.out.println(carrinho.top());
         	Produto p = carrinho.top();
-        	model.addRow(new Object [] {p.idProduto, p.nomeProduto, p.qtdProduto, p.valorProduto});
+        	model.addRow(new Object [] {p.idProduto, p.nomeProduto, p.descricaoProduto, p.qtdProduto, p.valorProduto});
             aux.push(carrinho.pop());
         }
 
@@ -50,7 +53,6 @@ public class ManterCarrinho {
     public void removerItemCarrinho(String nomeProduto) throws Exception {
         boolean isFound = false;
         if(carrinho.isEmpty()) {
-            status = false;
             throw new Exception("carrinho vazio");
         }
 
@@ -80,7 +82,7 @@ public class ManterCarrinho {
     		while(!carrinho.isEmpty()) {
                 carrinho.pop();
             }
-            status = false;
+            carrinhoDisponível = false;
     	}
     }
 
@@ -99,6 +101,7 @@ public class ManterCarrinho {
         System.out.println("Valor total = " + String.format("%.2f", valorTotal));
         cadastrarCompra(itensPedido);
         cont++;
+        carrinhoDisponível = false;
     }
 
     public Pedido cadastrarCompra(StringBuffer itensPedido){

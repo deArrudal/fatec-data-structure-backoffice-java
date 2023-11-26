@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import controller.crud.ManterCarrinho;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;

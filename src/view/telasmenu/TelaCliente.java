@@ -15,6 +15,7 @@ import model.ClientePF;
 import model.ClientePJ;
 import model.Pedido;
 import model.Produto;
+import stack.model.Stack;
 import view.telascompra.TelaClienteCarrinho;
 
 import javax.swing.JLabel;
@@ -69,34 +70,36 @@ public class TelaCliente extends JFrame {
 	 */
 	public TelaCliente(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
-			LinkedList<Pedido> listaPedidos, String PF, String PJ) {
+			LinkedList<Pedido> listaPedidos, String cliente, ManterCarrinho mc) {
 		setTitle("Backoffice - Área do Cliente");
-		String nomeCliente = "";
 		ManterClientePJ mpj = new ManterClientePJ(listaClientesPJ);
 		ManterClientePF mpf = new ManterClientePF(listaClientesPF);
-		if (listaPedidos == null) {
+		String[] split = cliente.split(";");
+		String nomeCliente = "";
+		if (split[1].equals("PF")) {
 			 ClientePJ CNPJ;
-			try {
-				CNPJ = mpj.consultaClientePJ(PJ);
-				nomeCliente = CNPJ.nomeClientePJ;
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 
-		} else {
+				try {
+					CNPJ = mpj.consultaClientePJNome(split[0]);
+					nomeCliente = CNPJ.nomeClientePJ;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		else {
 			 ClientePF CPF;
-			try {
-				CPF = mpf.consultaClientePFNome(PF);
-				nomeCliente = CPF.nomeClientePF;
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 
+				try {
+					CPF = mpf.consultaClientePFNome(split[0]);
+					nomeCliente = CPF.nomeClientePF;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		ManterProduto mp = new ManterProduto(listaProdutos);
-		ManterCarrinho mc = new ManterCarrinho(nomeCliente);
+		if (!mc.carrinhoDisponível) {
+			 mc.iniciarCarrinho(nomeCliente);
+		}
 		
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,14 +119,14 @@ public class TelaCliente extends JFrame {
 		JButton btnCarrinho = new JButton("Ver Carrinho");
 		btnCarrinho.setBounds(554, 10, 120, 21);
 		contentPane.add(btnCarrinho);
-		ActionListener carrinho = new ActionListener() {
+		ActionListener verCarrinho = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 TelaClienteCarrinho t = new TelaClienteCarrinho(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos, mc);
+				TelaClienteCarrinho t = new TelaClienteCarrinho(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos, cliente, mc);
 				t.setVisible(true);
 				setVisible(false);
 			}
 		};
-		btnCarrinho.addActionListener(carrinho);
+		btnCarrinho.addActionListener(verCarrinho);
 		
 		
 		

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import controller.crud.ManterCarrinho;
 import controller.salvarecarregar.MetodosCarregarBD;
 import linkedlist.model.LinkedList;
 import model.Categoria;

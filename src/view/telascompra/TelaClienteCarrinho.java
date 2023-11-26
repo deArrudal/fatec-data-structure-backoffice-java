@@ -13,6 +13,7 @@ import model.ClientePF;
 import model.ClientePJ;
 import model.Pedido;
 import model.Produto;
+import stack.model.Stack;
 import view.telasmenu.TelaCliente;
 import view.telasmenu.TelaIniciar;
 
@@ -25,6 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.ListSelectionModel;
 
 public class TelaClienteCarrinho extends JFrame {
 
@@ -39,7 +41,7 @@ public class TelaClienteCarrinho extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaClienteCarrinho frame = new TelaClienteCarrinho(null, null, null, null, null, null);
+					TelaClienteCarrinho frame = new TelaClienteCarrinho(null, null, null, null, null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +56,7 @@ public class TelaClienteCarrinho extends JFrame {
 	 */
 	public TelaClienteCarrinho(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
-			LinkedList<Pedido> listaPedidos, ManterCarrinho mc) {
+			LinkedList<Pedido> listaPedidos, String cliente,  ManterCarrinho mc) {
 		setTitle("Backoffice - Carrinho");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 600);
@@ -83,7 +85,7 @@ public class TelaClienteCarrinho extends JFrame {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				TelaCliente t = new TelaCliente(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos);
+				TelaCliente t = new TelaCliente(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos, cliente, mc);
 				t.setVisible(true);
 				dispose();
 			}
@@ -122,21 +124,14 @@ public class TelaClienteCarrinho extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Id", "Nome", "Descri\u00E7\u00E3o", "Quantidade", "Pre\u00E7o"
 			}
-		) {
-			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+		));
 		table.getColumnModel().getColumn(1).setPreferredWidth(150);
 		scrollPane.setColumnHeaderView(table);
 		
