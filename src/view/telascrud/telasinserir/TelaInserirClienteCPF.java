@@ -66,7 +66,7 @@ public class TelaInserirClienteCPF extends JFrame {
 
 		nomeClientePF = new JTextField();
 		nomeClientePF.setColumns(10);
-		nomeClientePF.setBounds(20, 75, 192, 23);
+		nomeClientePF.setBounds(20, 75, 187, 23);
 		InserirClienteCPF.add(nomeClientePF);
 
 		JLabel cpf = new JLabel("CPF:");
@@ -74,7 +74,7 @@ public class TelaInserirClienteCPF extends JFrame {
 		InserirClienteCPF.add(cpf);
 
 		cpfClientePF = new JTextField();
-		cpfClientePF.setBounds(222, 75, 192, 23);
+		cpfClientePF.setBounds(220, 75, 192, 23);
 		InserirClienteCPF.add(cpfClientePF);
 		cpfClientePF.setColumns(10);
 
@@ -84,7 +84,7 @@ public class TelaInserirClienteCPF extends JFrame {
 
 		telefoneClientePF = new JTextField();
 		telefoneClientePF.setColumns(10);
-		telefoneClientePF.setBounds(20, 125, 192, 23);
+		telefoneClientePF.setBounds(20, 125, 172, 23);
 		InserirClienteCPF.add(telefoneClientePF);
 
 		JLabel lblCep = new JLabel("CEP:");
@@ -97,12 +97,12 @@ public class TelaInserirClienteCPF extends JFrame {
 		InserirClienteCPF.add(cepClientePF);
 
 		JLabel lblEndereo = new JLabel("Endereco:");
-		lblEndereo.setBounds(161, 152, 141, 23);
+		lblEndereo.setBounds(150, 152, 141, 23);
 		InserirClienteCPF.add(lblEndereo);
 
 		enderecoClientePF = new JTextField();
 		enderecoClientePF.setColumns(10);
-		enderecoClientePF.setBounds(159, 176, 255, 23);
+		enderecoClientePF.setBounds(150, 176, 255, 23);
 		InserirClienteCPF.add(enderecoClientePF);
 
 		JButton VoltarInserirPF = new JButton("Voltar");
@@ -135,6 +135,9 @@ public class TelaInserirClienteCPF extends JFrame {
 
 				try {
 					m.inserirClientePF(cliente);
+					
+					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso",
+							"BackOffice - Cadastro Cliente PF", JOptionPane.INFORMATION_MESSAGE);
 
 				} catch (Exception exception) {
 					JOptionPane.showMessageDialog(null, "Erro inserir cliente",

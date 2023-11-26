@@ -1,15 +1,17 @@
 package view.telascrud.telasinserir;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JButton;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Dimension;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import controller.crud.ManterClientePJ;
 import linkedlist.model.LinkedList;
@@ -23,6 +25,7 @@ import view.telascrud.TelaSelecaoCadastro;
 public class TelaInserirClienteCNPJ extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+
 	private JTextField cnpjClientePJ;
 	private JTextField emailClientePJ;
 	private JTextField telefoneClientePJ;
@@ -30,30 +33,6 @@ public class TelaInserirClienteCNPJ extends JFrame {
 	private JTextField cepClientePJ;
 	private JTextField enderecoClientePJ;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * 
-	 * @param listaCategoria
-	 * @param listaProduto
-	 * @param listaCLientePJ
-	 * @param listaClientePF
-	 * @param listaPedidos
-	 */
 	public TelaInserirClienteCNPJ(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
 			LinkedList<Pedido> listaPedidos) {
@@ -70,87 +49,88 @@ public class TelaInserirClienteCNPJ extends JFrame {
 		setContentPane(InserirClienteCNPJ);
 		InserirClienteCNPJ.setLayout(null);
 
-		JLabel titulo = new JLabel("Cadastro de Cliente - PJ");
-		titulo.setBounds(144, 10, 141, 13);
+		JLabel titulo = new JLabel("Cadastro de Cliente - Pessoa Juridica");
+		titulo.setFont(new Font("Serif", Font.BOLD, 14));
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		titulo.setBounds(75, 20, 300, 23);
 		InserirClienteCNPJ.add(titulo);
+
+		JLabel label1 = new JLabel("Nome fantasia: ");
+		label1.setBounds(20, 50, 141, 23);
+		InserirClienteCNPJ.add(label1);
+
+		nomeClientePJ = new JTextField();
+		nomeClientePJ.setColumns(10);
+		nomeClientePJ.setBounds(20, 75, 187, 23);
+		InserirClienteCNPJ.add(nomeClientePJ);
+
+		JLabel cnpj = new JLabel("CNPJ:");
+		cnpj.setBounds(220, 50, 85, 23);
+		InserirClienteCNPJ.add(cnpj);
+
+		cnpjClientePJ = new JTextField();
+		cnpjClientePJ.setBounds(220, 75, 192, 23);
+		InserirClienteCNPJ.add(cnpjClientePJ);
+		cnpjClientePJ.setColumns(10);
+
+		JLabel telefoneInserirPJ_1 = new JLabel("Telefone:");
+		telefoneInserirPJ_1.setBounds(20, 100, 141, 23);
+		InserirClienteCNPJ.add(telefoneInserirPJ_1);
+
+		telefoneClientePJ = new JTextField();
+		telefoneClientePJ.setColumns(10);
+		telefoneClientePJ.setBounds(20, 125, 172, 23);
+		InserirClienteCNPJ.add(telefoneClientePJ);
+
+		JLabel NomeFantasiaInserirPJ_2 = new JLabel("E-mail:");
+		NomeFantasiaInserirPJ_2.setBounds(205, 100, 141, 23);
+		InserirClienteCNPJ.add(NomeFantasiaInserirPJ_2);
+
+		emailClientePJ = new JTextField();
+		emailClientePJ.setColumns(10);
+		emailClientePJ.setBounds(205, 125, 202, 23);
+		InserirClienteCNPJ.add(emailClientePJ);
+
+		JLabel lblCep = new JLabel("CEP:");
+		lblCep.setBounds(20, 152, 141, 23);
+		InserirClienteCNPJ.add(lblCep);
+
+		cepClientePJ = new JTextField();
+		cepClientePJ.setColumns(10);
+		cepClientePJ.setBounds(20, 176, 115, 23);
+		InserirClienteCNPJ.add(cepClientePJ);
+
+		JLabel lblEndereo = new JLabel("Endereço:");
+		lblEndereo.setBounds(150, 152, 141, 23);
+		InserirClienteCNPJ.add(lblEndereo);
+
+		enderecoClientePJ = new JTextField();
+		enderecoClientePJ.setColumns(10);
+		enderecoClientePJ.setBounds(150, 176, 255, 23);
+		InserirClienteCNPJ.add(enderecoClientePJ);
 
 		JButton VoltarInserirPJ = new JButton("Voltar");
 		VoltarInserirPJ.setPreferredSize(new Dimension(77, 21));
 		VoltarInserirPJ.setActionCommand("");
 		VoltarInserirPJ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaCategorias, listaProdutos,
+				TelaSelecaoCadastro telaSelecaoCadastro = new TelaSelecaoCadastro(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
-				t.setVisible(true);
-				setVisible(false);
+				telaSelecaoCadastro.setVisible(true);
+				dispose();
 			}
 		});
-		VoltarInserirPJ.setBounds(207, 232, 85, 21);
+		VoltarInserirPJ.setBounds(105, 220, 100, 23);
 		InserirClienteCNPJ.add(VoltarInserirPJ);
 
 		JButton ConfirmarInserirPJ = new JButton("Confirmar");
-		ConfirmarInserirPJ.setBounds(295, 232, 96, 21);
+		ConfirmarInserirPJ.setBounds(245, 220, 100, 23);
 		InserirClienteCNPJ.add(ConfirmarInserirPJ);
-
-		JLabel label1 = new JLabel("Nome fantasia: ");
-		label1.setBounds(10, 33, 141, 13);
-		InserirClienteCNPJ.add(label1);
-
-		cnpjClientePJ = new JTextField();
-		cnpjClientePJ.setBounds(222, 51, 192, 21);
-		InserirClienteCNPJ.add(cnpjClientePJ);
-		cnpjClientePJ.setColumns(10);
-
-		JLabel cnpj = new JLabel("CNPJ");
-		cnpj.setBounds(220, 33, 85, 13);
-		InserirClienteCNPJ.add(cnpj);
-
-		JLabel telefoneInserirPJ_1 = new JLabel("Telefone:");
-		telefoneInserirPJ_1.setBounds(10, 87, 141, 13);
-		InserirClienteCNPJ.add(telefoneInserirPJ_1);
-
-		JLabel NomeFantasiaInserirPJ_2 = new JLabel("E-mail:");
-		NomeFantasiaInserirPJ_2.setBounds(224, 87, 141, 13);
-		InserirClienteCNPJ.add(NomeFantasiaInserirPJ_2);
-
-		emailClientePJ = new JTextField();
-		emailClientePJ.setColumns(10);
-		emailClientePJ.setBounds(222, 103, 192, 21);
-		InserirClienteCNPJ.add(emailClientePJ);
-
-		telefoneClientePJ = new JTextField();
-		telefoneClientePJ.setColumns(10);
-		telefoneClientePJ.setBounds(10, 104, 192, 21);
-		InserirClienteCNPJ.add(telefoneClientePJ);
-
-		nomeClientePJ = new JTextField();
-		nomeClientePJ.setColumns(10);
-		nomeClientePJ.setBounds(10, 52, 192, 21);
-		InserirClienteCNPJ.add(nomeClientePJ);
-
-		JLabel lblCep = new JLabel("CEP:");
-		lblCep.setBounds(10, 148, 141, 13);
-		InserirClienteCNPJ.add(lblCep);
-
-		JLabel lblEndereo = new JLabel("Endereço:");
-		lblEndereo.setBounds(161, 148, 141, 13);
-		InserirClienteCNPJ.add(lblEndereo);
-
-		cepClientePJ = new JTextField();
-		cepClientePJ.setColumns(10);
-		cepClientePJ.setBounds(10, 162, 115, 21);
-		InserirClienteCNPJ.add(cepClientePJ);
-
-		enderecoClientePJ = new JTextField();
-		enderecoClientePJ.setColumns(10);
-		enderecoClientePJ.setBounds(159, 163, 255, 20);
-		InserirClienteCNPJ.add(enderecoClientePJ);
-
 		ActionListener confirmar = new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ClientePJ cliente = new ClientePJ();
+				
 				cliente.cnpjClientePJ = cnpjClientePJ.getText();
 				cliente.nomeClientePJ = nomeClientePJ.getText();
 				cliente.enderecoClientePJ = enderecoClientePJ.getText();
@@ -159,16 +139,21 @@ public class TelaInserirClienteCNPJ extends JFrame {
 				cliente.emailClientePJ = emailClientePJ.getText();
 				try {
 					m.inserirClientePJ(cliente);
-				} catch (Exception e1) {
-					e1.printStackTrace();
+
+					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso",
+							"BackOffice - Cadastro Cliente PJ", JOptionPane.INFORMATION_MESSAGE);
+
+				} catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, "Erro inserir cliente",
+							"BackOffice - Cadastro Cliente PJ", JOptionPane.ERROR_MESSAGE);
 				}
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaCategorias, listaProdutos,
+
+				TelaSelecaoCadastro telaSelecaoCadastro = new TelaSelecaoCadastro(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
-				t.setVisible(true);
-				setVisible(false);
+				telaSelecaoCadastro.setVisible(true);
+				dispose();
 			}
 		};
-
 		ConfirmarInserirPJ.addActionListener(confirmar);
 	}
 }

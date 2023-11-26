@@ -1,15 +1,17 @@
 package view.telascrud.telasinserir;
 
-import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Dimension;
+import java.awt.Font;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 import controller.crud.ManterCategoria;
 import linkedlist.model.LinkedList;
@@ -23,33 +25,10 @@ import view.telascrud.TelaSelecaoCadastro;
 public class TelaInserirCategoria extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+
 	private JTextField idCategoria;
 	private JTextField nomeCategoria;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * 
-	 * @param listaCategoria
-	 * @param listaProduto
-	 * @param listaCLientePJ
-	 * @param listaClientePF
-	 * @param listaPedidos 
-	 */
 	public TelaInserirCategoria(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
 			LinkedList<Pedido> listaPedidos) {
@@ -58,17 +37,37 @@ public class TelaInserirCategoria extends JFrame {
 
 		setTitle("BackOffice - Cadastro Categoria");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 205);
 		setLocationRelativeTo(null);
 
-		JPanel InserirClienteCNPJ = new JPanel();
-		InserirClienteCNPJ.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(InserirClienteCNPJ);
-		InserirClienteCNPJ.setLayout(null);
+		JPanel InserirCategoria = new JPanel();
+		InserirCategoria.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(InserirCategoria);
+		InserirCategoria.setLayout(null);
 
 		JLabel titulo = new JLabel("Cadastrar Categoria");
-		titulo.setBounds(147, 10, 141, 13);
-		InserirClienteCNPJ.add(titulo);
+		titulo.setFont(new Font("Serif", Font.BOLD, 14));
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		titulo.setBounds(70, 20, 300, 23);
+		InserirCategoria.add(titulo);
+
+		JLabel idC = new JLabel("N° identificador:");
+		idC.setBounds(50, 55, 130, 23);
+		InserirCategoria.add(idC);
+
+		idCategoria = new JTextField();
+		idCategoria.setBounds(50, 82, 100, 23);
+		idCategoria.setColumns(10);
+		InserirCategoria.add(idCategoria);
+
+		JLabel label1 = new JLabel("Nome:");
+		label1.setBounds(170, 55, 141, 23);
+		InserirCategoria.add(label1);
+
+		nomeCategoria = new JTextField();
+		nomeCategoria.setColumns(10);
+		nomeCategoria.setBounds(170, 82, 220, 23);
+		InserirCategoria.add(nomeCategoria);
 
 		JButton VoltarInserirPF = new JButton("Voltar");
 		VoltarInserirPF.setPreferredSize(new Dimension(77, 21));
@@ -81,51 +80,38 @@ public class TelaInserirCategoria extends JFrame {
 				setVisible(false);
 			}
 		});
-		VoltarInserirPF.setBounds(111, 154, 85, 21);
-		InserirClienteCNPJ.add(VoltarInserirPF);
+		VoltarInserirPF.setBounds(105, 125, 100, 23);
+		InserirCategoria.add(VoltarInserirPF);
 
 		JButton ConfirmarInserirPF = new JButton("Confirmar");
-		ConfirmarInserirPF.setBounds(212, 154, 96, 21);
-		InserirClienteCNPJ.add(ConfirmarInserirPF);
-
-		JLabel label1 = new JLabel("Nome da Categoria: ");
-		label1.setBounds(10, 69, 141, 13);
-		InserirClienteCNPJ.add(label1);
-
-		idCategoria = new JTextField();
-		idCategoria.setBounds(212, 92, 192, 21);
-		InserirClienteCNPJ.add(idCategoria);
-		idCategoria.setColumns(10);
-
-		JLabel idC = new JLabel("N° identificador:");
-		idC.setBounds(212, 69, 122, 13);
-		InserirClienteCNPJ.add(idC);
-
-		nomeCategoria = new JTextField();
-		nomeCategoria.setColumns(10);
-		nomeCategoria.setBounds(10, 92, 192, 21);
-		InserirClienteCNPJ.add(nomeCategoria);
+		ConfirmarInserirPF.setBounds(245, 125, 100, 23);
+		InserirCategoria.add(ConfirmarInserirPF);
 
 		ActionListener confirmar = new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Categoria categoria = new Categoria();
+				
 				categoria.idCategoria = Integer.parseInt(idCategoria.getText());
 				categoria.nomeCategoria = nomeCategoria.getText();
 
 				try {
 					m.inserirCategoria(categoria);
-				} catch (Exception e1) {
-					e1.printStackTrace();
+
+					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso",
+							"BackOffice - Cadastro Categoria", JOptionPane.INFORMATION_MESSAGE);
+
+				} catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, "Erro inserir cliente",
+							"BackOffice - Cadastro Categoria", JOptionPane.ERROR_MESSAGE);
 				}
-				TelaSelecaoCadastro t = new TelaSelecaoCadastro(listaCategorias, listaProdutos,
+
+				TelaSelecaoCadastro telaSelecaoCadastro = new TelaSelecaoCadastro(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
-				t.setVisible(true);
-				setVisible(false);
+				telaSelecaoCadastro.setVisible(true);
+				dispose();
 			}
 		};
-
 		ConfirmarInserirPF.addActionListener(confirmar);
 	}
 }
