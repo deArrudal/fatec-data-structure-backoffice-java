@@ -62,6 +62,7 @@ public class MetodosCarregarBD {
         if (caminhoArquivo.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Arquivo invalido",
                     "Explorador de Arquivos - " + tipoOperacao + " " + modoOperacao, JOptionPane.ERROR_MESSAGE);
+                    return;
         }
 
         try {

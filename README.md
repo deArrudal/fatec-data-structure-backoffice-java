@@ -8,7 +8,13 @@ Alternatively, a brief summary of the topics can be found in ["What is Data Stru
 
 ## Description
 
-## Getting Started
+A Back office is made up of personnel who support the operations of a company but do not directly interact with customers.
+Back-office activities include managing inventory, processing sales orders and onboarding new employees.
+For this, a simple system is developed to allow administrators and users to load a database (using .csv files) and manage all the company's daily activities. 
+
+## Class Diagram
+
+![Alt text](resources/diagramadeclasse.png)
 
 ### Dependencies
 
@@ -30,9 +36,13 @@ Back Office
 │   ├── genericQueue.jar
 │   ├── genericStack.jar
 ├── resources/
+│   ├── diagramadeclasse.png
 │   ├── instruções.pdf
 ├── src/
 │   ├── controller/
+│   │   ├── crud/
+│   │   ├── login/
+│   │   ├── salvarecarregar/
 │   ├── model/
 │   │   ├── Categorias.csv
 │   │   ├── ClientePF.csv
@@ -40,6 +50,12 @@ Back Office
 │   │   ├── Pedidos.csv
 │   │   ├── Produtos.csv
 │   ├── view/
+│   │   ├── telascarregar
+│   │   ├── telascompra
+│   │   ├── telascrud
+│   │   ├── telasmenu
+│   │   ├── telassalvar
+│   │   ├── Principal.java
 ├── .gitignore
 ├── LICENSE
 └── README.md
@@ -48,7 +64,7 @@ Back Office
 ### Executing program
 
 * Each java file can be found in the "/src" folder.
-* The Entry point (or main function) for most of the projects is the "Main.java".
+* The Entry point (or main function) for the projects is the "Principal.java".
 
 ## Authors
 

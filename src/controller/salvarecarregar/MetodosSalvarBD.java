@@ -55,6 +55,7 @@ public class MetodosSalvarBD {
         if (caminhoDiretorio.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Arquivo invalido",
                     "Explorador de Arquivos - " + tipoOperacao + " " + modoOperacao, JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
         try {
