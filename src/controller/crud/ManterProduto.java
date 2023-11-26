@@ -3,6 +3,8 @@ package controller.crud;
 import linkedlist.model.LinkedList;
 import model.Produto;
 
+import javax.swing.*;
+
 public class ManterProduto {
     LinkedList<Produto>[] listaProdutos;
 
@@ -55,8 +57,34 @@ public class ManterProduto {
     }
 
     public void inserirProduto(Produto produto) throws Exception{
-        int pos = produto.idProduto;
-        listaProdutos[pos].addLast(produto);
+        int hash = produto.idProdutoCategoria;
+        listaProdutos[hash].addLast(produto);
+        JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
+    }
+
+    public void atualizarProduto(Produto antigoProduto, Produto novoProduto) throws Exception {
+        int pos = encontrarPosicao(antigoProduto);
+        int hash = antigoProduto.idProdutoCategoria;
+        listaProdutos[hash].remove(pos);
+        listaProdutos[hash].add(novoProduto, pos);
+    }
+
+    private int encontrarPosicao(Produto antigoProduto) throws Exception {
+        boolean isFound = false;
+        int pos = -1;
+        for (LinkedList<Produto> listaProduto : listaProdutos) {
+            for (int y = 0; y < listaProduto.size(); y++) {
+                if(listaProduto.get(y).nomeProduto.equals(antigoProduto.nomeProduto.toLowerCase())){
+                    pos = y;
+                    isFound = true;
+                    break;
+                }
+            }
+            if(isFound) { //Finaliza o for each
+                break;
+            }
+        }
+        return pos;
     }
 
 }

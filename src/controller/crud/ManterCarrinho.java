@@ -3,6 +3,7 @@ package controller.crud;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import linkedlist.model.LinkedList;
 import model.Pedido;
 import model.Produto;
 import queue.model.Queue;
@@ -104,8 +105,9 @@ public class ManterCarrinho {
         carrinhoDisponível = false;
     }
 
-    public Pedido cadastrarCompra(StringBuffer itensPedido){
+    public Pedido cadastrarCompra(StringBuffer itensPedido) throws Exception{
         Pedido pedido = new Pedido(cont, nomeCliente, itensPedido.toString());
+        listaPedidos.addLast(pedido);
         return pedido;
     }
 }
