@@ -85,7 +85,7 @@ public class TelaInserirClienteCPF extends JFrame {
 		InserirClienteCNPJ.add(cpfClientePF);
 		cpfClientePF.setColumns(10);
 
-		JLabel cnpj = new JLabel("CNPJ");
+		JLabel cnpj = new JLabel("CPF");
 		cnpj.setBounds(220, 33, 85, 13);
 		InserirClienteCNPJ.add(cnpj);
 

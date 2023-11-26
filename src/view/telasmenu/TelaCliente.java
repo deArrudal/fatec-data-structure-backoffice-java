@@ -70,6 +70,7 @@ public class TelaCliente extends JFrame {
 	public TelaCliente(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
 			LinkedList<Pedido> listaPedidos, String PF, String PJ) {
+		setTitle("Backoffice - Área do Cliente");
 		String nomeCliente = "";
 		ManterClientePJ mpj = new ManterClientePJ(listaClientesPJ);
 		ManterClientePF mpf = new ManterClientePF(listaClientesPF);

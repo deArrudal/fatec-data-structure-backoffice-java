@@ -27,7 +27,7 @@ public class MetodosEscreverArquivo {
         }
 
         // verificar se o arquivo ja existe e deletar
-        String caminhoArquivo = caminhoDiretorio + "/categoria.csv";
+        String caminhoArquivo = caminhoDiretorio + "/categorias.csv";
         File arquivo = new File(caminhoArquivo);
         if (arquivo.exists()) {
             arquivo.delete();
@@ -106,7 +106,7 @@ public class MetodosEscreverArquivo {
         PrintWriter printWriter = new PrintWriter(new FileWriter(arquivo, true));
 
         // Imprimir cabecalho
-        printWriter.println("cpfClientePF;nomeClientePF;endereçoClientePF;cepClientePF;telefoneClientePF");
+        printWriter.println("cpfClientePF;nomeClientePF;enderecoClientePF;cepClientePF;telefoneClientePF");
 
         int size = listaClientesPF.size();
         for (int i = 0; i < size; i++) {
