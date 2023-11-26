@@ -1,4 +1,4 @@
-package controller;
+package controller.crud;
 
 import linkedlist.model.LinkedList;
 import model.Pedido;
