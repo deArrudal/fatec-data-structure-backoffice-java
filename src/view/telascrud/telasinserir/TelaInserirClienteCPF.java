@@ -11,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import controller.ManterClientePF;
+import controller.crud.ManterClientePF;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
@@ -85,7 +85,7 @@ public class TelaInserirClienteCPF extends JFrame {
 		InserirClienteCNPJ.add(cpfClientePF);
 		cpfClientePF.setColumns(10);
 
-		JLabel cnpj = new JLabel("CNPJ");
+		JLabel cnpj = new JLabel("CPF");
 		cnpj.setBounds(220, 33, 85, 13);
 		InserirClienteCNPJ.add(cnpj);
 

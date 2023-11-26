@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 
-import controller.MetodosLogin;
+import controller.login.MetodosLogin;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -128,7 +128,16 @@ public class TelaHome extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String nomeUsuario = login.loginUsuario(listaClientesPF, listaClientesPJ);
-					JOptionPane.showMessageDialog(null, "Test: " + nomeUsuario);
+					String[] split = nomeUsuario.split(";");
+					if (split[1].equals("PF")) {
+						TelaCliente t = new TelaCliente(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos, split[0], null);
+						t.setVisible(true);
+					}
+					else {
+						TelaCliente t = new TelaCliente(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos, null, split[0]);
+						t.setVisible(true);
+					}
+					dispose();
 
 				} catch (Exception exception) {
 					JOptionPane.showMessageDialog(null, "Operacao invalida",

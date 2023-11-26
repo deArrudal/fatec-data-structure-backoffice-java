@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import javax.swing.JTextField;
 
-import controller.ManterClientePJ;
+import controller.crud.ManterClientePJ;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;

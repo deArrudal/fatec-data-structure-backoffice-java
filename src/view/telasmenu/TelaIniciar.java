@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import controller.MetodosLogin;
+import controller.login.MetodosLogin;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
