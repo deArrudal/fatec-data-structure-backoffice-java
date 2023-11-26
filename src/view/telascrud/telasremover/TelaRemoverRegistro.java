@@ -138,6 +138,9 @@ public class TelaRemoverRegistro extends JFrame {
 						break;
 				}
 
+				JOptionPane.showMessageDialog(null, "Cadastro removido com sucesso",
+						"BackOffice - Remover Cadastro", JOptionPane.INFORMATION_MESSAGE);
+
 				TelaConsulta telaConsulta = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
 						listaClientesPJ,
 						listaPedidos);

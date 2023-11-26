@@ -3,8 +3,6 @@ package controller.crud;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 
-import javax.swing.*;
-
 public class ManterCategoria {
 
     LinkedList<Categoria> listaCategorias;
@@ -24,7 +22,7 @@ public class ManterCategoria {
             }
         }
         if (!isFound) {
-            throw new Exception("Categoria não encontrada!");
+            throw new Exception("Categoria nao encontrada");
         }
         return categoria;
     }
@@ -40,7 +38,7 @@ public class ManterCategoria {
             }
         }
         if (!isFound) {
-            throw new Exception("Categoria não encontrado para exclusão");
+            throw new Exception("Categoria nao encontrada para exclusao");
         }
         listaCategorias.remove(pos);
     }
@@ -49,7 +47,6 @@ public class ManterCategoria {
     public void inserirCategoria(Categoria categoria) throws Exception {
         // Tratamento de LowerCase antes de passar pelo parâmetro da função
         listaCategorias.addLast(categoria);
-        JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
     }
 
     public void atualizarCategoria(Categoria antigaCategoria, Categoria novaCategoria) throws Exception {

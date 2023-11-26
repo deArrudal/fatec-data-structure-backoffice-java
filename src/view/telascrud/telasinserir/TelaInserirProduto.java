@@ -114,7 +114,7 @@ public class TelaInserirProduto extends JFrame {
 			}
 		}
 
-		JLabel lblBreveDescrioDo = new JLabel("Breve descrição do produto:");
+		JLabel lblBreveDescrioDo = new JLabel("Descriçao do produto:");
 		lblBreveDescrioDo.setBounds(20, 152, 290, 23);
 		InserirProduto.add(lblBreveDescrioDo);
 

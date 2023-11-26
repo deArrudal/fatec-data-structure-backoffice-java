@@ -137,6 +137,7 @@ public class TelaInserirClienteCNPJ extends JFrame {
 				cliente.cepClientePJ = cepClientePJ.getText();
 				cliente.telefoneClientePJ = telefoneClientePJ.getText();
 				cliente.emailClientePJ = emailClientePJ.getText();
+				
 				try {
 					m.inserirClientePJ(cliente);
 

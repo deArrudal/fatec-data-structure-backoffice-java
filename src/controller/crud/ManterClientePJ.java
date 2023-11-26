@@ -3,8 +3,6 @@ package controller.crud;
 import linkedlist.model.LinkedList;
 import model.ClientePJ;
 
-import javax.swing.*;
-
 public class ManterClientePJ {
 
     LinkedList<ClientePJ> listaClientesPJ;
@@ -58,7 +56,7 @@ public class ManterClientePJ {
                 }
             }
             if (!isFound) {
-                throw new Exception("Cliente não encontrado para exclusão!");
+                throw new Exception("Cliente nao encontrado para exclusao");
             }
             listaClientesPJ.remove(pos);
         }
@@ -87,7 +85,6 @@ public class ManterClientePJ {
         boolean vali = validarCNPJ(cliente.cnpjClientePJ);
         if (vali == true) {
             listaClientesPJ.addLast(cliente);
-            JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
         }
 
     }
@@ -117,7 +114,7 @@ public class ManterClientePJ {
         long cepNovo = Long.parseLong(cep);
         int qtdDigitos = validarDigitos(cepNovo, 0);
         if (qtdDigitos != 8) {
-            throw new Exception("CEP inválido!");
+            throw new Exception("CEP invalido!");
         }
     }
 }

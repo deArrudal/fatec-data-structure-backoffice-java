@@ -50,11 +50,11 @@ Back Office
 │   │   ├── Pedidos.csv
 │   │   ├── Produtos.csv
 │   ├── view/
-│   │   ├── telascarregar
-│   │   ├── telascompra
-│   │   ├── telascrud
-│   │   ├── telasmenu
-│   │   ├── telassalvar
+│   │   ├── telascarregar/
+│   │   ├── telascompra/
+│   │   ├── telascrud/
+│   │   ├── telasmenu/
+│   │   ├── telassalvar/
 │   │   ├── Principal.java
 ├── .gitignore
 ├── LICENSE
@@ -78,8 +78,12 @@ Back Office
 
 ## Version History
 
+* 0.1
+    * Modelling and Analysis.
 * 0.8
-    * Integration process.
+    * Integration process
+* 0.9
+    * Testing.
 
 ## License
 

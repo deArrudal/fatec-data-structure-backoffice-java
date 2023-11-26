@@ -3,6 +3,8 @@ package view.telascrud.telasatualizar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
+import java.awt.Font;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import controller.crud.ManterClientePF;
 import linkedlist.model.LinkedList;
@@ -48,33 +51,85 @@ public class TelaAtualizarClienteCPF extends JFrame {
 		AtualizarClientePF.setLayout(null);
 
 		JLabel titulo = new JLabel("Atualizar Cliente - CPF");
-		titulo.setBounds(144, 10, 141, 13);
+		titulo.setFont(new Font("Serif", Font.BOLD, 14));
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		titulo.setBounds(75, 20, 300, 23);
 		AtualizarClientePF.add(titulo);
+
+		JLabel label1 = new JLabel("Nome:");
+		label1.setBounds(20, 50, 141, 23);
+		AtualizarClientePF.add(label1);
+
+		nomeClientePF = new JTextField();
+		nomeClientePF.setColumns(10);
+		nomeClientePF.setBounds(20, 75, 187, 23);
+		AtualizarClientePF.add(nomeClientePF);
+		nomeClientePF.setText(retorno.nomeClientePF);
+
+		JLabel cnpj = new JLabel("CPF:");
+		cnpj.setBounds(220, 50, 85, 23);
+		AtualizarClientePF.add(cnpj);
+
+		cpfClientePF = new JTextField();
+		cpfClientePF.setBounds(220, 75, 192, 23);
+		AtualizarClientePF.add(cpfClientePF);
+		cpfClientePF.setColumns(10);
+		cpfClientePF.setText(retorno.cpfClientePF);
+
+		JLabel telefoneInserirPJ_1 = new JLabel("Telefone:");
+		telefoneInserirPJ_1.setBounds(20, 100, 141, 23);
+		AtualizarClientePF.add(telefoneInserirPJ_1);
+
+		telefoneClientePF = new JTextField();
+		telefoneClientePF.setColumns(10);
+		telefoneClientePF.setBounds(20, 125, 172, 23);
+		AtualizarClientePF.add(telefoneClientePF);
+		telefoneClientePF.setText(retorno.telefoneClientePF);
+
+		JLabel lblCep = new JLabel("CEP:");
+		lblCep.setBounds(20, 152, 141, 23);
+		AtualizarClientePF.add(lblCep);
+
+		cepClientePF = new JTextField();
+		cepClientePF.setColumns(10);
+		cepClientePF.setBounds(20, 176, 115, 23);
+		AtualizarClientePF.add(cepClientePF);
+		cepClientePF.setText(retorno.cepClientePF);
+
+		JLabel lblEndereo = new JLabel("Endereço:");
+		lblEndereo.setBounds(150, 152, 141, 23);
+		AtualizarClientePF.add(lblEndereo);
+
+		enderecoClientePF = new JTextField();
+		enderecoClientePF.setColumns(10);
+		enderecoClientePF.setBounds(150, 176, 255, 23);
+		AtualizarClientePF.add(enderecoClientePF);
+		enderecoClientePF.setText(retorno.enderecoClientePF);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setPreferredSize(new Dimension(77, 21));
 		btnVoltar.setActionCommand("");
-		btnVoltar.setBounds(207, 232, 85, 21);
+		btnVoltar.setBounds(105, 220, 100, 23);
 		AtualizarClientePF.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ,
+				TelaConsulta telaConsulta = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
+						listaClientesPJ,
 						listaPedidos);
-				t.setVisible(true);
-				setVisible(false);
+				telaConsulta.setVisible(true);
+				dispose();
 			}
 		};
 		btnVoltar.addActionListener(voltar);
 
 		JButton btnConfirmar = new JButton("Confirmar");
-		btnConfirmar.setBounds(295, 232, 96, 21);
+		btnConfirmar.setBounds(245, 220, 100, 23);
 		AtualizarClientePF.add(btnConfirmar);
 		ActionListener confirmar = new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
 				try {
-
 					ClientePF pf = new ClientePF();
+
 					boolean vali = manterClientePF.validarCPF(cpfClientePF.getText());
 					if (vali == true) {
 						pf.cpfClientePF = cpfClientePF.getText();
@@ -83,72 +138,27 @@ public class TelaAtualizarClienteCPF extends JFrame {
 						pf.enderecoClientePF = enderecoClientePF.getText();
 						pf.cepClientePF = cepClientePF.getText();
 						manterClientePF.atualizarClientePF(retorno, pf);
-						TelaConsulta tc = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
-								listaClientesPJ, listaPedidos);
-						tc.setVisible(true);
+
+						JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso",
+								"BackOffice - Cadastro Cliente PF", JOptionPane.INFORMATION_MESSAGE);
+
+						TelaConsulta telaConsulta = new TelaConsulta(listaCategorias, listaProdutos,
+								listaClientesPF, listaClientesPJ, listaPedidos);
+						telaConsulta.setVisible(true);
 						dispose();
+
 					} else {
-						JOptionPane.showMessageDialog(null, "CPF Inválido",
-								"Operação Cancelada", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Erro atualizar cliente",
+								"BackOffice - Cadastro Cliente PF", JOptionPane.ERROR_MESSAGE);
 					}
 
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, "Erro atualizar cliente",
+							"BackOffice - Atualizar Cliente PF", JOptionPane.ERROR_MESSAGE);
 				}
 
 			}
 		};
 		btnConfirmar.addActionListener(confirmar);
-
-		JLabel label1 = new JLabel("Nome: ");
-		label1.setBounds(10, 33, 141, 13);
-		AtualizarClientePF.add(label1);
-
-		cpfClientePF = new JTextField();
-		cpfClientePF.setBounds(222, 51, 192, 21);
-		AtualizarClientePF.add(cpfClientePF);
-		cpfClientePF.setColumns(10);
-		cpfClientePF.setText(retorno.cpfClientePF);
-
-		JLabel cnpj = new JLabel("CPF");
-		cnpj.setBounds(220, 33, 85, 13);
-		AtualizarClientePF.add(cnpj);
-
-		JLabel telefoneInserirPJ_1 = new JLabel("Telefone:");
-		telefoneInserirPJ_1.setBounds(10, 87, 141, 13);
-		AtualizarClientePF.add(telefoneInserirPJ_1);
-
-		telefoneClientePF = new JTextField();
-		telefoneClientePF.setColumns(10);
-		telefoneClientePF.setBounds(10, 104, 192, 21);
-		AtualizarClientePF.add(telefoneClientePF);
-		telefoneClientePF.setText(retorno.telefoneClientePF);
-
-		nomeClientePF = new JTextField();
-		nomeClientePF.setColumns(10);
-		nomeClientePF.setBounds(10, 52, 192, 21);
-		AtualizarClientePF.add(nomeClientePF);
-		nomeClientePF.setText(retorno.nomeClientePF);
-
-		JLabel lblCep = new JLabel("CEP:");
-		lblCep.setBounds(10, 148, 141, 13);
-		AtualizarClientePF.add(lblCep);
-
-		JLabel lblEndereo = new JLabel("Endereço:");
-		lblEndereo.setBounds(161, 148, 141, 13);
-		AtualizarClientePF.add(lblEndereo);
-
-		cepClientePF = new JTextField();
-		cepClientePF.setColumns(10);
-		cepClientePF.setBounds(10, 162, 115, 21);
-		AtualizarClientePF.add(cepClientePF);
-		cepClientePF.setText(retorno.cepClientePF);
-
-		enderecoClientePF = new JTextField();
-		enderecoClientePF.setColumns(10);
-		enderecoClientePF.setBounds(159, 163, 255, 20);
-		AtualizarClientePF.add(enderecoClientePF);
-		enderecoClientePF.setText(retorno.enderecoClientePF);
 	}
 }

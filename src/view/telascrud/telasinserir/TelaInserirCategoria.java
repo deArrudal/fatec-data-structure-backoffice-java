@@ -102,7 +102,7 @@ public class TelaInserirCategoria extends JFrame {
 							"BackOffice - Cadastro Categoria", JOptionPane.INFORMATION_MESSAGE);
 
 				} catch (Exception exception) {
-					JOptionPane.showMessageDialog(null, "Erro inserir cliente",
+					JOptionPane.showMessageDialog(null, "Erro inserir categoria",
 							"BackOffice - Cadastro Categoria", JOptionPane.ERROR_MESSAGE);
 				}
 
