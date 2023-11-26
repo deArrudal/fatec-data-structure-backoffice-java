@@ -19,6 +19,7 @@ import model.ClientePJ;
 import model.Pedido;
 import model.Produto;
 import view.telascrud.telasconsulta.TelaConsulta;
+import view.telasmenu.TelaIniciar;
 
 public class TelaAtualizarClienteCPF extends JFrame {
 
@@ -89,14 +90,18 @@ public class TelaAtualizarClienteCPF extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				try {
-					manterClientePF.excluirClientePF(retorno.nomeClientePF);
+				
 					ClientePF pf = new ClientePF();
 					pf.cpfClientePF = cpfClientePF.getText();
 					pf.telefoneClientePF = telefoneClientePF.getText();
 					pf.nomeClientePF = nomeClientePF.getText();
 					pf.enderecoClientePF = enderecoClientePF.getText();
 					pf.cepClientePF = cepClientePF.getText();
-					manterClientePF.inserirClientePF(pf);
+					manterClientePF.atualizarClientePF(retorno, pf);
+                    TelaConsulta tc = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
+                    listaClientesPJ, listaPedidos);
+                    tc.setVisible(true);
+                    dispose();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

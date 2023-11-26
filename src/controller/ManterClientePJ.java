@@ -51,7 +51,7 @@ public class ManterClientePJ {
         long cnpjNovo = Long.parseLong(cnpj);
         int qtd = validarDigitos(cnpjNovo, 0);
         if (qtd != 14) {
-            throw new Exception("CPF inválido!");
+            throw new Exception("CNPJ inválido!");
         }
     }
 

@@ -89,7 +89,7 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				try {
-					manterClientePJ.excluirClientePJ(retorno.nomeClientePJ);
+					
 					ClientePJ pj = new ClientePJ();
 					pj.cnpjClientePJ = cnpjClientePJ.getText();
 					pj.telefoneClientePJ = telefoneClientePJ.getText();
@@ -97,7 +97,11 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 					pj.enderecoClientePJ = enderecoClientePJ.getText();
 					pj.cepClientePJ = cepClientePJ.getText();
 					pj.emailClientePJ = emailPJ.getText();
-					manterClientePJ.inserirClientePJ(pj);
+					manterClientePJ.atualizarClientePJ(retorno, pj);
+                    TelaConsulta tc = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
+                    listaClientesPJ, listaPedidos);
+                    tc.setVisible(true);
+                    dispose();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

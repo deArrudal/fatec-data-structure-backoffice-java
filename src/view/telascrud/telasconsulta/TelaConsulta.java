@@ -117,7 +117,7 @@ public class TelaConsulta extends JFrame {
 						case "Cliente CPF":
 							try {
 								rClientePF = manterClientePF.consultaClientePF(valorCampo);
-								valorCampo = rClientePF.nomeClientePF;
+								valorCampo = rClientePF.cpfClientePF;
 								pesquisaRetorno = rClientePF.nomeClientePF;
 
 							} catch (Exception e1) {
@@ -128,7 +128,7 @@ public class TelaConsulta extends JFrame {
 						case "Cliente CNPJ":
 							try {
 								rClientePJ = manterClientePJ.consultaClientePJ(valorCampo);
-								valorCampo = rClientePJ.nomeClientePJ;
+								valorCampo = rClientePJ.cnpjClientePJ;
 								pesquisaRetorno = rClientePJ.nomeClientePJ;
 
 							} catch (Exception e1) {

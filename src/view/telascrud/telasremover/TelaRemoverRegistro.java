@@ -47,6 +47,7 @@ public class TelaRemoverRegistro extends JFrame {
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
 			LinkedList<Pedido> listaPedidos) {
 
+		System.out.println(categoria);
 		ManterClientePF manterClientePF = new ManterClientePF(listaClientesPF);
 		ManterClientePJ manterClientePJ = new ManterClientePJ(listaClientesPJ);
 		ManterCategoria manterCategoria = new ManterCategoria(listaCategorias);
@@ -101,39 +102,38 @@ public class TelaRemoverRegistro extends JFrame {
 		btnConfirmarExcluir.setBounds(211, 166, 104, 23);
 		contentPane.add(btnConfirmarExcluir);
 		ActionListener excluir = new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				switch (categoria) {
-					case "CLIENTE CPF":
+					case "Cliente CPF":
 						try {
+							System.out.println(valorCampo);
 							manterClientePF.excluirClientePF(valorCampo);
+							
 						} catch (Exception e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						break;
-					case "CLIENTE CNPJ":
+					case "Cliente CNPJ":
 						try {
 							manterClientePJ.excluirClientePJ(valorCampo);
 						} catch (Exception e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						break;
 
-					case "PRODUTO":
+					case "Produto":
 						try {
 							manterProduto.excluirProduto(valorCampo);
 						} catch (Exception e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						break;
 
-					case "CATEGORIA":
+					case "Categoria":
 						try {
 							manterCategoria.excluirCategoria(valorCampo);
 						} catch (Exception e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						break;
