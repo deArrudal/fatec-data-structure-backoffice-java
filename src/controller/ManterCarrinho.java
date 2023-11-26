@@ -1,9 +1,11 @@
 package controller;
 
+import linkedlist.model.LinkedList;
 import model.Pedido;
 import model.Produto;
 import queue.model.Queue;
 import stack.model.Stack;
+
 @SuppressWarnings("all")
 public class ManterCarrinho {
     static int cont = 0; //Ver com o Lucas
@@ -11,10 +13,12 @@ public class ManterCarrinho {
     String nomeCliente;
     public boolean status;
     static double valorTotal;
-
-    public ManterCarrinho(String nomeCliente) {
+    LinkedList<Pedido> listaPedidos;
+    public ManterCarrinho(String nomeCliente, LinkedList<Pedido> listaPedidos) {
         this.nomeCliente = nomeCliente;
+        this.listaPedidos = listaPedidos;
         status = false;
+        valorTotal = 0;
     }
 
     public void inserirCarrinho(Produto produto){
@@ -84,8 +88,9 @@ public class ManterCarrinho {
         cont++;
     }
 
-    public Pedido cadastrarCompra(StringBuffer itensPedido){
+    public Pedido cadastrarCompra(StringBuffer itensPedido) throws Exception{
         Pedido pedido = new Pedido(cont, nomeCliente, itensPedido.toString());
+        listaPedidos.addLast(pedido);
         return pedido;
     }
 }
