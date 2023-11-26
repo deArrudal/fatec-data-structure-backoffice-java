@@ -10,7 +10,8 @@ import queue.model.Queue;
 import stack.model.Stack;
 
 public class ManterCarrinho {
-    static int cont = 0; //Ver com o Lucas
+
+    LinkedList<Pedido> listaPedidos;
     Stack<Produto> carrinho;
     String nomeCliente;
     public boolean carrinhoDisponível;
@@ -20,10 +21,11 @@ public class ManterCarrinho {
         carrinhoDisponível = false;
     }
     
-    public void iniciarCarrinho(String nomeCliente) {
+    public void iniciarCarrinho(String nomeCliente, LinkedList<Pedido> listaPedidos) {
     	carrinhoDisponível = true;
     	carrinho = new Stack<Produto>();
         this.nomeCliente = nomeCliente;
+        this.listaPedidos = listaPedidos;
     }
 
     public void inserirCarrinho(Produto produto){
@@ -101,12 +103,11 @@ public class ManterCarrinho {
         }
         System.out.println("Valor total = " + String.format("%.2f", valorTotal));
         cadastrarCompra(itensPedido);
-        cont++;
         carrinhoDisponível = false;
     }
 
     public Pedido cadastrarCompra(StringBuffer itensPedido) throws Exception{
-        Pedido pedido = new Pedido(cont, nomeCliente, itensPedido.toString());
+        Pedido pedido = new Pedido(listaPedidos.size() + 1, nomeCliente, itensPedido.toString());
         listaPedidos.addLast(pedido);
         return pedido;
     }

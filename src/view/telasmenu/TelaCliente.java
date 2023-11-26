@@ -98,7 +98,7 @@ public class TelaCliente extends JFrame {
 		}
 		ManterProduto mp = new ManterProduto(listaProdutos);
 		if (!mc.carrinhoDisponível) {
-			 mc.iniciarCarrinho(nomeCliente);
+			 mc.iniciarCarrinho(nomeCliente, listaPedidos);
 		}
 		
 
