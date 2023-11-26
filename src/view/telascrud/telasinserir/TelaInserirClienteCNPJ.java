@@ -52,18 +52,21 @@ public class TelaInserirClienteCNPJ extends JFrame {
 	 * @param listaProduto
 	 * @param listaCLientePJ
 	 * @param listaClientePF
-	 * @param listaPedidos 
+	 * @param listaPedidos
 	 */
 	public TelaInserirClienteCNPJ(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
 			LinkedList<Pedido> listaPedidos) {
+
 		ManterClientePJ m = new ManterClientePJ(listaClientesPJ);
 
+		setTitle("BackOffice - Cadastro Cliente PJ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
+
 		JPanel InserirClienteCNPJ = new JPanel();
 		InserirClienteCNPJ.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(InserirClienteCNPJ);
 		InserirClienteCNPJ.setLayout(null);
 

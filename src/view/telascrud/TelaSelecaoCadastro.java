@@ -1,14 +1,15 @@
 package view.telascrud;
 
-import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import linkedlist.model.LinkedList;
 import model.Categoria;
@@ -36,7 +37,7 @@ public class TelaSelecaoCadastro extends JFrame {
 
 		setTitle("Backoffice - Cadastro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 180);
 		setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
@@ -44,51 +45,49 @@ public class TelaSelecaoCadastro extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		JLabel lblNewLabel = new JLabel("Selecione a categoria do registro que deseja gerenciar",
+				SwingConstants.CENTER);
+		lblNewLabel.setBounds(50, 20, 350, 23);
+		contentPane.add(lblNewLabel);
+
+		JLabel lblCategoria = new JLabel("Categoria:");
+		lblCategoria.setBounds(40, 58, 80, 14);
+		contentPane.add(lblCategoria);
+
 		cbCategoria = new JComboBox<>();
-		cbCategoria.setBounds(101, 97, 276, 22);
+		cbCategoria.setBounds(105, 55, 280, 23);
 		contentPane.add(cbCategoria);
 		cbCategoria.addItem("ClienteCPF");
 		cbCategoria.addItem("ClienteCNPJ");
 		cbCategoria.addItem("Produto");
 		cbCategoria.addItem("Categoria");
 
-		JLabel lblCategoria = new JLabel("Categoria:");
-		lblCategoria.setBounds(26, 101, 68, 14);
-		contentPane.add(lblCategoria);
-
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(199, 215, 89, 23);
+		btnVoltar.setBounds(105, 100, 100, 23);
 		contentPane.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TelaHome t = new TelaHome(listaCategorias, listaProdutos,
+				TelaHome telaHome = new TelaHome(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
-				t.setVisible(true);
-				setVisible(false);
+				telaHome.setVisible(true);
+				dispose();
 			}
 		};
-
 		btnVoltar.addActionListener(voltar);
 
 		JButton btnConfirmar = new JButton("Confirmar");
-		btnConfirmar.setBounds(298, 215, 99, 23);
+		btnConfirmar.setBounds(245, 100, 100, 23);
 		contentPane.add(btnConfirmar);
 
 		ActionListener confirmar = confirmar(listaCategorias, listaProdutos,
 				listaClientesPF, listaClientesPJ, listaPedidos);
-
 		btnConfirmar.addActionListener(confirmar);
-
-		JLabel lblNewLabel = new JLabel("Selecione a categoria do registro que deseja gerenciar");
-		lblNewLabel.setBounds(57, 55, 333, 13);
-		contentPane.add(lblNewLabel);
-
 	}
 
 	private ActionListener confirmar(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
-			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ, LinkedList<Pedido> listaPedidos) {
+			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
+			LinkedList<Pedido> listaPedidos) {
 		ActionListener confirmar = new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -98,22 +97,27 @@ public class TelaSelecaoCadastro extends JFrame {
 								listaClientesPF, listaClientesPJ, listaPedidos);
 						cpf.setVisible(true);
 						break;
+
 					case "ClienteCNPJ":
 						TelaInserirClienteCNPJ cnpj = new TelaInserirClienteCNPJ(listaCategorias, listaProdutos,
 								listaClientesPF, listaClientesPJ, listaPedidos);
 						cnpj.setVisible(true);
 						break;
+
 					case "Produto":
-						TelaInserirProduto prod = new TelaInserirProduto(listaCategorias, listaProdutos, listaClientesPF,
+						TelaInserirProduto prod = new TelaInserirProduto(listaCategorias, listaProdutos,
+								listaClientesPF,
 								listaClientesPJ, listaPedidos);
 						prod.setVisible(true);
 						break;
+
 					case "Categoria":
 						TelaInserirCategoria cat = new TelaInserirCategoria(listaCategorias, listaProdutos,
 								listaClientesPF, listaClientesPJ, listaPedidos);
 						cat.setVisible(true);
 						break;
 				}
+
 				setVisible(false);
 			}
 		};

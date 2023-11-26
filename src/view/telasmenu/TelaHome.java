@@ -5,10 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
-
-import controller.crud.ManterCarrinho;
-import controller.login.MetodosLogin;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import controller.crud.ManterCarrinho;
+import controller.login.MetodosLogin;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
@@ -74,7 +72,7 @@ public class TelaHome extends JFrame {
 				TelaConsulta telaConsulta = new TelaConsulta(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
 				telaConsulta.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		btnConsulta.addActionListener(consulta);
@@ -88,7 +86,7 @@ public class TelaHome extends JFrame {
 				TelaCarregarBD telaCarregarBD = new TelaCarregarBD(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
 				telaCarregarBD.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		btnCarregar.addActionListener(carregar);
@@ -102,7 +100,7 @@ public class TelaHome extends JFrame {
 				TelaSelecaoCadastro telaSelecaoCadastro = new TelaSelecaoCadastro(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
 				telaSelecaoCadastro.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		btnCadastro.addActionListener(cadastro);
@@ -116,13 +114,12 @@ public class TelaHome extends JFrame {
 				TelaSalvarBD telaSalvarBD = new TelaSalvarBD(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
 				telaSalvarBD.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		btnSalvar.addActionListener(salvar);
 
 		// evento clique botão compra
-		ManterCarrinho mc = new ManterCarrinho();
 		JButton btnCompra = new JButton("Realizar compra");
 		btnCompra.setBounds(240, 165, 150, 23);
 		contentPane.add(btnCompra);
@@ -130,7 +127,11 @@ public class TelaHome extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String nomeUsuario = login.loginUsuario(listaClientesPF, listaClientesPJ);
-					TelaCliente t = new TelaCliente(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos, nomeUsuario, mc);
+
+					ManterCarrinho novoCarrinho = new ManterCarrinho();
+
+					TelaCliente t = new TelaCliente(listaCategorias, listaProdutos, listaClientesPF,
+							listaClientesPJ, listaPedidos, nomeUsuario, novoCarrinho);
 					t.setVisible(true);
 					dispose();
 
@@ -160,7 +161,7 @@ public class TelaHome extends JFrame {
 				TelaIniciar telaIniciar = new TelaIniciar(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
 				telaIniciar.setVisible(true);
-				setVisible(false);
+				dispose();
 			}
 		};
 		btnRetornar.addActionListener(retornar);

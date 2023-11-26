@@ -24,11 +24,11 @@ public class ManterClientePJ {
             }
         }
         if (!isFound) {
-        	 return cliente = null;
+            return cliente = null;
         }
         return cliente;
     }
-    
+
     public ClientePJ consultaClientePJNome(String nomeCliente) throws Exception {
         boolean isFound = false;
         ClientePJ cliente = new ClientePJ();
@@ -61,15 +61,15 @@ public class ManterClientePJ {
                 throw new Exception("Cliente não encontrado para exclusão!");
             }
             listaClientesPJ.remove(pos);
-		}
-   
+        }
+
     }
 
     public boolean validarCNPJ(String cnpj) throws Exception {
         long cnpjNovo = Long.parseLong(cnpj);
         int qtd = validarDigitos(cnpjNovo, 0);
         if (qtd != 14) {
-        	return false;
+            return false;
         }
         return true;
     }
@@ -83,24 +83,22 @@ public class ManterClientePJ {
         return validarDigitos(num, qtd);
     }
 
-    //String cnpjClientePJ, String nomeClientePJ, String enderecoClientePJ,
-    //String cepClientePJ, String telefoneClientePJ, String emailClientePJ
     public void inserirClientePJ(ClientePJ cliente) throws Exception {
-    	  boolean vali = validarCNPJ(cliente.cnpjClientePJ);
-          if (vali == true) {
-        	  listaClientesPJ.addLast(cliente);
-              JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
-          }
-        
+        boolean vali = validarCNPJ(cliente.cnpjClientePJ);
+        if (vali == true) {
+            listaClientesPJ.addLast(cliente);
+            JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
+        }
+
     }
 
     public void atualizarClientePJ(ClientePJ antigoCliente, ClientePJ novoCliente) throws Exception {
-    	boolean vali = validarCNPJ(novoCliente.cnpjClientePJ);
-    	if (vali == true) {
+        boolean vali = validarCNPJ(novoCliente.cnpjClientePJ);
+        if (vali == true) {
             int pos = encontrarPosicao(antigoCliente);
             listaClientesPJ.remove(pos);
             listaClientesPJ.add(novoCliente, pos);
-		}
+        }
 
     }
 

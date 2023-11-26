@@ -52,7 +52,7 @@ public class MetodosLogin {
                     throw new Exception("Usuario nao encontrado");
                 }
 
-                return clientePF.nomeClientePF+";PF";
+                return clientePF.nomeClientePF;
 
             case "Pessoa Juridica":
                 // instacia metodo de consulta
@@ -68,7 +68,7 @@ public class MetodosLogin {
                     throw new Exception("Usuario nao encontrado");
                 }
 
-                return clientePJ.nomeClientePJ+";PJ";
+                return clientePJ.nomeClientePJ;
         }
 
         throw new ExportException("Usuario nao encontrado");

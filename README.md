@@ -66,6 +66,8 @@ Back Office
 * Each java file can be found in the "/src" folder.
 * The Entry point (or main function) for the projects is the "Principal.java".
 
+* Administrator's password: 0000
+
 ## Authors
 
  - deArruda, Lucas
@@ -76,8 +78,8 @@ Back Office
 
 ## Version History
 
-* 0.1
-    * Added first models and data elements.
+* 0.8
+    * Integration process.
 
 ## License
 

@@ -44,7 +44,7 @@ public class TelaSalvarBD extends JFrame {
                 TelaDefinirDiretorio telaDefinirDiretorio = new TelaDefinirDiretorio(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Salvar", "categorias");
                 telaDefinirDiretorio.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -57,7 +57,7 @@ public class TelaSalvarBD extends JFrame {
                 TelaDefinirDiretorio telaDefinirDiretorio = new TelaDefinirDiretorio(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Salvar", "produtos");
                 telaDefinirDiretorio.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -69,7 +69,7 @@ public class TelaSalvarBD extends JFrame {
                 TelaDefinirDiretorio telaDefinirDiretorio = new TelaDefinirDiretorio(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Salvar", "clientesPF");
                 telaDefinirDiretorio.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -81,7 +81,7 @@ public class TelaSalvarBD extends JFrame {
                 TelaDefinirDiretorio telaDefinirDiretorio = new TelaDefinirDiretorio(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Salvar", "clientesPJ");
                 telaDefinirDiretorio.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -93,7 +93,7 @@ public class TelaSalvarBD extends JFrame {
                 TelaDefinirDiretorio telaDefinirDiretorio = new TelaDefinirDiretorio(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Salvar", "pedidos");
                 telaDefinirDiretorio.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -105,7 +105,7 @@ public class TelaSalvarBD extends JFrame {
                 TelaHome telaHome = new TelaHome(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos);
                 telaHome.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 

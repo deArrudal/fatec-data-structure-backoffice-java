@@ -55,7 +55,7 @@ public class TelaDefinirDiretorio extends JFrame {
                 TelaSalvarBD telaSalvarBD = new TelaSalvarBD(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos);
                 telaSalvarBD.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -71,7 +71,7 @@ public class TelaDefinirDiretorio extends JFrame {
                 TelaSalvarBD telaSalvarBD = new TelaSalvarBD(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos);
                 telaSalvarBD.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 

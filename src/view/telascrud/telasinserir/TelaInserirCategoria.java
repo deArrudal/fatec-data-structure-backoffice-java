@@ -53,12 +53,16 @@ public class TelaInserirCategoria extends JFrame {
 	public TelaInserirCategoria(LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
 			LinkedList<Pedido> listaPedidos) {
+
 		ManterCategoria m = new ManterCategoria(listaCategorias);
+
+		setTitle("BackOffice - Cadastro Categoria");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
+
 		JPanel InserirClienteCNPJ = new JPanel();
 		InserirClienteCNPJ.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(InserirClienteCNPJ);
 		InserirClienteCNPJ.setLayout(null);
 

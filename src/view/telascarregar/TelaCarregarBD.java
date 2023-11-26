@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import controller.crud.ManterCarrinho;
 import linkedlist.model.LinkedList;
 import model.Categoria;
 import model.ClientePF;
@@ -44,7 +43,7 @@ public class TelaCarregarBD extends JFrame {
                 TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "categorias");
                 telaDefinirArquivo.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -57,7 +56,7 @@ public class TelaCarregarBD extends JFrame {
                 TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "produtos");
                 telaDefinirArquivo.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -69,7 +68,7 @@ public class TelaCarregarBD extends JFrame {
                 TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "clientesPF");
                 telaDefinirArquivo.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -81,7 +80,7 @@ public class TelaCarregarBD extends JFrame {
                 TelaDefinirArquivo telaDefinirArquivo = new TelaDefinirArquivo(listaCategorias, listaProdutos,
                         listaClientesPF, listaClientesPJ, listaPedidos, "Carregar", "clientesPJ");
                 telaDefinirArquivo.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 
@@ -93,7 +92,7 @@ public class TelaCarregarBD extends JFrame {
                 TelaHome telaHome = new TelaHome(listaCategorias, listaProdutos,
 						listaClientesPF, listaClientesPJ, listaPedidos);
                 telaHome.setVisible(true);
-                setVisible(false);
+                dispose();
             }
         });
 

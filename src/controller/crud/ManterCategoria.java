@@ -45,9 +45,9 @@ public class ManterCategoria {
         listaCategorias.remove(pos);
     }
 
-    //int idCategoria, String nomeCategoria)
+    // int idCategoria, String nomeCategoria)
     public void inserirCategoria(Categoria categoria) throws Exception {
-        //Tratamento de LowerCase antes de passar pelo parâmetro da função
+        // Tratamento de LowerCase antes de passar pelo parâmetro da função
         listaCategorias.addLast(categoria);
         JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
     }
