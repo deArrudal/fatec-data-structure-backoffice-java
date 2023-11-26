@@ -65,7 +65,7 @@ public class ManterClientePF {
         
     }
 
-    private boolean validarCPF(String cpf) throws Exception {
+    public boolean validarCPF(String cpf) throws Exception {
         long cpfNovo = Long.parseLong(cpf);
         int qtdDigitos = validarDigitos(cpfNovo, 0);
         if (qtdDigitos != 11) {

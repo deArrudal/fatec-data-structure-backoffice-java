@@ -88,6 +88,10 @@ public class TelaAtualizarCategoria extends JFrame {
 					c.idCategoria = Integer.parseInt(idCategoria.getText());
 					c.nomeCategoria = nomeCategoria.getText();
 					manterCategoria.inserirCategoria(c);
+                    TelaConsulta tc = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
+                    listaClientesPJ, listaPedidos);
+                    tc.setVisible(true);
+                    dispose();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -92,16 +93,23 @@ public class TelaAtualizarClienteCPF extends JFrame {
 				try {
 				
 					ClientePF pf = new ClientePF();
-					pf.cpfClientePF = cpfClientePF.getText();
-					pf.telefoneClientePF = telefoneClientePF.getText();
-					pf.nomeClientePF = nomeClientePF.getText();
-					pf.enderecoClientePF = enderecoClientePF.getText();
-					pf.cepClientePF = cepClientePF.getText();
-					manterClientePF.atualizarClientePF(retorno, pf);
-                    TelaConsulta tc = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
-                    listaClientesPJ, listaPedidos);
-                    tc.setVisible(true);
-                    dispose();
+					boolean vali = manterClientePF.validarCPF(cpfClientePF.getText());
+					if (vali == true) {
+						pf.cpfClientePF = cpfClientePF.getText();
+						pf.telefoneClientePF = telefoneClientePF.getText();
+						pf.nomeClientePF = nomeClientePF.getText();
+						pf.enderecoClientePF = enderecoClientePF.getText();
+						pf.cepClientePF = cepClientePF.getText();
+						manterClientePF.atualizarClientePF(retorno, pf);
+	                    TelaConsulta tc = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
+	                    listaClientesPJ, listaPedidos);
+	                    tc.setVisible(true);
+	                    dispose();
+					} else {
+						JOptionPane.showMessageDialog(null, "CPF Inválido",
+			                    "Operação Cancelada", JOptionPane.ERROR_MESSAGE);
+					}
+
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

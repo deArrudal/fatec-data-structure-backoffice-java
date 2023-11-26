@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
@@ -39,7 +40,8 @@ public class TelaAtualizarProduto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAtualizarProduto frame = new TelaAtualizarProduto(null, null, null, null, null, null, null, null);
+					TelaAtualizarProduto frame = new TelaAtualizarProduto(null, null, null, null, null, null, null,
+							null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,7 +79,8 @@ public class TelaAtualizarProduto extends JFrame {
 		InserirClienteCNPJ.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos);
+				TelaConsulta t = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ,
+						listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -92,15 +95,34 @@ public class TelaAtualizarProduto extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					manterProduto.excluirProduto(retorno.nomeProduto);
 					Produto p = new Produto();
-					p.idProduto = Integer.parseInt(idProduto.getText());
-					p.idProdutoCategoria = Integer.parseInt(cbCategoriaPro.getSelectedItem().toString());
-					p.nomeProduto = nomeProduto.getText();
-					p.descricaoProduto = txtDescricaoPro.getText();
-					p.qtdProduto = Integer.parseInt(Quantidade.getText());
-					p.valorProduto = Double.parseDouble(valorProduto.getText());
-					manterProduto.inserirProduto(p);
+
+					int qntProduto = Integer.parseInt(Quantidade.getText());
+					Double valor = Double.parseDouble(valorProduto.getText());
+
+
+					if (valor <= 0) {
+						JOptionPane.showMessageDialog(null, "Valor não pode ser menor ou igual a 0", "Atenção",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (qntProduto < 0) {
+						JOptionPane.showMessageDialog(null, "Quantidade não pode ser menos que 0", "Atenção",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						p.idProduto = Integer.parseInt(idProduto.getText());
+						p.idProdutoCategoria = Integer.parseInt(cbCategoriaPro.getSelectedItem().toString());
+						p.nomeProduto = nomeProduto.getText();
+						p.descricaoProduto = txtDescricaoPro.getText();
+						p.qtdProduto = Integer.parseInt(Quantidade.getText());
+						p.valorProduto = Double.parseDouble(valorProduto.getText());
+
+						manterProduto.excluirProduto(retorno.nomeProduto);
+						manterProduto.inserirProduto(p);
+						TelaConsulta tc = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
+								listaClientesPJ, listaPedidos);
+						tc.setVisible(true);
+						dispose();
+					}
+
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
