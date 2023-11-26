@@ -13,7 +13,6 @@ public class ManterClientePF {
     }
 
     public ClientePF consultaClientePF(String cpf) throws Exception {
-        validarCPF(cpf);
         boolean isFound = false;
         ClientePF cliente = new ClientePF();
         for (int i = 0; i < listaClientesPF.size(); i++) {
@@ -46,42 +45,55 @@ public class ManterClientePF {
     }
 
     public void excluirClientePF(String cpf) throws Exception {
-        validarCPF(cpf);
-        boolean isFound = false;
-        int pos = -1;
-        for (int i = 0; i < listaClientesPF.size(); i++) {
-            if (listaClientesPF.get(i).cpfClientePF.equals(cpf)) {
-                pos = i;
-                isFound = true;
-                break;
+    	boolean vali = validarCPF(cpf);
+    	if (vali == true) {
+    		boolean isFound = false;
+            int pos = -1;
+            for (int i = 0; i < listaClientesPF.size(); i++) {
+                if (listaClientesPF.get(i).cpfClientePF.equals(cpf)) {
+                    pos = i;
+                    isFound = true;
+                    break;
+                }
             }
-        }
-        if (!isFound) {
-            throw new Exception("Cliente não encontrado para exclusão");
-        }
-        listaClientesPF.remove(pos);
-        JOptionPane.showMessageDialog(null, "Exclusão Realizada com sucesso!");
+            if (!isFound) {
+                throw new Exception("Cliente não encontrado para exclusão");
+            }
+            listaClientesPF.remove(pos);
+            JOptionPane.showMessageDialog(null, "Exclusão Realizada com sucesso!");
+		}
+        
     }
 
-    private void validarCPF(String cpf) throws Exception {
+    private boolean validarCPF(String cpf) throws Exception {
         long cpfNovo = Long.parseLong(cpf);
         int qtdDigitos = validarDigitos(cpfNovo, 0);
         if (qtdDigitos != 11) {
-            throw new Exception("CPF inválido!");
+        	return false;
+           
         }
+        return true;
     }
 
     //String cpfClientePF, String nomeClientePF, String enderecoClientePF, String cepClientePF,
     //String telefoneClientePF
     public void inserirClientePF(ClientePF cliente) throws Exception {
-        listaClientesPF.addLast(cliente);
-        JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
+    	boolean vali = validarCPF(cliente.cpfClientePF);
+    	if (vali == true) {
+    		 listaClientesPF.addLast(cliente);
+    	        JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
+    	}
+       
     }
 
     public void atualizarClientePF(ClientePF antigoCliente, ClientePF novoCliente) throws Exception {
-        int pos = encontrarPosicao(antigoCliente);
-        listaClientesPF.remove(pos);
-        listaClientesPF.add(novoCliente, pos);
+    	boolean vali = validarCPF(novoCliente.cpfClientePF);
+    	if (vali == true) {
+    	       int pos = encontrarPosicao(antigoCliente);
+    	        listaClientesPF.remove(pos);
+    	        listaClientesPF.add(novoCliente, pos);
+    	} 
+ 
     }
 
     private int encontrarPosicao(ClientePF antigoCliente) throws Exception {

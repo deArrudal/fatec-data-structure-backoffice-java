@@ -14,7 +14,6 @@ public class ManterClientePJ {
     }
 
     public ClientePJ consultaClientePJ(String cnpj) throws Exception {
-        validarCNPJ(cnpj);
         boolean isFound = false;
         ClientePJ cliente = new ClientePJ();
         for (int i = 0; i < listaClientesPJ.size(); i++) {
@@ -25,7 +24,7 @@ public class ManterClientePJ {
             }
         }
         if (!isFound) {
-            throw new Exception("Cliente não encontrado!");
+        	 return cliente = null;
         }
         return cliente;
     }
@@ -41,34 +40,38 @@ public class ManterClientePJ {
             }
         }
         if (!isFound) {
-            throw new Exception("Cliente não encontrado!");
+            return cliente = null;
         }
         return cliente;
     }
 
     public void excluirClientePJ(String cnpj) throws Exception {
-        validarCNPJ(cnpj);
-        boolean isFound = false;
-        int pos = -1;
-        for (int i = 0; i < listaClientesPJ.size(); i++) {
-            if (listaClientesPJ.get(i).cnpjClientePJ.equals(cnpj)) {
-                pos = i;
-                isFound = true;
-                break;
+        boolean vali = validarCNPJ(cnpj);
+        if (vali == true) {
+            boolean isFound = false;
+            int pos = -1;
+            for (int i = 0; i < listaClientesPJ.size(); i++) {
+                if (listaClientesPJ.get(i).cnpjClientePJ.equals(cnpj)) {
+                    pos = i;
+                    isFound = true;
+                    break;
+                }
             }
-        }
-        if (!isFound) {
-            throw new Exception("Cliente não encontrado para exclusão!");
-        }
-        listaClientesPJ.remove(pos);
+            if (!isFound) {
+                throw new Exception("Cliente não encontrado para exclusão!");
+            }
+            listaClientesPJ.remove(pos);
+		}
+   
     }
 
-    private void validarCNPJ(String cnpj) throws Exception {
+    public boolean validarCNPJ(String cnpj) throws Exception {
         long cnpjNovo = Long.parseLong(cnpj);
         int qtd = validarDigitos(cnpjNovo, 0);
         if (qtd != 14) {
-            throw new Exception("CNPJ inválido!");
+        	return false;
         }
+        return true;
     }
 
     private int validarDigitos(long num, int qtd) {
@@ -83,14 +86,22 @@ public class ManterClientePJ {
     //String cnpjClientePJ, String nomeClientePJ, String enderecoClientePJ,
     //String cepClientePJ, String telefoneClientePJ, String emailClientePJ
     public void inserirClientePJ(ClientePJ cliente) throws Exception {
-        listaClientesPJ.addLast(cliente);
-        JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
+    	  boolean vali = validarCNPJ(cliente.cnpjClientePJ);
+          if (vali == true) {
+        	  listaClientesPJ.addLast(cliente);
+              JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso!");
+          }
+        
     }
 
     public void atualizarClientePJ(ClientePJ antigoCliente, ClientePJ novoCliente) throws Exception {
-        int pos = encontrarPosicao(antigoCliente);
-        listaClientesPJ.remove(pos);
-        listaClientesPJ.add(novoCliente, pos);
+    	boolean vali = validarCNPJ(novoCliente.cnpjClientePJ);
+    	if (vali == true) {
+            int pos = encontrarPosicao(antigoCliente);
+            listaClientesPJ.remove(pos);
+            listaClientesPJ.add(novoCliente, pos);
+		}
+
     }
 
     private int encontrarPosicao(ClientePJ antigoCliente) throws Exception {

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -75,7 +76,8 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 		InserirClienteCNPJ.add(btnVoltar);
 		ActionListener voltar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaConsulta t = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos);
+				TelaConsulta t = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ,
+						listaPedidos);
 				t.setVisible(true);
 				setVisible(false);
 			}
@@ -89,19 +91,26 @@ public class TelaAtualizarClienteCNPJ extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				try {
-					
+
 					ClientePJ pj = new ClientePJ();
-					pj.cnpjClientePJ = cnpjClientePJ.getText();
-					pj.telefoneClientePJ = telefoneClientePJ.getText();
-					pj.nomeClientePJ = nomeClientePJ.getText();
-					pj.enderecoClientePJ = enderecoClientePJ.getText();
-					pj.cepClientePJ = cepClientePJ.getText();
-					pj.emailClientePJ = emailPJ.getText();
-					manterClientePJ.atualizarClientePJ(retorno, pj);
-                    TelaConsulta tc = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
-                    listaClientesPJ, listaPedidos);
-                    tc.setVisible(true);
-                    dispose();
+					boolean vali = manterClientePJ.validarCNPJ(cnpjClientePJ.getText());
+					if (vali == true) {
+						pj.cnpjClientePJ = cnpjClientePJ.getText();
+						pj.telefoneClientePJ = telefoneClientePJ.getText();
+						pj.nomeClientePJ = nomeClientePJ.getText();
+						pj.enderecoClientePJ = enderecoClientePJ.getText();
+						pj.cepClientePJ = cepClientePJ.getText();
+						pj.emailClientePJ = emailPJ.getText();
+						manterClientePJ.atualizarClientePJ(retorno, pj);
+						TelaConsulta tc = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
+								listaClientesPJ, listaPedidos);
+						tc.setVisible(true);
+						dispose();
+					}else {
+						JOptionPane.showMessageDialog(null, "CNPJ Inválido",
+			                    "Operação Cancelada", JOptionPane.ERROR_MESSAGE);
+					}
+
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

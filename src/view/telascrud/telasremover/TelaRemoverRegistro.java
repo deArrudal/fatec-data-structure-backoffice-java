@@ -78,7 +78,7 @@ public class TelaRemoverRegistro extends JFrame {
 		contentPane.add(lblEstaAo);
 
 		JLabel registroRemovido = new JLabel("");
-		registroRemovido.setBounds(53, 84, 45, 13);
+		registroRemovido.setBounds(53, 84, 348, 13);
 		contentPane.add(registroRemovido);
 
 		registroRemovido.setText(conteudo);
