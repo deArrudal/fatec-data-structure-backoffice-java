@@ -60,12 +60,16 @@ public class TelaClienteCarrinho extends JFrame {
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-				new Object[][] {},
-				new String[] { "Id", "Produto", "Descrico", "Estoque", "Preco" }) {
+			new Object[][] {
+				{"Id", "Produto", "Descricao", "Estoque", "Preco"},
+			},
+			new String[] {
+				"Id", "Produto", "Descricao", "Estoque", "Preco"
+			}
+		) {
 			boolean[] columnEditables = new boolean[] {
-					false, false, false, false, false
+				false, false, false, false, false
 			};
-
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}

@@ -59,12 +59,16 @@ public class TelaCheckout extends JFrame {
 		table = new JTable();
 		table.setToolTipText("");
 		table.setModel(new DefaultTableModel(
-				new Object[][] {},
-				new String[] { "Id", "Produto", "Descri\u00E7\u00E3o", "Estoque", "Pre\u00E7o" }) {
+			new Object[][] {
+				{"Id", "Produto", "Descicao", "Estoque", "Preco"},
+			},
+			new String[] {
+				"Id", "Produto", "Descricao", "Estoque", "Preco"
+			}
+		) {
 			boolean[] columnEditables = new boolean[] {
-					false, false, false, false, false
+				false, false, false, false, false
 			};
-
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}

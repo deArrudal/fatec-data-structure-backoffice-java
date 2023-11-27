@@ -31,7 +31,7 @@ public class TelaRemoverRegistro extends JFrame {
 
 	private JPanel contentPane;
 
-	public TelaRemoverRegistro(String conteudo, String valorCampo, String categoria,
+	public TelaRemoverRegistro(String conteudo, String categoria,
 			LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
 			LinkedList<Pedido> listaPedidos) {
@@ -99,17 +99,22 @@ public class TelaRemoverRegistro extends JFrame {
 				switch (categoria) {
 					case "Cliente CPF":
 						try {
-							manterClientePF.excluirClientePF(valorCampo);
+							manterClientePF.excluirClientePF(conteudo);
+							JOptionPane.showMessageDialog(null, "Cadastro removido com sucesso",
+									"BackOffice - Remover Cadastro", JOptionPane.INFORMATION_MESSAGE);
 
 						} catch (Exception exception) {
-							JOptionPane.showMessageDialog(null, "Erro ao remover cadastro",
-									"BackOffice - Remover Cadastro", JOptionPane.ERROR_MESSAGE);
+							/*JOptionPane.showMessageDialog(null, "Erro ao remover cadastro",
+									"BackOffice - Remover Cadastro", JOptionPane.ERROR_MESSAGE);*/
+							System.err.println(exception.getMessage());
 						}
 						break;
 
 					case "Cliente CNPJ":
 						try {
-							manterClientePJ.excluirClientePJ(valorCampo);
+							manterClientePJ.excluirClientePJ(conteudo);
+							JOptionPane.showMessageDialog(null, "Cadastro removido com sucesso",
+									"BackOffice - Remover Cadastro", JOptionPane.INFORMATION_MESSAGE);
 
 						} catch (Exception exception) {
 							JOptionPane.showMessageDialog(null, "Erro ao remover cadastro",
@@ -119,7 +124,9 @@ public class TelaRemoverRegistro extends JFrame {
 
 					case "Produto":
 						try {
-							manterProduto.excluirProduto(valorCampo);
+							manterProduto.excluirProduto(conteudo);
+							JOptionPane.showMessageDialog(null, "Cadastro removido com sucesso",
+									"BackOffice - Remover Cadastro", JOptionPane.INFORMATION_MESSAGE);
 
 						} catch (Exception exception) {
 							JOptionPane.showMessageDialog(null, "Erro ao remover cadastro",
@@ -129,7 +136,9 @@ public class TelaRemoverRegistro extends JFrame {
 
 					case "Categoria":
 						try {
-							manterCategoria.excluirCategoria(valorCampo);
+							manterCategoria.excluirCategoria(conteudo);
+							JOptionPane.showMessageDialog(null, "Cadastro removido com sucesso",
+									"BackOffice - Remover Cadastro", JOptionPane.INFORMATION_MESSAGE);
 
 						} catch (Exception exception) {
 							JOptionPane.showMessageDialog(null, "Erro ao remover cadastro",
@@ -138,8 +147,7 @@ public class TelaRemoverRegistro extends JFrame {
 						break;
 				}
 
-				JOptionPane.showMessageDialog(null, "Cadastro removido com sucesso",
-						"BackOffice - Remover Cadastro", JOptionPane.INFORMATION_MESSAGE);
+				
 
 				TelaConsulta telaConsulta = new TelaConsulta(listaCategorias, listaProdutos, listaClientesPF,
 						listaClientesPJ,

@@ -140,8 +140,10 @@ public class TelaConsulta extends JFrame {
 		btnAtualizar.setBackground(new Color(128, 255, 128));
 		btnAtualizar.setForeground(new Color(0, 0, 0));
 		contentPane.add(btnAtualizar);
+		
 		ActionListener atualizar = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String categoria = cbCategoria.getSelectedItem().toString();
 				int ver = table.getSelectedRow();
 				if (ver < 1) {
 					JOptionPane.showMessageDialog(null, "Nenhum item selecionado",
@@ -154,7 +156,7 @@ public class TelaConsulta extends JFrame {
 								ClientePF rClientePF = manterClientePF
 										.consultaClientePF(table.getModel().getValueAt(ver, 0).toString());
 
-								TelaAtualizarClienteCPF CPF = new TelaAtualizarClienteCPF(rClientePF, valorCampo,
+								TelaAtualizarClienteCPF CPF = new TelaAtualizarClienteCPF(rClientePF,
 										categoria,
 										listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos);
 								CPF.setVisible(true);
@@ -171,7 +173,7 @@ public class TelaConsulta extends JFrame {
 								ClientePJ rClientePJ = manterClientePJ
 										.consultaClientePJ(table.getModel().getValueAt(ver, 0).toString());
 
-								TelaAtualizarClienteCNPJ CNPJ = new TelaAtualizarClienteCNPJ(rClientePJ, valorCampo,
+								TelaAtualizarClienteCNPJ CNPJ = new TelaAtualizarClienteCNPJ(rClientePJ,
 										categoria,
 										listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos);
 								CNPJ.setVisible(true);
@@ -188,7 +190,7 @@ public class TelaConsulta extends JFrame {
 								Produto rProduto = manterProduto
 										.consultaProduto(table.getModel().getValueAt(ver, 2).toString());
 
-								TelaAtualizarProduto Produto = new TelaAtualizarProduto(rProduto, valorCampo, categoria,
+								TelaAtualizarProduto Produto = new TelaAtualizarProduto(rProduto, categoria,
 										listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos);
 								Produto.setVisible(true);
 								dispose();
@@ -204,7 +206,7 @@ public class TelaConsulta extends JFrame {
 								Categoria rCategoria = manterCategoria
 										.consultaCategoria(table.getModel().getValueAt(ver, 1).toString());
 
-								TelaAtualizarCategoria Categoria = new TelaAtualizarCategoria(rCategoria, valorCampo,
+								TelaAtualizarCategoria Categoria = new TelaAtualizarCategoria(rCategoria,
 										categoria,
 										listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos);
 								Categoria.setVisible(true);
@@ -228,6 +230,7 @@ public class TelaConsulta extends JFrame {
 		contentPane.add(btnExcluirProduto);
 		ActionListener excluir = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String categoria = cbCategoria.getSelectedItem().toString();
 				int ver = table.getSelectedRow();
 				if (ver < 1) {
 					JOptionPane.showMessageDialog(null, "Nenhum item selecionado",
@@ -237,10 +240,10 @@ public class TelaConsulta extends JFrame {
 					String pesquisaRetorno = "";
 
 					switch (categoria) {
-						case "ClienteCPF":
+						case "Cliente CPF":
 							pesquisaRetorno = table.getModel().getValueAt(ver, 0).toString();
 							break;
-						case "ClienteCNPJ":
+						case "Cliente CNPJ":
 							pesquisaRetorno = table.getModel().getValueAt(ver, 0).toString();
 							break;
 						case "Produto":
@@ -251,7 +254,7 @@ public class TelaConsulta extends JFrame {
 							break;
 					}
 
-					TelaRemoverRegistro t = new TelaRemoverRegistro(pesquisaRetorno, valorCampo, categoria,
+					TelaRemoverRegistro t = new TelaRemoverRegistro(pesquisaRetorno, categoria,
 							listaCategorias, listaProdutos, listaClientesPF, listaClientesPJ, listaPedidos);
 					t.setVisible(true);
 					dispose();

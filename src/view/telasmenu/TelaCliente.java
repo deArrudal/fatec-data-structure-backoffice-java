@@ -118,16 +118,21 @@ public class TelaCliente extends JFrame {
 
 		table = new JTable();
 		table.setModel(
-				new DefaultTableModel(new Object[][] {},
-						new String[] { "Id", "Produto", "Descricao", "Estoque", "Preco" }) {
-					boolean[] columnEditables = new boolean[] {
-							false, false, false, false, false };
-
-					public boolean isCellEditable(int row, int column) {
-						return columnEditables[column];
-					}
-				});
-
+				new DefaultTableModel(
+			new Object[][] {
+				{"Id", "Produto", "Descricao", "Estoque", "Preco"},
+			},
+			new String[] {
+				"Id", "Produto", "Descricao", "Estoque", "Preco"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
 		table.getColumnModel().getColumn(1).setPreferredWidth(150);
 		table.getColumnModel().getColumn(2).setPreferredWidth(150);
 		scrollPane.setColumnHeaderView(table);
@@ -221,9 +226,9 @@ public class TelaCliente extends JFrame {
 
 	private void formatarTabela(JComboBox<String> cbCategoria, LinkedList<Produto>[] tabelaProduto) {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		if (model.getRowCount() > 0) {
+		if (model.getRowCount() > 1) {
 			int tamanho = model.getRowCount() - 1;
-			for (int i = tamanho; i >= 0; i--) {
+			for (int i = tamanho; i > 0; i--) {
 				model.removeRow(i);
 			}
 		}

@@ -40,10 +40,10 @@ public class ManterCarrinho {
         Stack<Produto> aux = new Stack<>();
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        if (model.getRowCount() > 0) {
+        if (model.getRowCount() > 1) {
             int tamanho = model.getRowCount() - 1;
 
-            for (int i = tamanho; i >= 0; i--) {
+            for (int i = tamanho; i > 0; i--) {
                 model.removeRow(i);
             }
         }

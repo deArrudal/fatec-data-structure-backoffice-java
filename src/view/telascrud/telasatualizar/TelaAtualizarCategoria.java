@@ -29,7 +29,7 @@ public class TelaAtualizarCategoria extends JFrame {
 	private JTextField idCategoria;
 	private JTextField nomeCategoria;
 
-	public TelaAtualizarCategoria(Categoria retorno, String valorCampo, String categoria,
+	public TelaAtualizarCategoria(Categoria retorno, String categoria,
 			LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
 			LinkedList<Pedido> listaPedidos) {

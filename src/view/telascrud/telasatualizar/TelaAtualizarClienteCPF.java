@@ -33,7 +33,7 @@ public class TelaAtualizarClienteCPF extends JFrame {
 	private JTextField cepClientePF;
 	private JTextField enderecoClientePF;
 
-	public TelaAtualizarClienteCPF(ClientePF retorno, String valorCampo, String categoria,
+	public TelaAtualizarClienteCPF(ClientePF retorno, String categoria,
 			LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
 			LinkedList<Pedido> listaPedidos) {

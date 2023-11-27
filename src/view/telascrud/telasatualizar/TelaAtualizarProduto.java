@@ -35,7 +35,7 @@ public class TelaAtualizarProduto extends JFrame {
 	private JComboBox<String> cbCategoriaPro;
 	private JTextArea txtDescricaoPro;
 
-	public TelaAtualizarProduto(Produto retorno, String valorCampo, String categoria,
+	public TelaAtualizarProduto(Produto retorno, String categoria,
 			LinkedList<Categoria> listaCategorias, LinkedList<Produto>[] listaProdutos,
 			LinkedList<ClientePF> listaClientesPF, LinkedList<ClientePJ> listaClientesPJ,
 			LinkedList<Pedido> listaPedidos) {
