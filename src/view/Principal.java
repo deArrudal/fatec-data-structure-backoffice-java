@@ -10,6 +10,7 @@ import model.Pedido;
 import model.Produto;
 import view.telasmenu.TelaIniciar;
 
+
 public class Principal {
 
     public static boolean modoAdministrador = false;

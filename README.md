@@ -79,11 +79,14 @@ Back Office
 ## Version History
 
 * 0.1
-    * Modelling and Analysis.
+    * Modelling and Analysis
+* 0.2 - 0.7
+    * Implementation
 * 0.8
     * Integration process
 * 0.9
-    * Testing.
+    * Testing
+* 1.0
 
 ## License
 
