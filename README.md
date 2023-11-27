@@ -12,6 +12,12 @@ A Back office is made up of personnel who support the operations of a company bu
 Back-office activities include managing inventory, processing sales orders and onboarding new employees.
 For this, a simple system is developed to allow administrators and users to load a database (using .csv files) and manage all the company's daily activities. 
 
+## Application overview
+
+You can see our introduction video below or located inside the **resources/introduction.mp4**.
+
+![Alt text](resources/introduction.mp4)
+
 ## Class Diagram
 
 ![Alt text](resources/diagramadeclasse.png)
